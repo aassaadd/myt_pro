@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhc.myt.MytDao.mapper.MytProductMapper" >
+  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mch_id" property="mchId" jdbcType="INTEGER" />
+    <result column="proc_id" property="procId" jdbcType="INTEGER" />
+    <result column="pro_name" property="proName" jdbcType="VARCHAR" />
+    <result column="pro_about" property="proAbout" jdbcType="VARCHAR" />
+    <result column="pro_try_price" property="proTryPrice" jdbcType="DECIMAL" />
+    <result column="pro_price" property="proPrice" jdbcType="DECIMAL" />
+    <result column="pro_state" property="proState" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="opt_id" property="optId" jdbcType="INTEGER" />
+    <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zhc.myt.MytDao.entity.MytProduct" extends="BaseResultMap" >
+    <result column="pro_description" property="proDescription" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, mch_id, proc_id, pro_name, pro_about, pro_try_price, pro_price, pro_state, status, 
+    opt_id, opt_date, create_id, create_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    pro_description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zhc.myt.MytDao.entity.MytProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from myt_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from myt_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from myt_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from myt_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into myt_product (mch_id, proc_id, pro_name, 
+      pro_about, pro_try_price, pro_price, 
+      pro_state, status, opt_id, 
+      opt_date, create_id, create_date, 
+      pro_description)
+    values (#{mchId,jdbcType=INTEGER}, #{procId,jdbcType=INTEGER}, #{proName,jdbcType=VARCHAR}, 
+      #{proAbout,jdbcType=VARCHAR}, #{proTryPrice,jdbcType=DECIMAL}, #{proPrice,jdbcType=DECIMAL}, 
+      #{proState,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, 
+      #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{proDescription,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into myt_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mchId != null" >
+        mch_id,
+      </if>
+      <if test="procId != null" >
+        proc_id,
+      </if>
+      <if test="proName != null" >
+        pro_name,
+      </if>
+      <if test="proAbout != null" >
+        pro_about,
+      </if>
+      <if test="proTryPrice != null" >
+        pro_try_price,
+      </if>
+      <if test="proPrice != null" >
+        pro_price,
+      </if>
+      <if test="proState != null" >
+        pro_state,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="optId != null" >
+        opt_id,
+      </if>
+      <if test="optDate != null" >
+        opt_date,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="proDescription != null" >
+        pro_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mchId != null" >
+        #{mchId,jdbcType=INTEGER},
+      </if>
+      <if test="procId != null" >
+        #{procId,jdbcType=INTEGER},
+      </if>
+      <if test="proName != null" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proAbout != null" >
+        #{proAbout,jdbcType=VARCHAR},
+      </if>
+      <if test="proTryPrice != null" >
+        #{proTryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="proPrice != null" >
+        #{proPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="proState != null" >
+        #{proState,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="optId != null" >
+        #{optId,jdbcType=INTEGER},
+      </if>
+      <if test="optDate != null" >
+        #{optDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proDescription != null" >
+        #{proDescription,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytProductExample" resultType="java.lang.Integer" >
+    select count(*) from myt_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
+    update myt_product
+    <set >
+      <if test="mchId != null" >
+        mch_id = #{mchId,jdbcType=INTEGER},
+      </if>
+      <if test="procId != null" >
+        proc_id = #{procId,jdbcType=INTEGER},
+      </if>
+      <if test="proName != null" >
+        pro_name = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proAbout != null" >
+        pro_about = #{proAbout,jdbcType=VARCHAR},
+      </if>
+      <if test="proTryPrice != null" >
+        pro_try_price = #{proTryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="proPrice != null" >
+        pro_price = #{proPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="proState != null" >
+        pro_state = #{proState,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="optId != null" >
+        opt_id = #{optId,jdbcType=INTEGER},
+      </if>
+      <if test="optDate != null" >
+        opt_date = #{optDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proDescription != null" >
+        pro_description = #{proDescription,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
+    update myt_product
+    set mch_id = #{mchId,jdbcType=INTEGER},
+      proc_id = #{procId,jdbcType=INTEGER},
+      pro_name = #{proName,jdbcType=VARCHAR},
+      pro_about = #{proAbout,jdbcType=VARCHAR},
+      pro_try_price = #{proTryPrice,jdbcType=DECIMAL},
+      pro_price = #{proPrice,jdbcType=DECIMAL},
+      pro_state = #{proState,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      opt_id = #{optId,jdbcType=INTEGER},
+      opt_date = #{optDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      pro_description = #{proDescription,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
+    update myt_product
+    set mch_id = #{mchId,jdbcType=INTEGER},
+      proc_id = #{procId,jdbcType=INTEGER},
+      pro_name = #{proName,jdbcType=VARCHAR},
+      pro_about = #{proAbout,jdbcType=VARCHAR},
+      pro_try_price = #{proTryPrice,jdbcType=DECIMAL},
+      pro_price = #{proPrice,jdbcType=DECIMAL},
+      pro_state = #{proState,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      opt_id = #{optId,jdbcType=INTEGER},
+      opt_date = #{optDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

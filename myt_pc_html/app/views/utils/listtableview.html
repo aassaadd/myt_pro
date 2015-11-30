@@ -1,0 +1,81 @@
+<div class="outer">
+    <div class="inner bg-light lter">
+
+        <!--Begin Datatables-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="box">
+                    <header>
+                        <div class="icons">
+                            <i class="fa fa-table"></i>
+                        </div>
+                        <h5>{{conf.tableTitle}}</h5>
+                    </header>
+                    <div id="collapse4" class="body">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row form-inline">
+                                <div ng-repeat="q in conf.querys" query-widget-directive="" conf="q"></div>
+                            </div>
+                            <div class="row form-inline" ng-if="conf.globalOperationConf.length>0" style="text-align: center;margin-top: 15px">
+                                <button ng-repeat="go in conf.globalOperationConf"
+                                        type="button" class="btn btn-sm btn-primary"
+                                        ng-click="go.doFunc(selectList)">{{go.labelName}}</button>
+                            </div>
+                            <div class="row form-inline" ng-if="conf.defaultButton" style="text-align: center;margin-top: 15px">
+                                <button type="button" class="btn btn-sm btn-primary" ng-click="conf.doSelect()">查询</button>
+                                <button type="button" class="btn btn-sm btn-danger" ng-click="conf.doReset()">重置</button>
+                            </div>
+                            <div class="row" style="margin-top: 15px">
+                                <div class="col-sm-12">
+                                    <table id="dataTable"
+                                           class="table table-bordered table-condensed table-hover table-striped dataTable no-footer"
+                                           role="grid" aria-describedby="dataTable_info">
+                                        <thead>
+                                        <tr role="row">
+                                            <td class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" style="width: 30px;" ng-if="conf.multiSelect">
+                                                --
+                                            </td>
+                                            <td class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" ng-repeat="cc in conf.columnConf" style="width:{{cc.width}};">
+                                                {{cc.labelName}}
+                                            </td>
+                                            <td class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" style="width: 118px;"
+                                                ng-if="conf.operationConf.length>0" >
+                                                操作
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr role="row" ng-repeat="data in conf.pageSource.content" data-toggle="context" data-target="#context-menu">
+                                            <td ng-if="conf.multiSelect">
+                                                <input type="checkbox" checklist-model="selectList" checklist-value="data"/>
+                                            </td>
+                                            <td ng-repeat="cc in conf.columnConf">
+                                                <span ng-if="cc.filter!=null"> {{data[cc.valName]|generalFilter:cc.filter}}</span>
+                                                <span ng-if="cc.filter==null"> {{data[cc.valName]}}</span>
+                                            </td>
+                                            <td ng-if="conf.operationConf.length>0">
+                                                <span ng-repeat="oc in conf.operationConf" ng-click="oc.doFunc(data)">
+                                                  <a href="">{{oc.labelName}}</a><br/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div pagination-directive="" source="conf.pageSource" page-size="conf.pageSize"
+                                 page="conf.page"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!--End Datatables-->
+    </div>
+    <!-- /.inner -->
+</div>

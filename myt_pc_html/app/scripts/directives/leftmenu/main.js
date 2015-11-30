@@ -1,0 +1,146 @@
+'use strict';
+
+/**
+ * @ngdoc directive
+ * @name mytPcHtmlApp.directive:/leftMenu/main
+ * @description
+ * # /leftMenu/main
+ */
+angular.module('mytPcHtmlApp')
+  .directive('leftMenuMain', function ($location,global) {
+    return {
+      templateUrl: 'views/leftmenu/main.html',
+      restrict: 'AE',
+      replace:true,
+      scope:{},
+      link: function postLink(scope, element, attrs) {
+        scope.selectClick=function(val){
+          if(val.path){
+            global.currentMenu=val;
+            $location.path(val.path);
+          }
+
+        };
+        scope.menus=[
+          {
+            no:'main',
+            name:'看板',
+            ico:'fa-dashboard',
+            path:'main'
+          },
+          {
+            no:'',
+            name:'用户管理',
+            ico:'',
+            childs:[
+              {
+                no:'userMessage',
+                name:'查询用户',
+                ico:'',
+                path:'userMessage'
+              }
+            ]
+          },
+          {
+            no:'',
+            name:'产品管理',
+            ico:'',
+            childs:[
+              {
+                no:'classMessage',
+                name:'类目管理',
+                ico:'',
+                path:'classMessage'
+              },
+              {
+                no:'productAuditMessage',
+                name:'产品审核管理',
+                ico:'',
+                path:'productAuditMessage'
+              },
+              {
+                no:'productMessage',
+                name:'产品管理',
+                ico:'',
+                path:'productMessage'
+              },
+              {
+                no:'questionnaireMessage',
+                name:'问卷管理',
+                ico:'',
+                path:'questionnaireMessage'
+              }
+            ]
+          },
+          {
+            no:'',
+            name:'订单管理',
+            ico:'',
+            childs:[
+              {
+                no:'ordersMessage',
+                name:'订单管理',
+                ico:'',
+                path:'ordersMessage'
+              }
+            ]
+          },
+          {
+            no:'',
+            name:'客服管理',
+            ico:'',
+            childs:[
+              {
+                no:'userFeedbackMessage',
+                name:'用户意见管理',
+                ico:'',
+                path:'userFeedbackMessage'
+              },
+              {
+                no:'callLogsMessage',
+                name:'客服电话记录',
+                ico:'',
+                path:'callLogsMessage'
+              }
+            ]
+          },
+          {
+            no:'',
+            name:'供应商管理',
+            ico:'',
+            childs:[
+              {
+                no:'merchantMessage',
+                name:'供应商查询',
+                ico:'',
+                path:'merchantMessage'
+              }
+            ]
+          },
+          {
+            no:'',
+            name:'系统设置',
+            ico:'',
+            childs:[
+              {
+                no:'roleMessage',
+                name:'角色管理',
+                ico:'',
+                path:'roleMessage'
+              },
+              {
+                no:'loginLogMessage',
+                name:'登陆日志管理',
+                ico:'',
+                path:'loginLogMessage'
+              }
+            ]
+          }
+        ];
+        setTimeout(function(){
+          element.metisMenu();
+        },1000);
+
+      }
+    };
+  });

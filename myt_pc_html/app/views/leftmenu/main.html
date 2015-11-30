@@ -1,0 +1,21 @@
+<div id="left">
+    <div left-menu-user=""></div>
+    <ul id="menu" class="bg-blue dker">
+        <li class="nav-header">Menu</li>
+        <li class="nav-divider"></li>
+        <li ng-repeat="mu in menus">
+            <a href="" ng-click="selectClick(mu)" >
+                <i class="fa {{mu.ico}}"></i>
+                <span class="link-title">{{mu.name}}</span>
+                <span ng-if="mu.childs" class="fa arrow"></span>
+            </a>
+                <ul ng-if="mu.childs">
+                    <li ng-repeat="m in mu.childs" ng-click="selectClick(m)">
+                        <a href="">
+                            <i class="fa {{m.ico}}"></i>{{m.name}} </a>
+                    </li>
+                </ul>
+
+        </li>
+    </ul><!-- /#menu -->
+</div>

@@ -1,0 +1,66 @@
+<div id="top">
+    <!-- .navbar -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <header class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">-->
+                    <!--<span class="sr-only">Toggle navigation</span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                <!--</button>-->
+                <a href="" class="navbar-brand">
+                    <img src="images/logo.png" alt="">
+                </a>
+            </header>
+            <div class="topnav">
+                <div class="btn-group">
+                    <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip"
+                       class="btn btn-default btn-sm" id="toggleFullScreen" ng-click="requestFullScreen()">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
+                       class="btn btn-metis-1 btn-sm">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+            </div>
+            <!--<div class="collapse navbar-collapse navbar-ex1-collapse">-->
+
+                <!-- .nav -->
+                <!--<ul class="nav navbar-nav">-->
+                    <!--<li><a href="">Dashboard</a></li>-->
+                    <!--<li><a href="">Tables</a></li>-->
+                    <!--<li><a href="">File Manager</a></li>-->
+                    <!--<li class='dropdown '>-->
+                        <!--<a href="" class="dropdown-toggle" data-toggle="dropdown">-->
+                            <!--Form Elements-->
+                            <!--<b class="caret"></b>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li><a href="">General</a></li>-->
+                            <!--<li><a href="">Validation</a></li>-->
+                            <!--<li><a href="">WYSIWYG</a></li>-->
+                            <!--<li><a href="">Wizard &amp; File Upload</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!-- /.nav -->
+            <!--</div>-->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- /.navbar -->
+    <header class="head">
+        <!-- /.search-bar -->
+        <div class="main-bar">
+            <h3>
+                <i class="fa {{currentMenu.ico}}"></i>&nbsp; {{currentMenu.name}}</h3>
+        </div>
+        <!-- /.main-bar -->
+    </header>
+</div><!-- /#top -->

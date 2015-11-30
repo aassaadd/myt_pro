@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="msapplication-TileColor" content="#5bc0de" />
+    <meta name="msapplication-TileImage" content="images/metis-tile.png" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">-->
+
+    <!-- Metis core stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body class="login">
+    <div class="form-signin">
+      <div class="text-center">
+        <img src="images/logo.png" alt="Metis Logo">
+      </div>
+      <hr>
+      <div class="tab-content">
+        <div id="login" class="tab-pane active">
+          <div action="index.html">
+            <p class="text-muted text-center">
+              Enter your username and password
+            </p>
+            <input id="userName" type="text" placeholder="Username" class="form-control top">
+            <input id="userPassword" type="password" placeholder="Password" class="form-control bottom">
+            <div class="checkbox">
+              <label>
+                <input id="rememberMe" type="checkbox"> Remember Me
+              </label>
+            </div>
+            <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--jQuery -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!--Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!--JSON-->
+    <script src="//cdn.bootcss.com/json3/3.3.2/json3.min.js"></script>
+
+    <script type="text/javascript">
+      (function($) {
+        $(document).ready(function() {
+          if(window.localStorage){
+            window.localStorage.clear();
+          }
+          $('#submit').on('click',function(e){
+            if(window.localStorage){
+              window.localStorage.clear();
+              window.localStorage.rememberMe=$('#rememberMe').val();
+              window.localStorage.token='';
+              $.ajax({
+                type:'POST',
+                url:'/myt/api/login',
+                data:JSON.stringify({
+                  userName:$('#userName').val(),
+                  userPassword:$('#userPassword').val()
+                }),
+                dataType:'json',
+                timeout:30000,
+                contentType:'application/json',
+                success:function(data){
+                  if(data && data.data){
+                    console.log(data);
+                    window.localStorage.token=data.data.token;
+                    window.location.href='index.html';
+                  }else{
+                    alert(data.message);
+                  }
+                }
+
+              });
+            }else{
+              alert('对不起您的浏览器版本太低不支持此系统');
+            }
+          });
+        });
+      })(jQuery);
+    </script>
+  </body>
+</html>
