@@ -6,6 +6,13 @@
     <result column="mch_name" property="mchName" jdbcType="VARCHAR" />
     <result column="mch_description" property="mchDescription" jdbcType="VARCHAR" />
     <result column="mch_logo_id" property="mchLogoId" jdbcType="INTEGER" />
+    <result column="mch_address" property="mchAddress" jdbcType="VARCHAR" />
+    <result column="mch_call" property="mchCall" jdbcType="VARCHAR" />
+    <result column="mch_account" property="mchAccount" jdbcType="VARCHAR" />
+    <result column="mch_account_bank" property="mchAccountBank" jdbcType="VARCHAR" />
+    <result column="mch_account_name" property="mchAccountName" jdbcType="VARCHAR" />
+    <result column="mch_person_in_charge" property="mchPersonInCharge" jdbcType="VARCHAR" />
+    <result column="mch_person_in_charge_call" property="mchPersonInChargeCall" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="opt_id" property="optId" jdbcType="INTEGER" />
     <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
@@ -42,8 +49,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, mch_name, mch_description, mch_logo_id, status, opt_id, opt_date, create_id, 
-    create_date
+    id, mch_name, mch_description, mch_logo_id, mch_address, mch_call, mch_account, mch_account_bank, 
+    mch_account_name, mch_person_in_charge, mch_person_in_charge_call, status, opt_id, 
+    opt_date, create_id, create_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytMerchantExample" >
     select
@@ -78,11 +86,17 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into myt_merchant (mch_name, mch_description, mch_logo_id, 
-      status, opt_id, opt_date, 
-      create_id, create_date)
+      mch_address, mch_call, mch_account, 
+      mch_account_bank, mch_account_name, mch_person_in_charge, 
+      mch_person_in_charge_call, status, opt_id, 
+      opt_date, create_id, create_date
+      )
     values (#{mchName,jdbcType=VARCHAR}, #{mchDescription,jdbcType=VARCHAR}, #{mchLogoId,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, 
-      #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP})
+      #{mchAddress,jdbcType=VARCHAR}, #{mchCall,jdbcType=VARCHAR}, #{mchAccount,jdbcType=VARCHAR}, 
+      #{mchAccountBank,jdbcType=VARCHAR}, #{mchAccountName,jdbcType=VARCHAR}, #{mchPersonInCharge,jdbcType=VARCHAR}, 
+      #{mchPersonInChargeCall,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, 
+      #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytMerchant" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -98,6 +112,27 @@
       </if>
       <if test="mchLogoId != null" >
         mch_logo_id,
+      </if>
+      <if test="mchAddress != null" >
+        mch_address,
+      </if>
+      <if test="mchCall != null" >
+        mch_call,
+      </if>
+      <if test="mchAccount != null" >
+        mch_account,
+      </if>
+      <if test="mchAccountBank != null" >
+        mch_account_bank,
+      </if>
+      <if test="mchAccountName != null" >
+        mch_account_name,
+      </if>
+      <if test="mchPersonInCharge != null" >
+        mch_person_in_charge,
+      </if>
+      <if test="mchPersonInChargeCall != null" >
+        mch_person_in_charge_call,
       </if>
       <if test="status != null" >
         status,
@@ -124,6 +159,27 @@
       </if>
       <if test="mchLogoId != null" >
         #{mchLogoId,jdbcType=INTEGER},
+      </if>
+      <if test="mchAddress != null" >
+        #{mchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mchCall != null" >
+        #{mchCall,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAccount != null" >
+        #{mchAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAccountBank != null" >
+        #{mchAccountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAccountName != null" >
+        #{mchAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="mchPersonInCharge != null" >
+        #{mchPersonInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="mchPersonInChargeCall != null" >
+        #{mchPersonInChargeCall,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -160,6 +216,27 @@
       <if test="mchLogoId != null" >
         mch_logo_id = #{mchLogoId,jdbcType=INTEGER},
       </if>
+      <if test="mchAddress != null" >
+        mch_address = #{mchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mchCall != null" >
+        mch_call = #{mchCall,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAccount != null" >
+        mch_account = #{mchAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAccountBank != null" >
+        mch_account_bank = #{mchAccountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAccountName != null" >
+        mch_account_name = #{mchAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="mchPersonInCharge != null" >
+        mch_person_in_charge = #{mchPersonInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="mchPersonInChargeCall != null" >
+        mch_person_in_charge_call = #{mchPersonInChargeCall,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
@@ -183,6 +260,13 @@
     set mch_name = #{mchName,jdbcType=VARCHAR},
       mch_description = #{mchDescription,jdbcType=VARCHAR},
       mch_logo_id = #{mchLogoId,jdbcType=INTEGER},
+      mch_address = #{mchAddress,jdbcType=VARCHAR},
+      mch_call = #{mchCall,jdbcType=VARCHAR},
+      mch_account = #{mchAccount,jdbcType=VARCHAR},
+      mch_account_bank = #{mchAccountBank,jdbcType=VARCHAR},
+      mch_account_name = #{mchAccountName,jdbcType=VARCHAR},
+      mch_person_in_charge = #{mchPersonInCharge,jdbcType=VARCHAR},
+      mch_person_in_charge_call = #{mchPersonInChargeCall,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       opt_id = #{optId,jdbcType=INTEGER},
       opt_date = #{optDate,jdbcType=TIMESTAMP},

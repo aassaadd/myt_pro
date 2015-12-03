@@ -8,12 +8,12 @@
     <result column="mod_url" property="modUrl" jdbcType="VARCHAR" />
     <result column="mod_no" property="modNo" jdbcType="VARCHAR" />
     <result column="mod_about" property="modAbout" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="CHAR" />
     <result column="opt_id" property="optId" jdbcType="INTEGER" />
     <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="create_id" property="createId" jdbcType="INTEGER" />
-    <result column="sort" property="sort" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -45,8 +45,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, app_id, mod_name, mod_url, mod_no, mod_about, status, opt_id, opt_date, create_date, 
-    create_id, sort
+    id, app_id, mod_name, mod_url, mod_no, mod_about, sort, status, opt_id, opt_date, 
+    create_date, create_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytAppModuleExample" >
     select
@@ -81,13 +81,13 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into myt_app_module (app_id, mod_name, mod_url, 
-      mod_no, mod_about, status, 
-      opt_id, opt_date, create_date, 
-      create_id, sort)
+      mod_no, mod_about, sort, 
+      status, opt_id, opt_date, 
+      create_date, create_id)
     values (#{appId,jdbcType=INTEGER}, #{modName,jdbcType=VARCHAR}, #{modUrl,jdbcType=VARCHAR}, 
-      #{modNo,jdbcType=VARCHAR}, #{modAbout,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
-      #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{createId,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER})
+      #{modNo,jdbcType=VARCHAR}, #{modAbout,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{status,jdbcType=CHAR}, #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytAppModule" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -110,6 +110,9 @@
       <if test="modAbout != null" >
         mod_about,
       </if>
+      <if test="sort != null" >
+        sort,
+      </if>
       <if test="status != null" >
         status,
       </if>
@@ -124,9 +127,6 @@
       </if>
       <if test="createId != null" >
         create_id,
-      </if>
-      <if test="sort != null" >
-        sort,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -145,6 +145,9 @@
       <if test="modAbout != null" >
         #{modAbout,jdbcType=VARCHAR},
       </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=CHAR},
       </if>
@@ -159,9 +162,6 @@
       </if>
       <if test="createId != null" >
         #{createId,jdbcType=INTEGER},
-      </if>
-      <if test="sort != null" >
-        #{sort,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -189,6 +189,9 @@
       <if test="modAbout != null" >
         mod_about = #{modAbout,jdbcType=VARCHAR},
       </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=CHAR},
       </if>
@@ -204,9 +207,6 @@
       <if test="createId != null" >
         create_id = #{createId,jdbcType=INTEGER},
       </if>
-      <if test="sort != null" >
-        sort = #{sort,jdbcType=INTEGER},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -217,12 +217,12 @@
       mod_url = #{modUrl,jdbcType=VARCHAR},
       mod_no = #{modNo,jdbcType=VARCHAR},
       mod_about = #{modAbout,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
       status = #{status,jdbcType=CHAR},
       opt_id = #{optId,jdbcType=INTEGER},
       opt_date = #{optDate,jdbcType=TIMESTAMP},
       create_date = #{createDate,jdbcType=TIMESTAMP},
-      create_id = #{createId,jdbcType=INTEGER},
-      sort = #{sort,jdbcType=INTEGER}
+      create_id = #{createId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -16,7 +16,7 @@ angular.module('mytPcHtmlApp')
             link: function postLink(scope, element, attrs) {
                 scope.user = {};
                 scope.date=new Date();
-                apiMain.user.getById.queryCallback({userId:0}, function (data) {
+                apiMain.user.getById.queryCallback({id:0}, function (data) {
                     if (data && data.data) {
                         scope.user = data.data;
                     }

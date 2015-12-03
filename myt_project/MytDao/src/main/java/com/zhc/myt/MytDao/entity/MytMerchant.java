@@ -11,6 +11,20 @@ public class MytMerchant {
 
     private Integer mchLogoId;
 
+    private String mchAddress;
+
+    private String mchCall;
+
+    private String mchAccount;
+
+    private String mchAccountBank;
+
+    private String mchAccountName;
+
+    private String mchPersonInCharge;
+
+    private String mchPersonInChargeCall;
+
     private String status;
 
     private Integer optId;
@@ -51,6 +65,62 @@ public class MytMerchant {
 
     public void setMchLogoId(Integer mchLogoId) {
         this.mchLogoId = mchLogoId;
+    }
+
+    public String getMchAddress() {
+        return mchAddress;
+    }
+
+    public void setMchAddress(String mchAddress) {
+        this.mchAddress = mchAddress == null ? null : mchAddress.trim();
+    }
+
+    public String getMchCall() {
+        return mchCall;
+    }
+
+    public void setMchCall(String mchCall) {
+        this.mchCall = mchCall == null ? null : mchCall.trim();
+    }
+
+    public String getMchAccount() {
+        return mchAccount;
+    }
+
+    public void setMchAccount(String mchAccount) {
+        this.mchAccount = mchAccount == null ? null : mchAccount.trim();
+    }
+
+    public String getMchAccountBank() {
+        return mchAccountBank;
+    }
+
+    public void setMchAccountBank(String mchAccountBank) {
+        this.mchAccountBank = mchAccountBank == null ? null : mchAccountBank.trim();
+    }
+
+    public String getMchAccountName() {
+        return mchAccountName;
+    }
+
+    public void setMchAccountName(String mchAccountName) {
+        this.mchAccountName = mchAccountName == null ? null : mchAccountName.trim();
+    }
+
+    public String getMchPersonInCharge() {
+        return mchPersonInCharge;
+    }
+
+    public void setMchPersonInCharge(String mchPersonInCharge) {
+        this.mchPersonInCharge = mchPersonInCharge == null ? null : mchPersonInCharge.trim();
+    }
+
+    public String getMchPersonInChargeCall() {
+        return mchPersonInChargeCall;
+    }
+
+    public void setMchPersonInChargeCall(String mchPersonInChargeCall) {
+        this.mchPersonInChargeCall = mchPersonInChargeCall == null ? null : mchPersonInChargeCall.trim();
     }
 
     public String getStatus() {

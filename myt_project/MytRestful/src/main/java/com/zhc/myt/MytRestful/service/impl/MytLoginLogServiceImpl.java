@@ -52,7 +52,7 @@ public class MytLoginLogServiceImpl implements MytLoginLogService{
 		MytLoginLogExample example = new MytLoginLogExample();
 		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		Integer limtStart=(pageNumber - 1) * pageSize;
-		Integer limtEnd=limtStart+pageSize;
+		Integer limtEnd=pageSize;
 		example.setLimitStart(limtStart);
 		example.setLimitEnd(limtEnd);
 		example.setOrderByClause("create_date DESC");

@@ -15,6 +15,8 @@ public class MytAppModule {
 
     private String modAbout;
 
+    private Integer sort;
+
     private String status;
 
     private Integer optId;
@@ -24,8 +26,6 @@ public class MytAppModule {
     private Date createDate;
 
     private Integer createId;
-
-    private Integer sort;
 
     public Integer getId() {
         return id;
@@ -75,6 +75,14 @@ public class MytAppModule {
         this.modAbout = modAbout == null ? null : modAbout.trim();
     }
 
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -113,13 +121,5 @@ public class MytAppModule {
 
     public void setCreateId(Integer createId) {
         this.createId = createId;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
     }
 }

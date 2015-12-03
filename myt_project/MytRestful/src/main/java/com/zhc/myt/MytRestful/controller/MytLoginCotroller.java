@@ -1,10 +1,7 @@
 package com.zhc.myt.MytRestful.controller;
 
 import java.util.Map;
-import java.util.StringTokenizer;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.zhc.myt.MytRestful.common.MytSystem;
 import com.zhc.myt.MytRestful.service.MytLoginLogService;
 import com.zhc.myt.MytRestful.service.MytUserService;

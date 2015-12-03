@@ -4,10 +4,13 @@ package com.zhc.myt.MytRestful.service.impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.zhc.myt.MytRestful.common.MytSystem;
 import com.zhc.myt.MytRestful.service.MytUserService;
 import com.zhc.myt.MytCommon.ReturnPage;
@@ -17,6 +20,7 @@ import com.zhc.myt.MytCommon.util.ExampleUtils;
 import com.zhc.myt.MytCommon.util.MD5Util;
 import com.zhc.myt.MytCommon.util.UUIDUtil;
 import com.zhc.myt.MytDao.entity.MytMerchant;
+import com.zhc.myt.MytDao.entity.MytRoleExample;
 import com.zhc.myt.MytDao.entity.MytUser;
 import com.zhc.myt.MytDao.entity.MytUserExample;
 import com.zhc.myt.MytDao.mapper.MytMerchantMapper;
@@ -86,8 +90,13 @@ public class MytUserServiceImpl implements MytUserService {
 		// TODO Auto-generated method stub
 		MytUserExample example = new MytUserExample();
 		ExampleUtils.Map2ExampleMethod(example.or(), params);
+		//模糊查询
+		if(params.containsKey("userName@like")){
+			MytUserExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
+			cr.andUserNameLike("%"+params.get("userName@like").toString()+"%");
+		}
 		Integer limtStart=(pageNumber - 1) * pageSize;
-		Integer limtEnd=limtStart+pageSize;
+		Integer limtEnd=pageSize;
 		example.setLimitStart(limtStart);
 		example.setLimitEnd(limtEnd);
 		example.setOrderByClause("create_date DESC");
@@ -103,6 +112,11 @@ public class MytUserServiceImpl implements MytUserService {
 		// TODO Auto-generated method stub
 		MytUserExample example = new MytUserExample();
 		ExampleUtils.Map2ExampleMethod(example.or(), params);
+		//模糊查询
+		if(params.containsKey("userName@like")){
+			MytUserExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
+			cr.andUserNameLike("%"+params.get("userName@like").toString()+"%");
+		}
 		example.setOrderByClause("create_date DESC");
 		List<MytUser> content = mytUserMapper.selectByExample(example);
 		return content;
@@ -131,6 +145,10 @@ public class MytUserServiceImpl implements MytUserService {
 				if (mytMerchant == null || mytMerchant.getStatus().equals("0")) {
 					return null;
 				}
+			}
+			//判断用户是否无效
+			if(user.getStatus().equals("0")){
+				return null;
 			}
 			Map<String, Object> rmap = BeanUtils.Bean2Map(user);
 			rmap.put("token", token);

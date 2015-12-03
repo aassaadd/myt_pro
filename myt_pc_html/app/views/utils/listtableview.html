@@ -16,14 +16,14 @@
                             <div class="row form-inline">
                                 <div ng-repeat="q in conf.querys" query-widget-directive="" conf="q"></div>
                             </div>
+                            <div class="row form-inline" ng-if="conf.defaultButton" style="text-align: center;margin-top: 15px">
+                                <button type="button" class="btn btn-sm btn-primary" ng-click="conf.doSelect()">查询</button>
+                                <button type="button" class="btn btn-sm btn-danger" ng-click="conf.doReset()">重置</button>
+                            </div>
                             <div class="row form-inline" ng-if="conf.globalOperationConf.length>0" style="text-align: center;margin-top: 15px">
                                 <button ng-repeat="go in conf.globalOperationConf"
                                         type="button" class="btn btn-sm btn-primary"
                                         ng-click="go.doFunc(selectList)">{{go.labelName}}</button>
-                            </div>
-                            <div class="row form-inline" ng-if="conf.defaultButton" style="text-align: center;margin-top: 15px">
-                                <button type="button" class="btn btn-sm btn-primary" ng-click="conf.doSelect()">查询</button>
-                                <button type="button" class="btn btn-sm btn-danger" ng-click="conf.doReset()">重置</button>
                             </div>
                             <div class="row" style="margin-top: 15px">
                                 <div class="col-sm-12">

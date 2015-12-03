@@ -15,7 +15,7 @@ public class MytUser {
 
     private String userClass;
 
-    private String usetType;
+    private String useType;
 
     private String status;
 
@@ -75,12 +75,12 @@ public class MytUser {
         this.userClass = userClass == null ? null : userClass.trim();
     }
 
-    public String getUsetType() {
-        return usetType;
+    public String getUseType() {
+        return useType;
     }
 
-    public void setUsetType(String usetType) {
-        this.usetType = usetType == null ? null : usetType.trim();
+    public void setUseType(String useType) {
+        this.useType = useType == null ? null : useType.trim();
     }
 
     public String getStatus() {

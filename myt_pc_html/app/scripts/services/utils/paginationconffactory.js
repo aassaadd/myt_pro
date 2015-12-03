@@ -167,7 +167,10 @@ angular.module('mytPcHtmlApp')
         var doSelect = function () {
             var querys = {};
             for (var i in this.querys) {
-                querys[this.querys[i].queryName] = this.querys[i].value;
+                if(this.querys[i].value && this.querys[i].value!=''){
+                    querys[this.querys[i].queryName] = this.querys[i].value;
+                }
+
             }
             querys.page = this.page;
             querys.pageSize = this.pageSize;
@@ -201,7 +204,7 @@ angular.module('mytPcHtmlApp')
             }
         };
         var conf = baseFactory.extend({
-            tableTitle: '',
+            tableTitle: '列表',
             defaultButton:true,//默认功能按钮查询和重置
             multiSelect:false,//是否显示多选按钮默认否
             columnConf: columnConf,

@@ -525,73 +525,73 @@ public class MytUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeIsNull() {
-            addCriterion("uset_type is null");
+        public Criteria andUseTypeIsNull() {
+            addCriterion("use_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeIsNotNull() {
-            addCriterion("uset_type is not null");
+        public Criteria andUseTypeIsNotNull() {
+            addCriterion("use_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeEqualTo(String value) {
-            addCriterion("uset_type =", value, "usetType");
+        public Criteria andUseTypeEqualTo(String value) {
+            addCriterion("use_type =", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeNotEqualTo(String value) {
-            addCriterion("uset_type <>", value, "usetType");
+        public Criteria andUseTypeNotEqualTo(String value) {
+            addCriterion("use_type <>", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeGreaterThan(String value) {
-            addCriterion("uset_type >", value, "usetType");
+        public Criteria andUseTypeGreaterThan(String value) {
+            addCriterion("use_type >", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("uset_type >=", value, "usetType");
+        public Criteria andUseTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("use_type >=", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeLessThan(String value) {
-            addCriterion("uset_type <", value, "usetType");
+        public Criteria andUseTypeLessThan(String value) {
+            addCriterion("use_type <", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeLessThanOrEqualTo(String value) {
-            addCriterion("uset_type <=", value, "usetType");
+        public Criteria andUseTypeLessThanOrEqualTo(String value) {
+            addCriterion("use_type <=", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeLike(String value) {
-            addCriterion("uset_type like", value, "usetType");
+        public Criteria andUseTypeLike(String value) {
+            addCriterion("use_type like", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeNotLike(String value) {
-            addCriterion("uset_type not like", value, "usetType");
+        public Criteria andUseTypeNotLike(String value) {
+            addCriterion("use_type not like", value, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeIn(List<String> values) {
-            addCriterion("uset_type in", values, "usetType");
+        public Criteria andUseTypeIn(List<String> values) {
+            addCriterion("use_type in", values, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeNotIn(List<String> values) {
-            addCriterion("uset_type not in", values, "usetType");
+        public Criteria andUseTypeNotIn(List<String> values) {
+            addCriterion("use_type not in", values, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeBetween(String value1, String value2) {
-            addCriterion("uset_type between", value1, value2, "usetType");
+        public Criteria andUseTypeBetween(String value1, String value2) {
+            addCriterion("use_type between", value1, value2, "useType");
             return (Criteria) this;
         }
 
-        public Criteria andUsetTypeNotBetween(String value1, String value2) {
-            addCriterion("uset_type not between", value1, value2, "usetType");
+        public Criteria andUseTypeNotBetween(String value1, String value2) {
+            addCriterion("use_type not between", value1, value2, "useType");
             return (Criteria) this;
         }
 

@@ -35,62 +35,81 @@ angular
                 controller: 'AboutCtrl',
                 controllerAs: 'about'
             })
-            .when('/userMessage', {
-                templateUrl: 'views/usermessage.html',
-                controller: 'UsermessageCtrl',
-                controllerAs: 'userMessage'
+            .when('/userManage', {
+                templateUrl: 'views/usermanage.html',
+                controller: 'UsermanageCtrl',
+                controllerAs: 'userManage'
             })
-            .when('/classMessage', {
-                templateUrl: 'views/classmessage.html',
-                controller: 'ClassmessageCtrl',
-                controllerAs: 'classMessage'
+            .when('/classManage', {
+                templateUrl: 'views/classmanage.html',
+                controller: 'ClassmanageCtrl',
+                controllerAs: 'classManage'
             })
-            .when('/productMessage', {
-                templateUrl: 'views/productmessage.html',
-                controller: 'ProductmessageCtrl',
-                controllerAs: 'productMessage'
+            .when('/productManage', {
+                templateUrl: 'views/productmanage.html',
+                controller: 'ProductmanageCtrl',
+                controllerAs: 'productManage'
             })
-            .when('/productAuditMessage', {
-                templateUrl: 'views/productauditmessage.html',
-                controller: 'ProductauditmessageCtrl',
-                controllerAs: 'productAuditMessage'
+            .when('/productAuditManage', {
+                templateUrl: 'views/productauditmanage.html',
+                controller: 'ProductauditmanageCtrl',
+                controllerAs: 'productAuditManage'
             })
-            .when('/questionnaireMessage', {
-                templateUrl: 'views/questionnairemessage.html',
-                controller: 'QuestionnairemessageCtrl',
-                controllerAs: 'questionnaireMessage'
+            .when('/questionnaireManage', {
+                templateUrl: 'views/questionnairemanage.html',
+                controller: 'QuestionnairemanageCtrl',
+                controllerAs: 'questionnaireManage'
             })
-            .when('/ordersMessage', {
-                templateUrl: 'views/ordersmessage.html',
-                controller: 'OrdersmessageCtrl',
-                controllerAs: 'ordersMessage'
+            .when('/ordersManage', {
+                templateUrl: 'views/ordersmanage.html',
+                controller: 'OrdersmanageCtrl',
+                controllerAs: 'ordersManage'
             })
-            .when('/userFeedbackMessage', {
-                templateUrl: 'views/userfeedbackmessage.html',
-                controller: 'UserfeedbackmessageCtrl',
-                controllerAs: 'userFeedbackMessage'
+            .when('/callLogsManage', {
+                templateUrl: 'views/calllogsmanage.html',
+                controller: 'CalllogsmanageCtrl',
+                controllerAs: 'callLogsManage'
             })
-            .when('/callLogsMessage', {
-                templateUrl: 'views/calllogsmessage.html',
-                controller: 'CalllogsmessageCtrl',
-                controllerAs: 'callLogsMessage'
+            .when('/merchantManage', {
+                templateUrl: 'views/merchantmanage.html',
+                controller: 'MerchantmanageCtrl',
+                controllerAs: 'merchantManage'
             })
-            .when('/merchantMessage', {
-                templateUrl: 'views/merchantmessage.html',
-                controller: 'MerchantmessageCtrl',
-                controllerAs: 'merchantMessage'
+            .when('/roleManage', {
+                templateUrl: 'views/rolemanage.html',
+                controller: 'RolemanageCtrl',
+                controllerAs: 'roleManage'
             })
-            .when('/roleMessage', {
-                templateUrl: 'views/rolemessage.html',
-                controller: 'RolemessageCtrl',
-                controllerAs: 'roleMessage'
+            .when('/loginLogManage', {
+                templateUrl: 'views/loginlogmanage.html',
+                controller: 'LoginlogmanageCtrl',
+                controllerAs: 'loginLogManage'
             })
-            .when('/loginLogMessage', {
-                templateUrl: 'views/loginlogmessage.html',
-                controller: 'LoginlogmessageCtrl',
-                controllerAs: 'loginLogMessage'
+            .when('/advManage', {
+              templateUrl: 'views/advmanage.html',
+              controller: 'AdvmanageCtrl',
+              controllerAs: 'advManage'
+            })
+            .when('/fdkManage', {
+              templateUrl: 'views/fdkmanage.html',
+              controller: 'FdkmanageCtrl',
+              controllerAs: 'fdkManage'
+            })
+            .when('/wxUserManage', {
+              templateUrl: 'views/wxusermanage.html',
+              controller: 'WxusermanageCtrl',
+              controllerAs: 'wxUserManage'
             })
             .otherwise({
                 redirectTo: '/'
             });
+        //判断当前页面大小
+        $(window).resize(function() {
+            if(document.body.clientWidth <= 960){
+                $('body').addClass('sidebar-left-mini');
+            }else{
+                $('body').removeClass('sidebar-left-mini');
+            }
+        });
+        $(window).resize();
     });

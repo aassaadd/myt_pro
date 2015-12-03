@@ -19,15 +19,39 @@ angular.module('mytPcHtmlApp')
         return {
           method: 'GET',
           url: global.baseUrl + '/api/manage/mytUser',
-          data: params
+          params: params
         }
       }),
       getById: apiUtils.getQuery(function (params) {
 
         return {
           method: 'GET',
-          url: global.baseUrl + '/api/manage/mytUser/'+params.userId,
+          url: global.baseUrl + '/api/manage/mytUser/'+params.id,
+          params: params
+        }
+      }),
+      add: apiUtils.getQuery(function (params) {
+
+        return {
+          method: 'POST',
+          url: global.baseUrl + '/api/manage/mytUser/'+params.id,
           data: params
+        }
+      }),
+      update: apiUtils.getQuery(function (params) {
+
+        return {
+          method: 'PUT',
+          url: global.baseUrl + '/api/manage/mytUser/'+params.id,
+          data: params
+        }
+      }),
+      delete: apiUtils.getQuery(function (params) {
+
+        return {
+          method: 'DELETE',
+          url: global.baseUrl + '/api/manage/mytUser/'+params.id,
+          params: params
         }
       })
     };

@@ -34,10 +34,10 @@ angular.module('mytPcHtmlApp')
             ico:'',
             childs:[
               {
-                no:'userMessage',
+                no:'wxUserManage',
                 name:'查询用户',
                 ico:'',
-                path:'userMessage'
+                path:'wxUserManage'
               }
             ]
           },
@@ -47,28 +47,28 @@ angular.module('mytPcHtmlApp')
             ico:'',
             childs:[
               {
-                no:'classMessage',
+                no:'classManage',
                 name:'类目管理',
                 ico:'',
-                path:'classMessage'
+                path:'classManage'
               },
               {
-                no:'productAuditMessage',
+                no:'productAuditManage',
                 name:'产品审核管理',
                 ico:'',
-                path:'productAuditMessage'
+                path:'productAuditManage'
               },
               {
-                no:'productMessage',
+                no:'productManage',
                 name:'产品管理',
                 ico:'',
-                path:'productMessage'
+                path:'productManage'
               },
               {
-                no:'questionnaireMessage',
+                no:'questionnaireManage',
                 name:'问卷管理',
                 ico:'',
-                path:'questionnaireMessage'
+                path:'questionnaireManage'
               }
             ]
           },
@@ -78,10 +78,10 @@ angular.module('mytPcHtmlApp')
             ico:'',
             childs:[
               {
-                no:'ordersMessage',
+                no:'ordersManage',
                 name:'订单管理',
                 ico:'',
-                path:'ordersMessage'
+                path:'ordersManage'
               }
             ]
           },
@@ -91,16 +91,16 @@ angular.module('mytPcHtmlApp')
             ico:'',
             childs:[
               {
-                no:'userFeedbackMessage',
+                no:'fdkManage',
                 name:'用户意见管理',
                 ico:'',
-                path:'userFeedbackMessage'
+                path:'fdkManage'
               },
               {
-                no:'callLogsMessage',
+                no:'callLogsManage',
                 name:'客服电话记录',
                 ico:'',
-                path:'callLogsMessage'
+                path:'callLogsManage'
               }
             ]
           },
@@ -110,10 +110,10 @@ angular.module('mytPcHtmlApp')
             ico:'',
             childs:[
               {
-                no:'merchantMessage',
+                no:'merchantManage',
                 name:'供应商查询',
                 ico:'',
-                path:'merchantMessage'
+                path:'merchantManage'
               }
             ]
           },
@@ -123,16 +123,28 @@ angular.module('mytPcHtmlApp')
             ico:'',
             childs:[
               {
-                no:'roleMessage',
-                name:'角色管理',
+                no:'userManage',
+                name:'后台编辑管理',
                 ico:'',
-                path:'roleMessage'
+                path:'userManage'
               },
               {
-                no:'loginLogMessage',
+                no:'advManage',
+                name:'广告位管理',
+                ico:'',
+                path:'advManage'
+              },
+              {
+                no:'roleManage',
+                name:'角色管理',
+                ico:'',
+                path:'roleManage'
+              },
+              {
+                no:'loginLogManage',
                 name:'登陆日志管理',
                 ico:'',
-                path:'loginLogMessage'
+                path:'loginLogManage'
               }
             ]
           }

@@ -76,7 +76,7 @@ public class MytFileServiceImpl implements MytFileService {
 		MytFileExample example = new MytFileExample();
 		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		Integer limtStart=(pageNumber - 1) * pageSize;
-		Integer limtEnd=limtStart+pageSize;
+		Integer limtEnd=pageSize;
 		example.setLimitStart(limtStart);
 		example.setLimitEnd(limtEnd);
 		example.setOrderByClause("create_date DESC");
