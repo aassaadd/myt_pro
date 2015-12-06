@@ -16,7 +16,6 @@ angular.module('mytPcHtmlApp')
         var modelConf = [
         //    {
         //    labelName: '组织名称',
-        //    valName: 'orgName',
         //    type: 'text',//text/select/date/label
         //    default: '',//默认值
         //    selValue: [],

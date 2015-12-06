@@ -13,6 +13,7 @@
 	<name>MytRestful Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- spring版本号 -->
 		<spring.version>4.1.3.RELEASE</spring.version>
 		<!-- mybatis版本号 -->

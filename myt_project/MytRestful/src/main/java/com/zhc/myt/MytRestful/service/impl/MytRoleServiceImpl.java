@@ -73,10 +73,10 @@ public class MytRoleServiceImpl implements MytRoleService {
 			Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytRoleExample example = new MytRoleExample();
-		ExampleUtils.Map2ExampleMethod(example.or(), params);
+		MytRoleExample.Criteria cr=example.or();
+		ExampleUtils.Map2ExampleMethod(cr, params);
 		//模糊查询
 		if(params.containsKey("roleName@like")){
-			MytRoleExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
 			cr.andRoleNameLike("%"+params.get("roleName@like").toString()+"%");
 		}
 		//------
@@ -96,10 +96,10 @@ public class MytRoleServiceImpl implements MytRoleService {
 	public List<MytRole> getByList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytRoleExample example = new MytRoleExample();
-		ExampleUtils.Map2ExampleMethod(example.or(), params);
+		MytRoleExample.Criteria cr=example.or();
+		ExampleUtils.Map2ExampleMethod(cr, params);
 		//模糊查询
 		if(params.containsKey("roleName@like")){
-			MytRoleExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
 			cr.andRoleNameLike("%"+params.get("roleName@like").toString()+"%");
 		}
 		example.setOrderByClause("create_date DESC");

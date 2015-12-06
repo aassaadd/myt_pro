@@ -7,7 +7,7 @@
  * # roleManagePage
  */
 angular.module('mytPcHtmlApp')
-  .directive('roleManagePage', function (apiMain,$filter) {
+  .directive('roleManagePage', function (apiMain,$filter,$location) {
     return {
       templateUrl: 'views/page/role/rolemanagepageview.html',
       restrict: 'AE',
@@ -52,9 +52,9 @@ angular.module('mytPcHtmlApp')
           ],
           operationConf: [
             {
-                labelName: '查看',//操作名称
+                labelName: '修改',//操作名称
                 doFunc: function (val) {
-                    alert(JSON.stringify(val));
+                  $location.path('roleAddManage').search({id:val.id});
                 }//操作方法
             }
           ],
@@ -62,7 +62,7 @@ angular.module('mytPcHtmlApp')
             {
                 labelName: '添加',//操作名称
                 doFunc: function (val) {
-                    alert(JSON.stringify(val));
+                  $location.path('roleAddManage');
                 }//操作方法
             }
           ],

@@ -115,6 +115,11 @@ angular
               controller: 'UseraddmanageCtrl',
               controllerAs: 'userAddManage'
             })
+            .when('/roleAddManage', {
+              templateUrl: 'views/roleaddmanage.html',
+              controller: 'RoleaddmanageCtrl',
+              controllerAs: 'roleAddManage'
+            })
             .otherwise({
                 redirectTo: '/'
             });

@@ -19,7 +19,18 @@ public class ExampleUtils {
 					try {
 						Method method = cr.getClass().getMethod(methodName,
 								ret.get(methodName));
-						method.invoke(cr, params.get(key));
+						switch (ret.get(methodName)[0].getName()) {
+						case "java.lang.String":
+							method.invoke(cr,java.lang.String.valueOf(params.get(key)));
+							break;
+						case "java.lang.Integer":
+							method.invoke(cr,java.lang.Integer.valueOf(params.get(key).toString()));
+							break;
+						default:
+							method.invoke(cr,params.get(key));
+							break;
+						}
+						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -1,0 +1,18 @@
+<div>
+    <uib-tabset>
+        <uib-tab ng-repeat=" app in apps" heading="{{app.appName}}">
+
+            <div class="checkbox" ng-repeat="m in app.modules" >
+                <label>
+                    <div class="checker">
+                                <span class="checked">
+                                <input class="uniform" name="{{conf.valName}}" type="checkbox" checklist-model="conf.value"
+                                       checklist-value="m" >
+                                </span>
+                    </div>
+                    {{m.modName}}
+                </label>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

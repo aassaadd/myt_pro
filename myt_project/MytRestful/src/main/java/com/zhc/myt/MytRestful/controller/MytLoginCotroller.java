@@ -1,7 +1,10 @@
 package com.zhc.myt.MytRestful.controller;
 
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.zhc.myt.MytRestful.common.MytSystem;
 import com.zhc.myt.MytRestful.service.MytLoginLogService;
 import com.zhc.myt.MytRestful.service.MytUserService;
@@ -42,7 +46,7 @@ public class MytLoginCotroller extends BaseController {
 		mytLoginLog.setExplorerVer(clientInfo.getExplorerVer());
 		mytLoginLog.setExplorerPlug(clientInfo.getExplorerPlug());
 		mytLoginLog.setOsName(clientInfo.getOSName());
-		mytLoginLog.setClientIp(request.getRemoteAddr());
+		mytLoginLog.setClientIp(getRemoteAddrIp(request));
 		mytLoginLog.setClientName(request.getRemoteHost());
 		mytLoginLog.setUserName(mytUser.getUserName());
 		// -------------------------------------------------------------
@@ -57,5 +61,18 @@ public class MytLoginCotroller extends BaseController {
 		mytLoginLogService.add(mytLoginLog);
 		return getReturnMapFailure("登陆失败");
 	}
+	public static String getRemoteAddrIp(HttpServletRequest request) {
+		//proxy_set_header  X-Real-IP  $remote_addr;
 
+        String ipFromNginx = getHeader(request, "X-Real-IP");
+        System.out.println("ipFromNginx:" + ipFromNginx);
+        System.out.println("getRemoteAddr:" + request.getRemoteAddr());
+        return StringUtils.isEmpty(ipFromNginx) ? request.getRemoteAddr() : ipFromNginx;
+    }
+
+
+    private static String getHeader(HttpServletRequest request, String headName) {
+        String value = request.getHeader(headName);
+        return !StringUtils.isBlank(value) && !"unknown".equalsIgnoreCase(value) ? value : "";
+    }
 }

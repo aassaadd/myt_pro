@@ -8,7 +8,7 @@
  * Factory in the mytPcHtmlApp.
  */
 angular.module('mytPcHtmlApp')
-    .factory('apiMain', function (apiLogin, apiUser, apiLoginLog, apiRole, apiMch, apiCsl, apiAdv, apiFdk, apiWxUser,apiClass,apiOrder,apiProduct) {
+    .factory('apiMain', function (apiLogin, apiUser, apiLoginLog, apiRole, apiMch, apiCsl, apiAdv, apiFdk, apiWxUser,apiClass,apiOrder,apiProduct,apiApp,apiAppModule) {
         // Service logic
         // ...
 
@@ -25,6 +25,8 @@ angular.module('mytPcHtmlApp')
             wxUser: apiWxUser,
             class:apiClass,
             order:apiOrder,
-            product:apiProduct
+            product:apiProduct,
+            app:apiApp,
+            appModule:apiAppModule
         };
     });

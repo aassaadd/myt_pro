@@ -23,6 +23,7 @@ import com.zhc.myt.MytDao.entity.MytMerchant;
 import com.zhc.myt.MytDao.entity.MytRoleExample;
 import com.zhc.myt.MytDao.entity.MytUser;
 import com.zhc.myt.MytDao.entity.MytUserExample;
+import com.zhc.myt.MytDao.entity.MytWxUserExample;
 import com.zhc.myt.MytDao.mapper.MytMerchantMapper;
 import com.zhc.myt.MytDao.mapper.MytUserMapper;
 
@@ -89,10 +90,10 @@ public class MytUserServiceImpl implements MytUserService {
 			Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytUserExample example = new MytUserExample();
-		ExampleUtils.Map2ExampleMethod(example.or(), params);
+		MytUserExample.Criteria cr=example.or();
+		ExampleUtils.Map2ExampleMethod(cr, params);
 		//模糊查询
 		if(params.containsKey("userName@like")){
-			MytUserExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
 			cr.andUserNameLike("%"+params.get("userName@like").toString()+"%");
 		}
 		Integer limtStart=(pageNumber - 1) * pageSize;
@@ -111,10 +112,10 @@ public class MytUserServiceImpl implements MytUserService {
 	public List<MytUser> getByList(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytUserExample example = new MytUserExample();
-		ExampleUtils.Map2ExampleMethod(example.or(), params);
+		MytUserExample.Criteria cr=example.or();
+		ExampleUtils.Map2ExampleMethod(cr, params);
 		//模糊查询
 		if(params.containsKey("userName@like")){
-			MytUserExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
 			cr.andUserNameLike("%"+params.get("userName@like").toString()+"%");
 		}
 		example.setOrderByClause("create_date DESC");

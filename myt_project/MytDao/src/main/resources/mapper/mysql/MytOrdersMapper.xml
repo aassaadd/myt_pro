@@ -1,52 +1,52 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhc.myt.MytDao.mapper.MytOrdersMapper" >
-  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytOrders" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
-    <result column="order_bank_type" property="orderBankType" jdbcType="VARCHAR" />
-    <result column="order_body" property="orderBody" jdbcType="VARCHAR" />
-    <result column="order_goods_num" property="orderGoodsNum" jdbcType="TINYINT" />
-    <result column="order_status" property="orderStatus" jdbcType="CHAR" />
-    <result column="order_total_fee" property="orderTotalFee" jdbcType="REAL" />
-    <result column="order_reality_fee" property="orderRealityFee" jdbcType="REAL" />
-    <result column="order_create_time" property="orderCreateTime" jdbcType="TIMESTAMP" />
-    <result column="order_pay_time" property="orderPayTime" jdbcType="TIMESTAMP" />
-    <result column="order_sequence_no" property="orderSequenceNo" jdbcType="VARCHAR" />
-    <result column="wx_appid" property="wxAppid" jdbcType="VARCHAR" />
-    <result column="wx_mch_id" property="wxMchId" jdbcType="VARCHAR" />
-    <result column="wx_sub_appid" property="wxSubAppid" jdbcType="VARCHAR" />
-    <result column="wx_sub_mch_id" property="wxSubMchId" jdbcType="VARCHAR" />
-    <result column="wx_openid" property="wxOpenid" jdbcType="VARCHAR" />
-    <result column="wx_sub_openid" property="wxSubOpenid" jdbcType="VARCHAR" />
-    <result column="wx_auth_code" property="wxAuthCode" jdbcType="VARCHAR" />
-    <result column="mch_id" property="mchId" jdbcType="INTEGER" />
-    <result column="err_message" property="errMessage" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="CHAR" />
-    <result column="opt_id" property="optId" jdbcType="INTEGER" />
-    <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
-    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="create_id" property="createId" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhc.myt.MytDao.mapper.MytOrdersMapper">
+  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytOrders">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_bank_type" jdbcType="VARCHAR" property="orderBankType" />
+    <result column="order_body" jdbcType="VARCHAR" property="orderBody" />
+    <result column="order_goods_num" jdbcType="TINYINT" property="orderGoodsNum" />
+    <result column="order_status" jdbcType="CHAR" property="orderStatus" />
+    <result column="order_total_fee" jdbcType="REAL" property="orderTotalFee" />
+    <result column="order_reality_fee" jdbcType="REAL" property="orderRealityFee" />
+    <result column="order_create_time" jdbcType="TIMESTAMP" property="orderCreateTime" />
+    <result column="order_pay_time" jdbcType="TIMESTAMP" property="orderPayTime" />
+    <result column="order_sequence_no" jdbcType="VARCHAR" property="orderSequenceNo" />
+    <result column="wx_appid" jdbcType="VARCHAR" property="wxAppid" />
+    <result column="wx_mch_id" jdbcType="VARCHAR" property="wxMchId" />
+    <result column="wx_sub_appid" jdbcType="VARCHAR" property="wxSubAppid" />
+    <result column="wx_sub_mch_id" jdbcType="VARCHAR" property="wxSubMchId" />
+    <result column="wx_openid" jdbcType="VARCHAR" property="wxOpenid" />
+    <result column="wx_sub_openid" jdbcType="VARCHAR" property="wxSubOpenid" />
+    <result column="wx_auth_code" jdbcType="VARCHAR" property="wxAuthCode" />
+    <result column="mch_id" jdbcType="INTEGER" property="mchId" />
+    <result column="err_message" jdbcType="VARCHAR" property="errMessage" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="opt_id" jdbcType="INTEGER" property="optId" />
+    <result column="opt_date" jdbcType="TIMESTAMP" property="optDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -57,42 +57,42 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, order_no, order_bank_type, order_body, order_goods_num, order_status, order_total_fee, 
     order_reality_fee, order_create_time, order_pay_time, order_sequence_no, wx_appid, 
     wx_mch_id, wx_sub_appid, wx_sub_mch_id, wx_openid, wx_sub_openid, wx_auth_code, mch_id, 
     err_message, status, opt_id, opt_date, create_date, create_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytOrdersExample" >
+  <select id="selectByExample" parameterType="com.zhc.myt.MytDao.entity.MytOrdersExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
     from myt_orders
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    <if test="limitStart != null and limitStart>=0" >
+    <if test="limitStart != null and limitStart&gt;=0">
       limit #{limitStart} , #{limitEnd}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from myt_orders
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from myt_orders
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytOrders" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into myt_orders (order_no, order_bank_type, order_body, 
@@ -114,245 +114,624 @@
       #{optDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytOrders" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into myt_orders
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderNo != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
         order_no,
       </if>
-      <if test="orderBankType != null" >
+      <if test="orderBankType != null">
         order_bank_type,
       </if>
-      <if test="orderBody != null" >
+      <if test="orderBody != null">
         order_body,
       </if>
-      <if test="orderGoodsNum != null" >
+      <if test="orderGoodsNum != null">
         order_goods_num,
       </if>
-      <if test="orderStatus != null" >
+      <if test="orderStatus != null">
         order_status,
       </if>
-      <if test="orderTotalFee != null" >
+      <if test="orderTotalFee != null">
         order_total_fee,
       </if>
-      <if test="orderRealityFee != null" >
+      <if test="orderRealityFee != null">
         order_reality_fee,
       </if>
-      <if test="orderCreateTime != null" >
+      <if test="orderCreateTime != null">
         order_create_time,
       </if>
-      <if test="orderPayTime != null" >
+      <if test="orderPayTime != null">
         order_pay_time,
       </if>
-      <if test="orderSequenceNo != null" >
+      <if test="orderSequenceNo != null">
         order_sequence_no,
       </if>
-      <if test="wxAppid != null" >
+      <if test="wxAppid != null">
         wx_appid,
       </if>
-      <if test="wxMchId != null" >
+      <if test="wxMchId != null">
         wx_mch_id,
       </if>
-      <if test="wxSubAppid != null" >
+      <if test="wxSubAppid != null">
         wx_sub_appid,
       </if>
-      <if test="wxSubMchId != null" >
+      <if test="wxSubMchId != null">
         wx_sub_mch_id,
       </if>
-      <if test="wxOpenid != null" >
+      <if test="wxOpenid != null">
         wx_openid,
       </if>
-      <if test="wxSubOpenid != null" >
+      <if test="wxSubOpenid != null">
         wx_sub_openid,
       </if>
-      <if test="wxAuthCode != null" >
+      <if test="wxAuthCode != null">
         wx_auth_code,
       </if>
-      <if test="mchId != null" >
+      <if test="mchId != null">
         mch_id,
       </if>
-      <if test="errMessage != null" >
+      <if test="errMessage != null">
         err_message,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="optId != null" >
+      <if test="optId != null">
         opt_id,
       </if>
-      <if test="optDate != null" >
+      <if test="optDate != null">
         opt_date,
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         create_date,
       </if>
-      <if test="createId != null" >
+      <if test="createId != null">
         create_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderNo != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="orderBankType != null" >
+      <if test="orderBankType != null">
         #{orderBankType,jdbcType=VARCHAR},
       </if>
-      <if test="orderBody != null" >
+      <if test="orderBody != null">
         #{orderBody,jdbcType=VARCHAR},
       </if>
-      <if test="orderGoodsNum != null" >
+      <if test="orderGoodsNum != null">
         #{orderGoodsNum,jdbcType=TINYINT},
       </if>
-      <if test="orderStatus != null" >
+      <if test="orderStatus != null">
         #{orderStatus,jdbcType=CHAR},
       </if>
-      <if test="orderTotalFee != null" >
+      <if test="orderTotalFee != null">
         #{orderTotalFee,jdbcType=REAL},
       </if>
-      <if test="orderRealityFee != null" >
+      <if test="orderRealityFee != null">
         #{orderRealityFee,jdbcType=REAL},
       </if>
-      <if test="orderCreateTime != null" >
+      <if test="orderCreateTime != null">
         #{orderCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderPayTime != null" >
+      <if test="orderPayTime != null">
         #{orderPayTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderSequenceNo != null" >
+      <if test="orderSequenceNo != null">
         #{orderSequenceNo,jdbcType=VARCHAR},
       </if>
-      <if test="wxAppid != null" >
+      <if test="wxAppid != null">
         #{wxAppid,jdbcType=VARCHAR},
       </if>
-      <if test="wxMchId != null" >
+      <if test="wxMchId != null">
         #{wxMchId,jdbcType=VARCHAR},
       </if>
-      <if test="wxSubAppid != null" >
+      <if test="wxSubAppid != null">
         #{wxSubAppid,jdbcType=VARCHAR},
       </if>
-      <if test="wxSubMchId != null" >
+      <if test="wxSubMchId != null">
         #{wxSubMchId,jdbcType=VARCHAR},
       </if>
-      <if test="wxOpenid != null" >
+      <if test="wxOpenid != null">
         #{wxOpenid,jdbcType=VARCHAR},
       </if>
-      <if test="wxSubOpenid != null" >
+      <if test="wxSubOpenid != null">
         #{wxSubOpenid,jdbcType=VARCHAR},
       </if>
-      <if test="wxAuthCode != null" >
+      <if test="wxAuthCode != null">
         #{wxAuthCode,jdbcType=VARCHAR},
       </if>
-      <if test="mchId != null" >
+      <if test="mchId != null">
         #{mchId,jdbcType=INTEGER},
       </if>
-      <if test="errMessage != null" >
+      <if test="errMessage != null">
         #{errMessage,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=CHAR},
       </if>
-      <if test="optId != null" >
+      <if test="optId != null">
         #{optId,jdbcType=INTEGER},
       </if>
-      <if test="optDate != null" >
+      <if test="optDate != null">
         #{optDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createId != null" >
+      <if test="createId != null">
         #{createId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytOrdersExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytOrdersExample" resultType="java.lang.Integer">
     select count(*) from myt_orders
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytOrders" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
     update myt_orders
-    <set >
-      <if test="orderNo != null" >
+    <set>
+      <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="orderBankType != null" >
+      <if test="orderBankType != null">
         order_bank_type = #{orderBankType,jdbcType=VARCHAR},
       </if>
-      <if test="orderBody != null" >
+      <if test="orderBody != null">
         order_body = #{orderBody,jdbcType=VARCHAR},
       </if>
-      <if test="orderGoodsNum != null" >
+      <if test="orderGoodsNum != null">
         order_goods_num = #{orderGoodsNum,jdbcType=TINYINT},
       </if>
-      <if test="orderStatus != null" >
+      <if test="orderStatus != null">
         order_status = #{orderStatus,jdbcType=CHAR},
       </if>
-      <if test="orderTotalFee != null" >
+      <if test="orderTotalFee != null">
         order_total_fee = #{orderTotalFee,jdbcType=REAL},
       </if>
-      <if test="orderRealityFee != null" >
+      <if test="orderRealityFee != null">
         order_reality_fee = #{orderRealityFee,jdbcType=REAL},
       </if>
-      <if test="orderCreateTime != null" >
+      <if test="orderCreateTime != null">
         order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderPayTime != null" >
+      <if test="orderPayTime != null">
         order_pay_time = #{orderPayTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderSequenceNo != null" >
+      <if test="orderSequenceNo != null">
         order_sequence_no = #{orderSequenceNo,jdbcType=VARCHAR},
       </if>
-      <if test="wxAppid != null" >
+      <if test="wxAppid != null">
         wx_appid = #{wxAppid,jdbcType=VARCHAR},
       </if>
-      <if test="wxMchId != null" >
+      <if test="wxMchId != null">
         wx_mch_id = #{wxMchId,jdbcType=VARCHAR},
       </if>
-      <if test="wxSubAppid != null" >
+      <if test="wxSubAppid != null">
         wx_sub_appid = #{wxSubAppid,jdbcType=VARCHAR},
       </if>
-      <if test="wxSubMchId != null" >
+      <if test="wxSubMchId != null">
         wx_sub_mch_id = #{wxSubMchId,jdbcType=VARCHAR},
       </if>
-      <if test="wxOpenid != null" >
+      <if test="wxOpenid != null">
         wx_openid = #{wxOpenid,jdbcType=VARCHAR},
       </if>
-      <if test="wxSubOpenid != null" >
+      <if test="wxSubOpenid != null">
         wx_sub_openid = #{wxSubOpenid,jdbcType=VARCHAR},
       </if>
-      <if test="wxAuthCode != null" >
+      <if test="wxAuthCode != null">
         wx_auth_code = #{wxAuthCode,jdbcType=VARCHAR},
       </if>
-      <if test="mchId != null" >
+      <if test="mchId != null">
         mch_id = #{mchId,jdbcType=INTEGER},
       </if>
-      <if test="errMessage != null" >
+      <if test="errMessage != null">
         err_message = #{errMessage,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=CHAR},
       </if>
-      <if test="optId != null" >
+      <if test="optId != null">
         opt_id = #{optId,jdbcType=INTEGER},
       </if>
-      <if test="optDate != null" >
+      <if test="optDate != null">
         opt_date = #{optDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createDate != null" >
+      <if test="createDate != null">
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createId != null" >
+      <if test="createId != null">
         create_id = #{createId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytOrders" >
+  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
+    update myt_orders
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      order_bank_type = #{orderBankType,jdbcType=VARCHAR},
+      order_body = #{orderBody,jdbcType=VARCHAR},
+      order_goods_num = #{orderGoodsNum,jdbcType=TINYINT},
+      order_status = #{orderStatus,jdbcType=CHAR},
+      order_total_fee = #{orderTotalFee,jdbcType=REAL},
+      order_reality_fee = #{orderRealityFee,jdbcType=REAL},
+      order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_pay_time = #{orderPayTime,jdbcType=TIMESTAMP},
+      order_sequence_no = #{orderSequenceNo,jdbcType=VARCHAR},
+      wx_appid = #{wxAppid,jdbcType=VARCHAR},
+      wx_mch_id = #{wxMchId,jdbcType=VARCHAR},
+      wx_sub_appid = #{wxSubAppid,jdbcType=VARCHAR},
+      wx_sub_mch_id = #{wxSubMchId,jdbcType=VARCHAR},
+      wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      wx_sub_openid = #{wxSubOpenid,jdbcType=VARCHAR},
+      wx_auth_code = #{wxAuthCode,jdbcType=VARCHAR},
+      mch_id = #{mchId,jdbcType=INTEGER},
+      err_message = #{errMessage,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      opt_id = #{optId,jdbcType=INTEGER},
+      opt_date = #{optDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytOrders">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_bank_type" jdbcType="VARCHAR" property="orderBankType" />
+    <result column="order_body" jdbcType="VARCHAR" property="orderBody" />
+    <result column="order_goods_num" jdbcType="TINYINT" property="orderGoodsNum" />
+    <result column="order_status" jdbcType="CHAR" property="orderStatus" />
+    <result column="order_total_fee" jdbcType="REAL" property="orderTotalFee" />
+    <result column="order_reality_fee" jdbcType="REAL" property="orderRealityFee" />
+    <result column="order_create_time" jdbcType="TIMESTAMP" property="orderCreateTime" />
+    <result column="order_pay_time" jdbcType="TIMESTAMP" property="orderPayTime" />
+    <result column="order_sequence_no" jdbcType="VARCHAR" property="orderSequenceNo" />
+    <result column="wx_appid" jdbcType="VARCHAR" property="wxAppid" />
+    <result column="wx_mch_id" jdbcType="VARCHAR" property="wxMchId" />
+    <result column="wx_sub_appid" jdbcType="VARCHAR" property="wxSubAppid" />
+    <result column="wx_sub_mch_id" jdbcType="VARCHAR" property="wxSubMchId" />
+    <result column="wx_openid" jdbcType="VARCHAR" property="wxOpenid" />
+    <result column="wx_sub_openid" jdbcType="VARCHAR" property="wxSubOpenid" />
+    <result column="wx_auth_code" jdbcType="VARCHAR" property="wxAuthCode" />
+    <result column="mch_id" jdbcType="INTEGER" property="mchId" />
+    <result column="err_message" jdbcType="VARCHAR" property="errMessage" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="opt_id" jdbcType="INTEGER" property="optId" />
+    <result column="opt_date" jdbcType="TIMESTAMP" property="optDate" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_no, order_bank_type, order_body, order_goods_num, order_status, order_total_fee, 
+    order_reality_fee, order_create_time, order_pay_time, order_sequence_no, wx_appid, 
+    wx_mch_id, wx_sub_appid, wx_sub_mch_id, wx_openid, wx_sub_openid, wx_auth_code, mch_id, 
+    err_message, status, opt_id, opt_date, create_date, create_id
+  </sql>
+  <select id="selectByExample" parameterType="com.zhc.myt.MytDao.entity.MytOrdersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from myt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart&gt;=0">
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from myt_orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from myt_orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into myt_orders (order_no, order_bank_type, order_body, 
+      order_goods_num, order_status, order_total_fee, 
+      order_reality_fee, order_create_time, order_pay_time, 
+      order_sequence_no, wx_appid, wx_mch_id, 
+      wx_sub_appid, wx_sub_mch_id, wx_openid, 
+      wx_sub_openid, wx_auth_code, mch_id, 
+      err_message, status, opt_id, 
+      opt_date, create_date, create_id
+      )
+    values (#{orderNo,jdbcType=VARCHAR}, #{orderBankType,jdbcType=VARCHAR}, #{orderBody,jdbcType=VARCHAR}, 
+      #{orderGoodsNum,jdbcType=TINYINT}, #{orderStatus,jdbcType=CHAR}, #{orderTotalFee,jdbcType=REAL}, 
+      #{orderRealityFee,jdbcType=REAL}, #{orderCreateTime,jdbcType=TIMESTAMP}, #{orderPayTime,jdbcType=TIMESTAMP}, 
+      #{orderSequenceNo,jdbcType=VARCHAR}, #{wxAppid,jdbcType=VARCHAR}, #{wxMchId,jdbcType=VARCHAR}, 
+      #{wxSubAppid,jdbcType=VARCHAR}, #{wxSubMchId,jdbcType=VARCHAR}, #{wxOpenid,jdbcType=VARCHAR}, 
+      #{wxSubOpenid,jdbcType=VARCHAR}, #{wxAuthCode,jdbcType=VARCHAR}, #{mchId,jdbcType=INTEGER}, 
+      #{errMessage,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{optId,jdbcType=INTEGER}, 
+      #{optDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into myt_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderBankType != null">
+        order_bank_type,
+      </if>
+      <if test="orderBody != null">
+        order_body,
+      </if>
+      <if test="orderGoodsNum != null">
+        order_goods_num,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="orderTotalFee != null">
+        order_total_fee,
+      </if>
+      <if test="orderRealityFee != null">
+        order_reality_fee,
+      </if>
+      <if test="orderCreateTime != null">
+        order_create_time,
+      </if>
+      <if test="orderPayTime != null">
+        order_pay_time,
+      </if>
+      <if test="orderSequenceNo != null">
+        order_sequence_no,
+      </if>
+      <if test="wxAppid != null">
+        wx_appid,
+      </if>
+      <if test="wxMchId != null">
+        wx_mch_id,
+      </if>
+      <if test="wxSubAppid != null">
+        wx_sub_appid,
+      </if>
+      <if test="wxSubMchId != null">
+        wx_sub_mch_id,
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid,
+      </if>
+      <if test="wxSubOpenid != null">
+        wx_sub_openid,
+      </if>
+      <if test="wxAuthCode != null">
+        wx_auth_code,
+      </if>
+      <if test="mchId != null">
+        mch_id,
+      </if>
+      <if test="errMessage != null">
+        err_message,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="optId != null">
+        opt_id,
+      </if>
+      <if test="optDate != null">
+        opt_date,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBankType != null">
+        #{orderBankType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBody != null">
+        #{orderBody,jdbcType=VARCHAR},
+      </if>
+      <if test="orderGoodsNum != null">
+        #{orderGoodsNum,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="orderTotalFee != null">
+        #{orderTotalFee,jdbcType=REAL},
+      </if>
+      <if test="orderRealityFee != null">
+        #{orderRealityFee,jdbcType=REAL},
+      </if>
+      <if test="orderCreateTime != null">
+        #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayTime != null">
+        #{orderPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSequenceNo != null">
+        #{orderSequenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAppid != null">
+        #{wxAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxMchId != null">
+        #{wxMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSubAppid != null">
+        #{wxSubAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSubMchId != null">
+        #{wxSubMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenid != null">
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSubOpenid != null">
+        #{wxSubOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAuthCode != null">
+        #{wxAuthCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null">
+        #{mchId,jdbcType=INTEGER},
+      </if>
+      <if test="errMessage != null">
+        #{errMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="optId != null">
+        #{optId,jdbcType=INTEGER},
+      </if>
+      <if test="optDate != null">
+        #{optDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytOrdersExample" resultType="java.lang.Integer">
+    select count(*) from myt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
+    update myt_orders
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBankType != null">
+        order_bank_type = #{orderBankType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBody != null">
+        order_body = #{orderBody,jdbcType=VARCHAR},
+      </if>
+      <if test="orderGoodsNum != null">
+        order_goods_num = #{orderGoodsNum,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="orderTotalFee != null">
+        order_total_fee = #{orderTotalFee,jdbcType=REAL},
+      </if>
+      <if test="orderRealityFee != null">
+        order_reality_fee = #{orderRealityFee,jdbcType=REAL},
+      </if>
+      <if test="orderCreateTime != null">
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayTime != null">
+        order_pay_time = #{orderPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSequenceNo != null">
+        order_sequence_no = #{orderSequenceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAppid != null">
+        wx_appid = #{wxAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxMchId != null">
+        wx_mch_id = #{wxMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSubAppid != null">
+        wx_sub_appid = #{wxSubAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSubMchId != null">
+        wx_sub_mch_id = #{wxSubMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSubOpenid != null">
+        wx_sub_openid = #{wxSubOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAuthCode != null">
+        wx_auth_code = #{wxAuthCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null">
+        mch_id = #{mchId,jdbcType=INTEGER},
+      </if>
+      <if test="errMessage != null">
+        err_message = #{errMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="optId != null">
+        opt_id = #{optId,jdbcType=INTEGER},
+      </if>
+      <if test="optDate != null">
+        opt_date = #{optDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytOrders">
     update myt_orders
     set order_no = #{orderNo,jdbcType=VARCHAR},
       order_bank_type = #{orderBankType,jdbcType=VARCHAR},

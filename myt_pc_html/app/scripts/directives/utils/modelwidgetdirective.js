@@ -7,7 +7,7 @@
  * # modelWidgetDirective
  */
 angular.module('mytPcHtmlApp')
-  .directive('modelWidgetDirective', function ($timeout) {
+  .directive('modelWidgetDirective', function ($timeout,$compile) {
     return {
       templateUrl: 'views/utils/modelwidgetview.html',
       restrict: 'AE',
@@ -16,11 +16,11 @@ angular.module('mytPcHtmlApp')
         conf: '='
       },
       link: function postLink(scope, element, attrs) {
+
         if (!scope.conf) {
           scope.conf = {
             //labelName: '',
-            //queryName: '',
-            //type: 'date',//text/select/date/amount/date/checkbox/radio
+            //type: 'date',//text/select/date/amount/date/checkbox/radio/other
             //default: '2',//默认值,
             //placeholder:'',
             //selValue:[
@@ -35,7 +35,8 @@ angular.module('mytPcHtmlApp')
             //value: '',
             //    ope:'edit'//view显示/edit隐藏,
             //maxlength,
-            //asyncSelValue:function(callback){}//callback:function(val){}讲返回值传回
+            //asyncSelValue:function(callback){}//callback:function(val){}讲返回值传回,
+            //directive:''//指令名称
 
           }
         }
@@ -90,6 +91,14 @@ angular.module('mytPcHtmlApp')
           });
 
         };
+        if(scope.conf.type=='other'){
+          $timeout(function() {
+            var d = scope.conf.directive.replace(/([A-Z])/g, "-$1").toLowerCase(),
+                el = $('<div ' + d + '="" conf="conf"></div>');
+
+            element.find('.typeOther').append($compile(el)(scope));
+          });
+        }
 
         //启动异步加载
         if(scope.conf.asyncSelValue){

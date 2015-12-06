@@ -20,6 +20,7 @@
 
         </label>
         <label ng-switch-when="radio">{{conf.value|generalFilter:selectFilter:conf.selValue}}</label>
+    <div class="typeOther" ng-switch-when="other"></div>
     </div>
     <div class="col-lg-8" ng-if="conf.ope=='edit'">
         <select class="form-control" ng-model="conf.value" ng-switch-when="select"
@@ -59,5 +60,6 @@
                 {{o.text}}
             </label>
         </div>
+        <div class="typeOther" ng-switch-when="other"></div>
     </div>
 </div><!-- /.form-group -->
