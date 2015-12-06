@@ -7,7 +7,7 @@
  * # advManagePage
  */
 angular.module('mytPcHtmlApp')
-  .directive('advManagePage', function (apiMain,$filter) {
+  .directive('advManagePage', function (apiMain,$filter,$location) {
     return {
       templateUrl: 'views/page/advertisement/advmanagepageview.html',
       restrict: 'AE',
@@ -49,9 +49,24 @@ angular.module('mytPcHtmlApp')
           ],
           operationConf: [
             {
-              labelName: '查看',//操作名称
+              labelName: '修改',//操作名称
               doFunc: function (val) {
-                alert(JSON.stringify(val));
+                $location.path('advAddManage').search({id:val.id});
+              }//操作方法
+            },
+            {
+              labelName: '删除',//操作名称
+              doFunc: function (val,conf) {
+               if(confirm('确定要删除吗?')){
+                 apiMain.adv.delete.queryCallback({
+                   id:val.id
+                 },function(data){
+                   if (data && data.data) {
+                     alert('删除成功');
+                     conf.doSelect();
+                   }
+                 });
+               }
               }//操作方法
             }
           ],
@@ -59,7 +74,7 @@ angular.module('mytPcHtmlApp')
             {
               labelName: '添加',//操作名称
               doFunc: function (val) {
-                alert(JSON.stringify(val));
+                $location.path('advAddManage');
               }//操作方法
             }
           ],
@@ -71,6 +86,7 @@ angular.module('mytPcHtmlApp')
           doSelect: function () {
             var self = this,
                 querys = self.super();
+            querys.status='1';//未删除
             apiMain.adv.getByPage.queryCallback(querys, function (data) {
               if (data && data.data) {
                 self.pageSource = data.data;

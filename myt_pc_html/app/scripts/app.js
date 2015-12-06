@@ -100,6 +100,21 @@ angular
               controller: 'WxusermanageCtrl',
               controllerAs: 'wxUserManage'
             })
+            .when('/productAddManage', {
+              templateUrl: 'views/productaddmanage.html',
+              controller: 'ProductaddmanageCtrl',
+              controllerAs: 'productAddManage'
+            })
+            .when('/advAddManage', {
+              templateUrl: 'views/advaddmanage.html',
+              controller: 'AdvaddmanageCtrl',
+              controllerAs: 'advAddManage'
+            })
+            .when('/userAddManage', {
+              templateUrl: 'views/useraddmanage.html',
+              controller: 'UseraddmanageCtrl',
+              controllerAs: 'userAddManage'
+            })
             .otherwise({
                 redirectTo: '/'
             });

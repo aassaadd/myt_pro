@@ -5,6 +5,8 @@ import java.util.Date;
 public class MytFeedback {
     private Integer id;
 
+    private Integer proId;
+
     private Integer wxUserId;
 
     private String fbkContent;
@@ -29,6 +31,14 @@ public class MytFeedback {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getProId() {
+        return proId;
+    }
+
+    public void setProId(Integer proId) {
+        this.proId = proId;
     }
 
     public Integer getWxUserId() {

@@ -60,12 +60,24 @@ angular.module('mytPcHtmlApp')
         };
         //延时绑定
         scope.$on('ngRepeatFinished',function (ngRepeatFinishedEvent) {
-          element.find('input').datetimepicker({
-            minView: "month", //选择日期后，不会再跳转去选择时分秒
-            format: "yyyy-mm-dd", //选择日期后，文本框显示的日期格式
-            language: 'zh-CN', //汉化
-            autoclose:true //选择日期后自动关闭
-          });
+          element.find('input').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                  format: 'YYYY/MM/DD',
+                  separator: ' - ',
+                  applyLabel: '应用',
+                  cancelLabel: '取消',
+                  fromLabel: '从',
+                  toLabel: '至',
+                  customRangeLabel: '自定义',
+                  daysOfWeek: ['周日', '周一', '周二', '周三', '周四', '周五','周六'],
+                  monthNames: ['1月', '2曰', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                }
+              },
+              function(start, end, label) {
+
+              });
         });
       }
     };

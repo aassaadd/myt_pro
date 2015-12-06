@@ -13,15 +13,11 @@ public interface MytProductMapper {
 
     int insertSelective(MytProduct record);
 
-    List<MytProduct> selectByExampleWithBLOBs(MytProductExample example);
-
     List<MytProduct> selectByExample(MytProductExample example);
 
     MytProduct selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(MytProduct record);
-
-    int updateByPrimaryKeyWithBLOBs(MytProduct record);
 
     int updateByPrimaryKey(MytProduct record);
 }

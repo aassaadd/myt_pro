@@ -185,6 +185,66 @@ public class MytFeedbackExample {
             return (Criteria) this;
         }
 
+        public Criteria andProIdIsNull() {
+            addCriterion("pro_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdIsNotNull() {
+            addCriterion("pro_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdEqualTo(Integer value) {
+            addCriterion("pro_id =", value, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdNotEqualTo(Integer value) {
+            addCriterion("pro_id <>", value, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdGreaterThan(Integer value) {
+            addCriterion("pro_id >", value, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pro_id >=", value, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdLessThan(Integer value) {
+            addCriterion("pro_id <", value, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdLessThanOrEqualTo(Integer value) {
+            addCriterion("pro_id <=", value, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdIn(List<Integer> values) {
+            addCriterion("pro_id in", values, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdNotIn(List<Integer> values) {
+            addCriterion("pro_id not in", values, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdBetween(Integer value1, Integer value2) {
+            addCriterion("pro_id between", value1, value2, "proId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("pro_id not between", value1, value2, "proId");
+            return (Criteria) this;
+        }
+
         public Criteria andWxUserIdIsNull() {
             addCriterion("wx_user_id is null");
             return (Criteria) this;

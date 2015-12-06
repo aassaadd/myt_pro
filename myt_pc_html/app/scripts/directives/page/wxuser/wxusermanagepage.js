@@ -7,7 +7,7 @@
  * # wxUserManagePage
  */
 angular.module('mytPcHtmlApp')
-  .directive('wxUserManagePage', function () {
+  .directive('wxUserManagePage', function (apiMain,$filter) {
     return {
       templateUrl: 'views/page/wxuser/wxusermanagepageview.html',
       restrict: 'AE',
@@ -21,10 +21,35 @@ angular.module('mytPcHtmlApp')
               width: '25%'
             }, {
               labelName: '性别',
-              valName: 'role',
-              width: '25%'
+              valName: 'userGender',
+              width: '25%',
+              filter:function(val, otherVal){
+                //'性别（1男，2女）'
+                var r = '';
+                if (val == 1) {
+                  r = '男';
+                } else {
+                  r = '女';
+                }
+                return r;
+              }
             }, {
               labelName: '年龄',
+              valName: 'userAge',
+              width: '25%'
+            }, {
+              labelName: '出生年月日',
+              valName: 'userBirth',
+              width: '25%',
+              filter:function(val, otherVal){
+                return $filter('date')(new Date(val), 'yyyy-MM-dd HH:mm:ss');
+              }
+            }, {
+              labelName: '手机号',
+              valName: 'userCall',
+              width: '25%'
+            }, {
+              labelName: '用户状态',
               valName: 'status',
               width: '25%',
               filter: function (val, otherVal) {
@@ -36,25 +61,7 @@ angular.module('mytPcHtmlApp')
                 }
                 return r;
               }
-            }, {
-              labelName: '出生年月日',
-              valName: 'lastLoginTime',
-              width: '25%'
-            }, {
-              labelName: '手机号',
-              valName: 'lastLoginTime',
-              width: '25%'
-            }, {
-              labelName: '用户状态',
-              valName: 'lastLoginTime',
-              width: '25%'
-            }, {
-              labelName: '登陆地点',
-              valName: 'lastLoginTime',
-              width: '25%'
             }
-
-
 
           ],
           operationConf: [
@@ -67,11 +74,6 @@ angular.module('mytPcHtmlApp')
           ],
           globalOperationConf: [
             {
-              labelName: '添加',//操作名称
-              doFunc: function (val) {
-                alert(JSON.stringify(val));
-              }//操作方法
-            }, {
               labelName: '停用',//操作名称
               doFunc: function (val) {
                 alert(JSON.stringify(val));
@@ -85,38 +87,21 @@ angular.module('mytPcHtmlApp')
           ],
           querys: [
             {
-              labelName: '登陆用户名',
-              queryName: 'userName@like',
+              labelName: '昵称',
+              queryName: 'userNickname@like',
               type: 'text',//text/select/date
               default: '',//默认值
               selValue: [],
               value: ''
             }
           ],
-          //defaultButton:false,
+          defaultButton:false,
           multiSelect: true,
           doSelect: function () {
             var self = this,
                 querys = self.super();
-            apiMain.user.getByPage.queryCallback(querys, function (data) {
+            apiMain.wxUser.getByPage.queryCallback(querys, function (data) {
               if (data && data.data) {
-
-                for(var i in data.data.content){
-                  data.data.content[i].lastLoginTime = '加载中...';
-                  data.data.content[i].role = '加载中...';
-                  (function(val){
-                    apiMain.loginLog.getByPage.queryCallback({userName: val.userName,page:1,pageSize:1}, function (data) {
-                      if (data && data.data && data.data.content.length>0) {
-
-                        val.lastLoginTime= $filter('date')(new Date(data.data.content[0].createDate), 'yyyy-MM-dd HH:mm:ss');
-                      }else{
-                        val.lastLoginTime= '无登陆信息';
-                      }
-
-
-                    });
-                  })(data.data.content[i]);
-                }
                 self.pageSource = data.data;
               }
             });

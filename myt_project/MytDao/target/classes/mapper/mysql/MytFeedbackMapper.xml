@@ -3,6 +3,7 @@
 <mapper namespace="com.zhc.myt.MytDao.mapper.MytFeedbackMapper" >
   <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytFeedback" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
     <result column="wx_user_id" property="wxUserId" jdbcType="INTEGER" />
     <result column="fbk_content" property="fbkContent" jdbcType="VARCHAR" />
     <result column="fbk_class" property="fbkClass" jdbcType="CHAR" />
@@ -43,8 +44,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, wx_user_id, fbk_content, fbk_class, fbk_type, status, opt_id, opt_date, create_id, 
-    create_date
+    id, pro_id, wx_user_id, fbk_content, fbk_class, fbk_type, status, opt_id, opt_date, 
+    create_id, create_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytFeedbackExample" >
     select
@@ -78,14 +79,14 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into myt_feedback (wx_user_id, fbk_content, fbk_class, 
-      fbk_type, status, opt_id, 
-      opt_date, create_id, create_date
-      )
-    values (#{wxUserId,jdbcType=INTEGER}, #{fbkContent,jdbcType=VARCHAR}, #{fbkClass,jdbcType=CHAR}, 
-      #{fbkType,jdbcType=CHAR}, #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, 
-      #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
-      )
+    insert into myt_feedback (pro_id, wx_user_id, fbk_content, 
+      fbk_class, fbk_type, status, 
+      opt_id, opt_date, create_id, 
+      create_date)
+    values (#{proId,jdbcType=INTEGER}, #{wxUserId,jdbcType=INTEGER}, #{fbkContent,jdbcType=VARCHAR}, 
+      #{fbkClass,jdbcType=CHAR}, #{fbkType,jdbcType=CHAR}, #{status,jdbcType=VARCHAR}, 
+      #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytFeedback" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -93,6 +94,9 @@
     </selectKey>
     insert into myt_feedback
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        pro_id,
+      </if>
       <if test="wxUserId != null" >
         wx_user_id,
       </if>
@@ -122,6 +126,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
       <if test="wxUserId != null" >
         #{wxUserId,jdbcType=INTEGER},
       </if>
@@ -160,6 +167,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytFeedback" >
     update myt_feedback
     <set >
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
       <if test="wxUserId != null" >
         wx_user_id = #{wxUserId,jdbcType=INTEGER},
       </if>
@@ -192,7 +202,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytFeedback" >
     update myt_feedback
-    set wx_user_id = #{wxUserId,jdbcType=INTEGER},
+    set pro_id = #{proId,jdbcType=INTEGER},
+      wx_user_id = #{wxUserId,jdbcType=INTEGER},
       fbk_content = #{fbkContent,jdbcType=VARCHAR},
       fbk_class = #{fbkClass,jdbcType=CHAR},
       fbk_type = #{fbkType,jdbcType=CHAR},

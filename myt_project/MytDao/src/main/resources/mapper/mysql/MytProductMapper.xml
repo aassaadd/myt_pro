@@ -5,19 +5,24 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="mch_id" property="mchId" jdbcType="INTEGER" />
     <result column="proc_id" property="procId" jdbcType="INTEGER" />
+    <result column="pro_no" property="proNo" jdbcType="VARCHAR" />
     <result column="pro_name" property="proName" jdbcType="VARCHAR" />
+    <result column="pro_description" property="proDescription" jdbcType="VARCHAR" />
+    <result column="pro_count" property="proCount" jdbcType="INTEGER" />
+    <result column="pro_sold_count" property="proSoldCount" jdbcType="INTEGER" />
     <result column="pro_about" property="proAbout" jdbcType="VARCHAR" />
     <result column="pro_try_price" property="proTryPrice" jdbcType="DECIMAL" />
     <result column="pro_price" property="proPrice" jdbcType="DECIMAL" />
     <result column="pro_state" property="proState" jdbcType="VARCHAR" />
+    <result column="pro_open_date" property="proOpenDate" jdbcType="TIMESTAMP" />
+    <result column="pro_end_date" property="proEndDate" jdbcType="TIMESTAMP" />
+    <result column="pro_type" property="proType" jdbcType="CHAR" />
+    <result column="pro_examine_type" property="proExamineType" jdbcType="CHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="opt_id" property="optId" jdbcType="INTEGER" />
     <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
     <result column="create_id" property="createId" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zhc.myt.MytDao.entity.MytProduct" extends="BaseResultMap" >
-    <result column="pro_description" property="proDescription" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -49,29 +54,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, mch_id, proc_id, pro_name, pro_about, pro_try_price, pro_price, pro_state, status, 
-    opt_id, opt_date, create_id, create_date
+    id, mch_id, proc_id, pro_no, pro_name, pro_description, pro_count, pro_sold_count, 
+    pro_about, pro_try_price, pro_price, pro_state, pro_open_date, pro_end_date, pro_type, 
+    pro_examine_type, status, opt_id, opt_date, create_id, create_date
   </sql>
-  <sql id="Blob_Column_List" >
-    pro_description
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zhc.myt.MytDao.entity.MytProductExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from myt_product
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytProductExample" >
     select
     <if test="distinct" >
@@ -90,11 +76,9 @@
       limit #{limitStart} , #{limitEnd}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from myt_product
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -106,16 +90,20 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into myt_product (mch_id, proc_id, pro_name, 
-      pro_about, pro_try_price, pro_price, 
-      pro_state, status, opt_id, 
-      opt_date, create_id, create_date, 
-      pro_description)
-    values (#{mchId,jdbcType=INTEGER}, #{procId,jdbcType=INTEGER}, #{proName,jdbcType=VARCHAR}, 
-      #{proAbout,jdbcType=VARCHAR}, #{proTryPrice,jdbcType=DECIMAL}, #{proPrice,jdbcType=DECIMAL}, 
-      #{proState,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, 
-      #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{proDescription,jdbcType=LONGVARBINARY})
+    insert into myt_product (mch_id, proc_id, pro_no, 
+      pro_name, pro_description, pro_count, 
+      pro_sold_count, pro_about, pro_try_price, 
+      pro_price, pro_state, pro_open_date, 
+      pro_end_date, pro_type, pro_examine_type, 
+      status, opt_id, opt_date, 
+      create_id, create_date)
+    values (#{mchId,jdbcType=INTEGER}, #{procId,jdbcType=INTEGER}, #{proNo,jdbcType=VARCHAR}, 
+      #{proName,jdbcType=VARCHAR}, #{proDescription,jdbcType=VARCHAR}, #{proCount,jdbcType=INTEGER}, 
+      #{proSoldCount,jdbcType=INTEGER}, #{proAbout,jdbcType=VARCHAR}, #{proTryPrice,jdbcType=DECIMAL}, 
+      #{proPrice,jdbcType=DECIMAL}, #{proState,jdbcType=VARCHAR}, #{proOpenDate,jdbcType=TIMESTAMP}, 
+      #{proEndDate,jdbcType=TIMESTAMP}, #{proType,jdbcType=CHAR}, #{proExamineType,jdbcType=CHAR}, 
+      #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -129,8 +117,20 @@
       <if test="procId != null" >
         proc_id,
       </if>
+      <if test="proNo != null" >
+        pro_no,
+      </if>
       <if test="proName != null" >
         pro_name,
+      </if>
+      <if test="proDescription != null" >
+        pro_description,
+      </if>
+      <if test="proCount != null" >
+        pro_count,
+      </if>
+      <if test="proSoldCount != null" >
+        pro_sold_count,
       </if>
       <if test="proAbout != null" >
         pro_about,
@@ -143,6 +143,18 @@
       </if>
       <if test="proState != null" >
         pro_state,
+      </if>
+      <if test="proOpenDate != null" >
+        pro_open_date,
+      </if>
+      <if test="proEndDate != null" >
+        pro_end_date,
+      </if>
+      <if test="proType != null" >
+        pro_type,
+      </if>
+      <if test="proExamineType != null" >
+        pro_examine_type,
       </if>
       <if test="status != null" >
         status,
@@ -159,9 +171,6 @@
       <if test="createDate != null" >
         create_date,
       </if>
-      <if test="proDescription != null" >
-        pro_description,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="mchId != null" >
@@ -170,8 +179,20 @@
       <if test="procId != null" >
         #{procId,jdbcType=INTEGER},
       </if>
+      <if test="proNo != null" >
+        #{proNo,jdbcType=VARCHAR},
+      </if>
       <if test="proName != null" >
         #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proDescription != null" >
+        #{proDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="proCount != null" >
+        #{proCount,jdbcType=INTEGER},
+      </if>
+      <if test="proSoldCount != null" >
+        #{proSoldCount,jdbcType=INTEGER},
       </if>
       <if test="proAbout != null" >
         #{proAbout,jdbcType=VARCHAR},
@@ -184,6 +205,18 @@
       </if>
       <if test="proState != null" >
         #{proState,jdbcType=VARCHAR},
+      </if>
+      <if test="proOpenDate != null" >
+        #{proOpenDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proEndDate != null" >
+        #{proEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proType != null" >
+        #{proType,jdbcType=CHAR},
+      </if>
+      <if test="proExamineType != null" >
+        #{proExamineType,jdbcType=CHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -199,9 +232,6 @@
       </if>
       <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="proDescription != null" >
-        #{proDescription,jdbcType=LONGVARBINARY},
       </if>
     </trim>
   </insert>
@@ -220,8 +250,20 @@
       <if test="procId != null" >
         proc_id = #{procId,jdbcType=INTEGER},
       </if>
+      <if test="proNo != null" >
+        pro_no = #{proNo,jdbcType=VARCHAR},
+      </if>
       <if test="proName != null" >
         pro_name = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proDescription != null" >
+        pro_description = #{proDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="proCount != null" >
+        pro_count = #{proCount,jdbcType=INTEGER},
+      </if>
+      <if test="proSoldCount != null" >
+        pro_sold_count = #{proSoldCount,jdbcType=INTEGER},
       </if>
       <if test="proAbout != null" >
         pro_about = #{proAbout,jdbcType=VARCHAR},
@@ -234,6 +276,18 @@
       </if>
       <if test="proState != null" >
         pro_state = #{proState,jdbcType=VARCHAR},
+      </if>
+      <if test="proOpenDate != null" >
+        pro_open_date = #{proOpenDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proEndDate != null" >
+        pro_end_date = #{proEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proType != null" >
+        pro_type = #{proType,jdbcType=CHAR},
+      </if>
+      <if test="proExamineType != null" >
+        pro_examine_type = #{proExamineType,jdbcType=CHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
@@ -250,38 +304,26 @@
       <if test="createDate != null" >
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="proDescription != null" >
-        pro_description = #{proDescription,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
-    update myt_product
-    set mch_id = #{mchId,jdbcType=INTEGER},
-      proc_id = #{procId,jdbcType=INTEGER},
-      pro_name = #{proName,jdbcType=VARCHAR},
-      pro_about = #{proAbout,jdbcType=VARCHAR},
-      pro_try_price = #{proTryPrice,jdbcType=DECIMAL},
-      pro_price = #{proPrice,jdbcType=DECIMAL},
-      pro_state = #{proState,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      opt_id = #{optId,jdbcType=INTEGER},
-      opt_date = #{optDate,jdbcType=TIMESTAMP},
-      create_id = #{createId,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      pro_description = #{proDescription,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytProduct" >
     update myt_product
     set mch_id = #{mchId,jdbcType=INTEGER},
       proc_id = #{procId,jdbcType=INTEGER},
+      pro_no = #{proNo,jdbcType=VARCHAR},
       pro_name = #{proName,jdbcType=VARCHAR},
+      pro_description = #{proDescription,jdbcType=VARCHAR},
+      pro_count = #{proCount,jdbcType=INTEGER},
+      pro_sold_count = #{proSoldCount,jdbcType=INTEGER},
       pro_about = #{proAbout,jdbcType=VARCHAR},
       pro_try_price = #{proTryPrice,jdbcType=DECIMAL},
       pro_price = #{proPrice,jdbcType=DECIMAL},
       pro_state = #{proState,jdbcType=VARCHAR},
+      pro_open_date = #{proOpenDate,jdbcType=TIMESTAMP},
+      pro_end_date = #{proEndDate,jdbcType=TIMESTAMP},
+      pro_type = #{proType,jdbcType=CHAR},
+      pro_examine_type = #{proExamineType,jdbcType=CHAR},
       status = #{status,jdbcType=VARCHAR},
       opt_id = #{optId,jdbcType=INTEGER},
       opt_date = #{optDate,jdbcType=TIMESTAMP},

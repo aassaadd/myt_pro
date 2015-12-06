@@ -73,7 +73,7 @@ public class MytRoleServiceImpl implements MytRoleService {
 			Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytRoleExample example = new MytRoleExample();
-		
+		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		//模糊查询
 		if(params.containsKey("roleName@like")){
 			MytRoleExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);

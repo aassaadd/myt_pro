@@ -23,7 +23,7 @@
                             <div class="row form-inline" ng-if="conf.globalOperationConf.length>0" style="text-align: center;margin-top: 15px">
                                 <button ng-repeat="go in conf.globalOperationConf"
                                         type="button" class="btn btn-sm btn-primary"
-                                        ng-click="go.doFunc(selectList)">{{go.labelName}}</button>
+                                        ng-click="go.doFunc(selectList,conf)">{{go.labelName}}</button>
                             </div>
                             <div class="row" style="margin-top: 15px">
                                 <div class="col-sm-12">
@@ -57,7 +57,7 @@
                                                 <span ng-if="cc.filter==null"> {{data[cc.valName]}}</span>
                                             </td>
                                             <td ng-if="conf.operationConf.length>0">
-                                                <span ng-repeat="oc in conf.operationConf" ng-click="oc.doFunc(data)">
+                                                <span ng-repeat="oc in conf.operationConf" ng-click="oc.doFunc(data,conf)">
                                                   <a href="">{{oc.labelName}}</a><br/>
                                                 </span>
                                             </td>

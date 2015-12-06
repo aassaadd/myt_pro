@@ -73,8 +73,7 @@ public class MytMerchantServiceImpl implements MytMerchantService {
 			Integer pageSize, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytMerchantExample example = new MytMerchantExample();
-		
-
+		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		Integer limtStart=(pageNumber - 1) * pageSize;
 		Integer limtEnd=pageSize;
 		example.setLimitStart(limtStart);

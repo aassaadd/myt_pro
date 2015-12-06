@@ -34,7 +34,7 @@ angular.module('mytPcHtmlApp')
 
         return {
           method: 'POST',
-          url: global.baseUrl + '/api/manage/mytMerchant/'+params.id,
+          url: global.baseUrl + '/api/manage/mytMerchant',
           data: params
         }
       }),

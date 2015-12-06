@@ -1,5 +1,7 @@
 package com.zhc.myt.MytRestful.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +26,16 @@ public class MytUserController extends BaseController{
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(@RequestBody MytUser mytUser) {
 		try {
+			if(mytUser.getUserName()==null){
+				return getReturnMapFailure("用户名不能为空");
+			}
+			//判断用户名唯一
+			Map<String,Object> params= new HashMap<String,Object>();
+			params.put("userName", mytUser.getUserName());
+			List<MytUser> list=mytUserService.getByList(params);
+			if(list.size()>0){
+				return getReturnMapFailure("用户名已存在");
+			}
 			mytUserService.add(mytUser);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

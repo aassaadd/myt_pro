@@ -12,6 +12,12 @@ angular.module('mytPcHtmlApp')
     // Public API here
     return {
       baseUrl:'http://'+$location.host()+':'+$location.port()+'/myt',
-      currentMenu:{}
+      currentMenu:{},
+      getToken:function(){
+        if(!window.localStorage){
+          return '';
+        }
+        return window.localStorage.token ;
+      }
     };
   });

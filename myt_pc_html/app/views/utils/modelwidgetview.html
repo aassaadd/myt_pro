@@ -1,0 +1,63 @@
+<div class="form-group" ng-switch="conf.type">
+
+    <label class="control-label col-lg-4">{{conf.labelName}}</label>
+
+    <div class="col-lg-8" ng-if="conf.ope=='view'">
+        <label ng-switch-when="select">{{conf.value|generalFilter:selectFilter:conf.selValue}}</label>
+        <label ng-switch-when="text">{{conf.value}}</label>
+        <label ng-switch-when="number">{{conf.value}}</label>
+        <label ng-switch-when="amount">{{conf.value}}</label>
+        <label ng-switch-when="date">{{conf.value|date:'yyyy/MM/dd'}}</label>
+        <label ng-switch-when="textarea">{{conf.value}}</label>
+        <iframe ng-switch-when="textarea">
+            {{conf.value}}
+        </iframe>
+        <img ng-src="{{conf.value}}" ng-switch-when="checkbox">
+        <label ng-switch-when="select">
+            <span ng-repeat="v in conf.value">
+                {{v|generalFilter:selectFilter:conf.selValue}}
+            </span>
+
+        </label>
+        <label ng-switch-when="radio">{{conf.value|generalFilter:selectFilter:conf.selValue}}</label>
+    </div>
+    <div class="col-lg-8" ng-if="conf.ope=='edit'">
+        <select class="form-control" ng-model="conf.value" ng-switch-when="select"
+                ng-options="o.value as o.text for o in conf.selValue">
+            <option value="" ng-if="conf.default==''">请选择</option>
+        </select>
+        <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="text"
+               placeholder="{{conf.placeholder}}"/>
+        <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="number"
+               placeholder="{{conf.placeholder}}"/>
+        <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="amount"
+               placeholder="{{conf.placeholder}}"/>
+        <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="date"
+               placeholder="{{conf.placeholder}}" readonly/>
+        <textarea class="form-control" ng-model="conf.value" maxlength="{{conf.maxlength}}"
+                  ng-switch-when="textarea"></textarea>
+        <textarea kindeditor-directive="" source="conf.value" ng-switch-when="kindeditor"></textarea>
+        <div img-up-directive="" source="conf.value" ng-switch-when="imgUp"></div>
+        <div class="checkbox" ng-repeat="o in conf.selValue" ng-switch-when="checkbox">
+            <label>
+                <div class="checker">
+                                <span class="checked">
+                                <input class="uniform" name="{{conf.valName}}" type="checkbox" checklist-model="conf.value"
+                                       checklist-value="o.value">
+                                </span>
+                </div>
+                {{o.text}}
+            </label>
+        </div>
+        <div class="checkbox" ng-repeat="o in conf.selValue" ng-switch-when="radio">
+            <label>
+                <div class="checker">
+                                <span class="checked">
+                                <input class="uniform" name="{{conf.valName}}" type="radio" ng-model="conf.value" value="{{o.value}}">
+                                </span>
+                </div>
+                {{o.text}}
+            </label>
+        </div>
+    </div>
+</div><!-- /.form-group -->

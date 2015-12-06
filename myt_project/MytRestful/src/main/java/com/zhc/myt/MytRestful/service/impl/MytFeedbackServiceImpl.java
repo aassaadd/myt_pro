@@ -73,6 +73,7 @@ public class MytFeedbackServiceImpl implements MytFeedbackService {
 			Integer pageSize, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytFeedbackExample example = new MytFeedbackExample();
+		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		Integer limtStart = (pageNumber - 1) * pageSize;
 		Integer limtEnd = pageSize;
 		example.setLimitStart(limtStart);

@@ -2793,3 +2793,7 @@ body.boxed {
   width: 50px;
   height: 50px;
 }
+.row > form {
+  margin-right: 15px;
+  margin-left: 15px;
+}

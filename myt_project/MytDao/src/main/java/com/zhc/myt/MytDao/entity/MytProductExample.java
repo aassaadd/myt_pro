@@ -305,6 +305,76 @@ public class MytProductExample {
             return (Criteria) this;
         }
 
+        public Criteria andProNoIsNull() {
+            addCriterion("pro_no is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoIsNotNull() {
+            addCriterion("pro_no is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoEqualTo(String value) {
+            addCriterion("pro_no =", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoNotEqualTo(String value) {
+            addCriterion("pro_no <>", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoGreaterThan(String value) {
+            addCriterion("pro_no >", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoGreaterThanOrEqualTo(String value) {
+            addCriterion("pro_no >=", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoLessThan(String value) {
+            addCriterion("pro_no <", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoLessThanOrEqualTo(String value) {
+            addCriterion("pro_no <=", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoLike(String value) {
+            addCriterion("pro_no like", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoNotLike(String value) {
+            addCriterion("pro_no not like", value, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoIn(List<String> values) {
+            addCriterion("pro_no in", values, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoNotIn(List<String> values) {
+            addCriterion("pro_no not in", values, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoBetween(String value1, String value2) {
+            addCriterion("pro_no between", value1, value2, "proNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andProNoNotBetween(String value1, String value2) {
+            addCriterion("pro_no not between", value1, value2, "proNo");
+            return (Criteria) this;
+        }
+
         public Criteria andProNameIsNull() {
             addCriterion("pro_name is null");
             return (Criteria) this;
@@ -372,6 +442,196 @@ public class MytProductExample {
 
         public Criteria andProNameNotBetween(String value1, String value2) {
             addCriterion("pro_name not between", value1, value2, "proName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionIsNull() {
+            addCriterion("pro_description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionIsNotNull() {
+            addCriterion("pro_description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionEqualTo(String value) {
+            addCriterion("pro_description =", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionNotEqualTo(String value) {
+            addCriterion("pro_description <>", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionGreaterThan(String value) {
+            addCriterion("pro_description >", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("pro_description >=", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionLessThan(String value) {
+            addCriterion("pro_description <", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("pro_description <=", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionLike(String value) {
+            addCriterion("pro_description like", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionNotLike(String value) {
+            addCriterion("pro_description not like", value, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionIn(List<String> values) {
+            addCriterion("pro_description in", values, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionNotIn(List<String> values) {
+            addCriterion("pro_description not in", values, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionBetween(String value1, String value2) {
+            addCriterion("pro_description between", value1, value2, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProDescriptionNotBetween(String value1, String value2) {
+            addCriterion("pro_description not between", value1, value2, "proDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountIsNull() {
+            addCriterion("pro_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountIsNotNull() {
+            addCriterion("pro_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountEqualTo(Integer value) {
+            addCriterion("pro_count =", value, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountNotEqualTo(Integer value) {
+            addCriterion("pro_count <>", value, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountGreaterThan(Integer value) {
+            addCriterion("pro_count >", value, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pro_count >=", value, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountLessThan(Integer value) {
+            addCriterion("pro_count <", value, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountLessThanOrEqualTo(Integer value) {
+            addCriterion("pro_count <=", value, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountIn(List<Integer> values) {
+            addCriterion("pro_count in", values, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountNotIn(List<Integer> values) {
+            addCriterion("pro_count not in", values, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountBetween(Integer value1, Integer value2) {
+            addCriterion("pro_count between", value1, value2, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("pro_count not between", value1, value2, "proCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountIsNull() {
+            addCriterion("pro_sold_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountIsNotNull() {
+            addCriterion("pro_sold_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountEqualTo(Integer value) {
+            addCriterion("pro_sold_count =", value, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountNotEqualTo(Integer value) {
+            addCriterion("pro_sold_count <>", value, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountGreaterThan(Integer value) {
+            addCriterion("pro_sold_count >", value, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pro_sold_count >=", value, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountLessThan(Integer value) {
+            addCriterion("pro_sold_count <", value, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountLessThanOrEqualTo(Integer value) {
+            addCriterion("pro_sold_count <=", value, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountIn(List<Integer> values) {
+            addCriterion("pro_sold_count in", values, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountNotIn(List<Integer> values) {
+            addCriterion("pro_sold_count not in", values, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountBetween(Integer value1, Integer value2) {
+            addCriterion("pro_sold_count between", value1, value2, "proSoldCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andProSoldCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("pro_sold_count not between", value1, value2, "proSoldCount");
             return (Criteria) this;
         }
 
@@ -632,6 +892,266 @@ public class MytProductExample {
 
         public Criteria andProStateNotBetween(String value1, String value2) {
             addCriterion("pro_state not between", value1, value2, "proState");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateIsNull() {
+            addCriterion("pro_open_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateIsNotNull() {
+            addCriterion("pro_open_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateEqualTo(Date value) {
+            addCriterion("pro_open_date =", value, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateNotEqualTo(Date value) {
+            addCriterion("pro_open_date <>", value, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateGreaterThan(Date value) {
+            addCriterion("pro_open_date >", value, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("pro_open_date >=", value, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateLessThan(Date value) {
+            addCriterion("pro_open_date <", value, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateLessThanOrEqualTo(Date value) {
+            addCriterion("pro_open_date <=", value, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateIn(List<Date> values) {
+            addCriterion("pro_open_date in", values, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateNotIn(List<Date> values) {
+            addCriterion("pro_open_date not in", values, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateBetween(Date value1, Date value2) {
+            addCriterion("pro_open_date between", value1, value2, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProOpenDateNotBetween(Date value1, Date value2) {
+            addCriterion("pro_open_date not between", value1, value2, "proOpenDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateIsNull() {
+            addCriterion("pro_end_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateIsNotNull() {
+            addCriterion("pro_end_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateEqualTo(Date value) {
+            addCriterion("pro_end_date =", value, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateNotEqualTo(Date value) {
+            addCriterion("pro_end_date <>", value, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateGreaterThan(Date value) {
+            addCriterion("pro_end_date >", value, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("pro_end_date >=", value, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateLessThan(Date value) {
+            addCriterion("pro_end_date <", value, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateLessThanOrEqualTo(Date value) {
+            addCriterion("pro_end_date <=", value, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateIn(List<Date> values) {
+            addCriterion("pro_end_date in", values, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateNotIn(List<Date> values) {
+            addCriterion("pro_end_date not in", values, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateBetween(Date value1, Date value2) {
+            addCriterion("pro_end_date between", value1, value2, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProEndDateNotBetween(Date value1, Date value2) {
+            addCriterion("pro_end_date not between", value1, value2, "proEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeIsNull() {
+            addCriterion("pro_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeIsNotNull() {
+            addCriterion("pro_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeEqualTo(String value) {
+            addCriterion("pro_type =", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeNotEqualTo(String value) {
+            addCriterion("pro_type <>", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeGreaterThan(String value) {
+            addCriterion("pro_type >", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("pro_type >=", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeLessThan(String value) {
+            addCriterion("pro_type <", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeLessThanOrEqualTo(String value) {
+            addCriterion("pro_type <=", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeLike(String value) {
+            addCriterion("pro_type like", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeNotLike(String value) {
+            addCriterion("pro_type not like", value, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeIn(List<String> values) {
+            addCriterion("pro_type in", values, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeNotIn(List<String> values) {
+            addCriterion("pro_type not in", values, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeBetween(String value1, String value2) {
+            addCriterion("pro_type between", value1, value2, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProTypeNotBetween(String value1, String value2) {
+            addCriterion("pro_type not between", value1, value2, "proType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeIsNull() {
+            addCriterion("pro_examine_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeIsNotNull() {
+            addCriterion("pro_examine_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeEqualTo(String value) {
+            addCriterion("pro_examine_type =", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeNotEqualTo(String value) {
+            addCriterion("pro_examine_type <>", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeGreaterThan(String value) {
+            addCriterion("pro_examine_type >", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("pro_examine_type >=", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeLessThan(String value) {
+            addCriterion("pro_examine_type <", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeLessThanOrEqualTo(String value) {
+            addCriterion("pro_examine_type <=", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeLike(String value) {
+            addCriterion("pro_examine_type like", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeNotLike(String value) {
+            addCriterion("pro_examine_type not like", value, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeIn(List<String> values) {
+            addCriterion("pro_examine_type in", values, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeNotIn(List<String> values) {
+            addCriterion("pro_examine_type not in", values, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeBetween(String value1, String value2) {
+            addCriterion("pro_examine_type between", value1, value2, "proExamineType");
+            return (Criteria) this;
+        }
+
+        public Criteria andProExamineTypeNotBetween(String value1, String value2) {
+            addCriterion("pro_examine_type not between", value1, value2, "proExamineType");
             return (Criteria) this;
         }
 

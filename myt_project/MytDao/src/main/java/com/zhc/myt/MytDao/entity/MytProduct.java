@@ -9,7 +9,15 @@ public class MytProduct {
 
     private Integer procId;
 
+    private String proNo;
+
     private String proName;
+
+    private String proDescription;
+
+    private Integer proCount;
+
+    private Integer proSoldCount;
 
     private String proAbout;
 
@@ -18,6 +26,14 @@ public class MytProduct {
     private Long proPrice;
 
     private String proState;
+
+    private Date proOpenDate;
+
+    private Date proEndDate;
+
+    private String proType;
+
+    private String proExamineType;
 
     private String status;
 
@@ -28,8 +44,6 @@ public class MytProduct {
     private Integer createId;
 
     private Date createDate;
-
-    private byte[] proDescription;
 
     public Integer getId() {
         return id;
@@ -55,12 +69,44 @@ public class MytProduct {
         this.procId = procId;
     }
 
+    public String getProNo() {
+        return proNo;
+    }
+
+    public void setProNo(String proNo) {
+        this.proNo = proNo == null ? null : proNo.trim();
+    }
+
     public String getProName() {
         return proName;
     }
 
     public void setProName(String proName) {
         this.proName = proName == null ? null : proName.trim();
+    }
+
+    public String getProDescription() {
+        return proDescription;
+    }
+
+    public void setProDescription(String proDescription) {
+        this.proDescription = proDescription == null ? null : proDescription.trim();
+    }
+
+    public Integer getProCount() {
+        return proCount;
+    }
+
+    public void setProCount(Integer proCount) {
+        this.proCount = proCount;
+    }
+
+    public Integer getProSoldCount() {
+        return proSoldCount;
+    }
+
+    public void setProSoldCount(Integer proSoldCount) {
+        this.proSoldCount = proSoldCount;
     }
 
     public String getProAbout() {
@@ -93,6 +139,38 @@ public class MytProduct {
 
     public void setProState(String proState) {
         this.proState = proState == null ? null : proState.trim();
+    }
+
+    public Date getProOpenDate() {
+        return proOpenDate;
+    }
+
+    public void setProOpenDate(Date proOpenDate) {
+        this.proOpenDate = proOpenDate;
+    }
+
+    public Date getProEndDate() {
+        return proEndDate;
+    }
+
+    public void setProEndDate(Date proEndDate) {
+        this.proEndDate = proEndDate;
+    }
+
+    public String getProType() {
+        return proType;
+    }
+
+    public void setProType(String proType) {
+        this.proType = proType == null ? null : proType.trim();
+    }
+
+    public String getProExamineType() {
+        return proExamineType;
+    }
+
+    public void setProExamineType(String proExamineType) {
+        this.proExamineType = proExamineType == null ? null : proExamineType.trim();
     }
 
     public String getStatus() {
@@ -133,13 +211,5 @@ public class MytProduct {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-
-    public byte[] getProDescription() {
-        return proDescription;
-    }
-
-    public void setProDescription(byte[] proDescription) {
-        this.proDescription = proDescription;
     }
 }

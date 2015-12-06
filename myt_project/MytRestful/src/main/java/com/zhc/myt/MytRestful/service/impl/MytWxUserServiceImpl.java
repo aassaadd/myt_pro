@@ -87,9 +87,9 @@ public class MytWxUserServiceImpl implements MytWxUserService {
 		MytWxUserExample example = new MytWxUserExample();
 		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		//模糊查询
-		if(params.containsKey("userName@like")){
+		if(params.containsKey("userNickname@like")){
 			MytWxUserExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
-			cr.andUserNameLike("%"+params.get("userName@like").toString()+"%");
+			cr.andUserNameLike("%"+params.get("userNickname@like").toString()+"%");
 		}
 		Integer limtStart=(pageNumber - 1) * pageSize;
 		Integer limtEnd=pageSize;
@@ -109,9 +109,9 @@ public class MytWxUserServiceImpl implements MytWxUserService {
 		MytWxUserExample example = new MytWxUserExample();
 		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		//模糊查询
-		if(params.containsKey("userName@like")){
+		if(params.containsKey("userNickname@like")){
 			MytWxUserExample.Criteria cr= ExampleUtils.Map2ExampleMethod(example.or(), params);
-			cr.andUserNameLike("%"+params.get("userName@like").toString()+"%");
+			cr.andUserNameLike("%"+params.get("userNickname@like").toString()+"%");
 		}
 		example.setOrderByClause("create_date DESC");
 		List<MytWxUser> content = mapper.selectByExample(example);

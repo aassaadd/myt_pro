@@ -9,6 +9,7 @@
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
     <result column="user_class" property="userClass" jdbcType="CHAR" />
     <result column="use_type" property="useType" jdbcType="CHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="opt_id" property="optId" jdbcType="INTEGER" />
     <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
@@ -45,8 +46,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, partent_id, user_nickname, user_name, user_password, user_class, use_type, status, 
-    opt_id, opt_date, create_id, create_date
+    id, partent_id, user_nickname, user_name, user_password, user_class, use_type, role_id, 
+    status, opt_id, opt_date, create_id, create_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" >
     select
@@ -82,12 +83,14 @@
     </selectKey>
     insert into myt_user (partent_id, user_nickname, user_name, 
       user_password, user_class, use_type, 
-      status, opt_id, opt_date, 
-      create_id, create_date)
+      role_id, status, opt_id, 
+      opt_date, create_id, create_date
+      )
     values (#{partentId,jdbcType=INTEGER}, #{userNickname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{userPassword,jdbcType=VARCHAR}, #{userClass,jdbcType=CHAR}, #{useType,jdbcType=CHAR}, 
-      #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, 
-      #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP})
+      #{roleId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, 
+      #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytUser" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -112,6 +115,9 @@
       </if>
       <if test="useType != null" >
         use_type,
+      </if>
+      <if test="roleId != null" >
+        role_id,
       </if>
       <if test="status != null" >
         status,
@@ -147,6 +153,9 @@
       </if>
       <if test="useType != null" >
         #{useType,jdbcType=CHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
@@ -192,6 +201,9 @@
       <if test="useType != null" >
         use_type = #{useType,jdbcType=CHAR},
       </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
@@ -218,6 +230,7 @@
       user_password = #{userPassword,jdbcType=VARCHAR},
       user_class = #{userClass,jdbcType=CHAR},
       use_type = #{useType,jdbcType=CHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       opt_id = #{optId,jdbcType=INTEGER},
       opt_date = #{optDate,jdbcType=TIMESTAMP},

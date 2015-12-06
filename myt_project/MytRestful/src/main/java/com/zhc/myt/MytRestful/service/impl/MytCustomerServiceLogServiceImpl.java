@@ -72,6 +72,7 @@ public class MytCustomerServiceLogServiceImpl implements
 			Integer pageSize, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytCustomerServiceLogExample example = new MytCustomerServiceLogExample();
+		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		Integer limtStart = (pageNumber - 1) * pageSize;
 		Integer limtEnd = pageSize;
 		example.setLimitStart(limtStart);

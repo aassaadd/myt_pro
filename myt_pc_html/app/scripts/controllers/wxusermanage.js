@@ -8,7 +8,7 @@
  * Controller of the mytPcHtmlApp
  */
 angular.module('mytPcHtmlApp')
-  .controller('WxusermanageCtrl', function () {
+  .controller('WxusermanageCtrl', function (global) {
       global.currentMenu={
         no:'wxUserManage',
         name:'查询用户',

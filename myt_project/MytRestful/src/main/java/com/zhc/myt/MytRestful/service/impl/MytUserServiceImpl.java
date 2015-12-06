@@ -72,7 +72,7 @@ public class MytUserServiceImpl implements MytUserService {
 		Date d = new Date();
 		t.setOptDate(d);
 		t.setOptId(currentUserId);
-		if (t.getUserPassword() != null && !t.getUserClass().equals("")) {
+		if (t.getUserPassword() != null && !t.getUserPassword().equals("")) {
 			t.setUserPassword(MD5Util.getMD5Lower(t.getUserPassword()));
 		}
 		mytUserMapper.updateByPrimaryKeySelective(t);
@@ -131,13 +131,17 @@ public class MytUserServiceImpl implements MytUserService {
 		}
 
 		MytUserExample example = new MytUserExample();
-		example.or().andUserNameEqualTo(userName)
-				.andUserPasswordEqualTo(MD5Util.getMD5Lower(userPassword));
+		example.or().andUserNameEqualTo(userName);
+//				.andUserPasswordEqualTo(MD5Util.getMD5Lower(userPassword));
 		List<MytUser> list = mytUserMapper.selectByExample(example);
 		if (list.size() > 0) {
 			Cache service = (Cache) EhcacheUtil.getCache("tokenCache");
 			String token = UUIDUtil.getUUID();
 			MytUser user = list.get(0);
+			//判断用户名密码是否相同
+			if(!MD5Util.getMD5Lower(userPassword).equals(user.getUserPassword())){
+				return null;
+			}
 			// 判断 是否商户删除状态
 			if (user.getUserClass()!=null && user.getUserClass().equals("1")) {
 				MytMerchant mytMerchant = mytMerchantMapper

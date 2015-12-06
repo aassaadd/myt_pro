@@ -35,7 +35,7 @@ angular.module('mytPcHtmlApp')
 
         return {
           method: 'POST',
-          url: global.baseUrl + '/api/manage/mytCustomerServiceLog/'+params.id,
+          url: global.baseUrl + '/api/manage/mytCustomerServiceLog',
           data: params
         }
       }),

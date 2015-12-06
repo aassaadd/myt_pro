@@ -1,0 +1,32 @@
+<div class="outer">
+    <div class="inner bg-light lter">
+        <div class="row">
+            <form name="modelForm" class="box dark" novalidate ng-submit="conf.doSubmit()">
+                <!--form class="m-form-multi" name="addForm" novalidate-->
+                <!--<div class="box dark">-->
+                    <header>
+                        <div class="icons">
+                            <i class="fa fa-edit"></i>
+                        </div>
+                        <h5>{{conf.tableTitle}}</h5>
+
+                    </header>
+                    <div class="body collapse in" aria-expanded="true">
+                        <div class="form-horizontal">
+                            <div model-widget-directive="" conf="m"
+                                 ng-repeat="m in conf.modelConf"></div>
+                        </div>
+                    </div>
+                    <div class="row form-inline"  style="text-align: center;margin-top: 15px">
+                        <button ng-repeat="go in conf.operationConf"
+                                type="button" class="btn btn-sm btn-primary"
+                                ng-click="go.doFunc(conf)">{{go.labelName}}</button>
+                        <button  type="submit" class="btn btn-sm btn-primary" >提交</button>
+                        <button  type="button" class="btn btn-sm btn-danger" ng-click="conf.doClose()">返回</button>
+                    </div>
+                <!--</div>-->
+            </form>
+
+        </div><!-- /.row -->
+    </div><!-- /.inner -->
+</div>

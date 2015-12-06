@@ -72,6 +72,7 @@ public class MytAdvertisementServiceImpl implements MytAdvertisementService {
 			Integer pageSize, Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		MytAdvertisementExample example = new MytAdvertisementExample();
+		ExampleUtils.Map2ExampleMethod(example.or(), params);
 		Integer limtStart = (pageNumber - 1) * pageSize;
 		Integer limtEnd = pageSize;
 		example.setLimitStart(limtStart);

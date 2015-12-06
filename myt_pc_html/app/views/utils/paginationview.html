@@ -1,5 +1,5 @@
-<div class="page-list clearfix" style="margin-top: 20px;">
-    <ul class="pagination pull-left" style="margin:0 !important" >
+<div class="row" style="margin-top: 20px;">
+    <ul class="pagination pull-left col-md-6" style="margin:0 !important">
         <li ng-class="{disabled:page == 1}" ng-click="prevPage()"><span style="cursor: pointer">&laquo;</span></li>
         <li ng-repeat="item in pageList track by $index"
             ng-click="changeCurrentPage(item)"
@@ -9,13 +9,16 @@
         <li ng-class="{disabled:page == source.totalPages}" ng-click="nextPage()">
             <span style="cursor: pointer">&raquo;</span></li>
     </ul>
-    <div class="page-total" >
+    <div class="col-md-4">
         <em>第</em>
-        <input class="form-control" type="text" ng-model="page" style="width: 60px;"/>
+        <input class="form-control" type="text" ng-model="page"/>
         <em>页</em>
+    </div>
+    <div class="col-md-2">
         <em>每页</em>
         <select class="form-control" ng-model="pageSize"
                 ng-options="option for option in conf.perPageOptions "></select>
         <span>共<strong>{{source.totalElements }}</strong>条</span>
     </div>
 </div>
+

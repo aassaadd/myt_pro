@@ -35,7 +35,7 @@ angular.module('mytPcHtmlApp')
 
         return {
           method: 'POST',
-          url: global.baseUrl + '/api/manage/mytFeedback/'+params.id,
+          url: global.baseUrl + '/api/manage/mytFeedback',
           data: params
         }
       }),
