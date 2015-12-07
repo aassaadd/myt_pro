@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhc.myt.MytDao.mapper.MytUserMapper">
-  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytUser">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="partent_id" jdbcType="INTEGER" property="partentId" />
-    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="user_class" jdbcType="CHAR" property="userClass" />
-    <result column="use_type" jdbcType="CHAR" property="useType" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="opt_id" jdbcType="INTEGER" property="optId" />
-    <result column="opt_date" jdbcType="TIMESTAMP" property="optDate" />
-    <result column="create_id" jdbcType="INTEGER" property="createId" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhc.myt.MytDao.mapper.MytUserMapper" >
+  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="partent_id" property="partentId" jdbcType="INTEGER" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_class" property="userClass" jdbcType="CHAR" />
+    <result column="use_type" property="useType" jdbcType="CHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="opt_id" property="optId" jdbcType="INTEGER" />
+    <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -45,40 +45,40 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, partent_id, user_nickname, user_name, user_password, user_class, use_type, role_id, 
     status, opt_id, opt_date, create_id, create_date
   </sql>
-  <select id="selectByExample" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
     from myt_user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
-    <if test="limitStart != null and limitStart&gt;=0">
+    <if test="limitStart != null and limitStart>=0" >
       limit #{limitStart} , #{limitEnd}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from myt_user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from myt_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytUser">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytUser" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into myt_user (partent_id, user_nickname, user_name, 
@@ -92,374 +92,137 @@
       #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytUser">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytUser" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into myt_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="partentId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partentId != null" >
         partent_id,
       </if>
-      <if test="userNickname != null">
+      <if test="userNickname != null" >
         user_nickname,
       </if>
-      <if test="userName != null">
+      <if test="userName != null" >
         user_name,
       </if>
-      <if test="userPassword != null">
+      <if test="userPassword != null" >
         user_password,
       </if>
-      <if test="userClass != null">
+      <if test="userClass != null" >
         user_class,
       </if>
-      <if test="useType != null">
+      <if test="useType != null" >
         use_type,
       </if>
-      <if test="roleId != null">
+      <if test="roleId != null" >
         role_id,
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         status,
       </if>
-      <if test="optId != null">
+      <if test="optId != null" >
         opt_id,
       </if>
-      <if test="optDate != null">
+      <if test="optDate != null" >
         opt_date,
       </if>
-      <if test="createId != null">
+      <if test="createId != null" >
         create_id,
       </if>
-      <if test="createDate != null">
+      <if test="createDate != null" >
         create_date,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="partentId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partentId != null" >
         #{partentId,jdbcType=INTEGER},
       </if>
-      <if test="userNickname != null">
+      <if test="userNickname != null" >
         #{userNickname,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
+      <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="userPassword != null">
+      <if test="userPassword != null" >
         #{userPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userClass != null">
+      <if test="userClass != null" >
         #{userClass,jdbcType=CHAR},
       </if>
-      <if test="useType != null">
+      <if test="useType != null" >
         #{useType,jdbcType=CHAR},
       </if>
-      <if test="roleId != null">
+      <if test="roleId != null" >
         #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         #{status,jdbcType=VARCHAR},
       </if>
-      <if test="optId != null">
+      <if test="optId != null" >
         #{optId,jdbcType=INTEGER},
       </if>
-      <if test="optDate != null">
+      <if test="optDate != null" >
         #{optDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createId != null">
+      <if test="createId != null" >
         #{createId,jdbcType=INTEGER},
       </if>
-      <if test="createDate != null">
+      <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" resultType="java.lang.Integer" >
     select count(*) from myt_user
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytUser" >
     update myt_user
-    <set>
-      <if test="partentId != null">
+    <set >
+      <if test="partentId != null" >
         partent_id = #{partentId,jdbcType=INTEGER},
       </if>
-      <if test="userNickname != null">
+      <if test="userNickname != null" >
         user_nickname = #{userNickname,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
+      <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="userPassword != null">
+      <if test="userPassword != null" >
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userClass != null">
+      <if test="userClass != null" >
         user_class = #{userClass,jdbcType=CHAR},
       </if>
-      <if test="useType != null">
+      <if test="useType != null" >
         use_type = #{useType,jdbcType=CHAR},
       </if>
-      <if test="roleId != null">
+      <if test="roleId != null" >
         role_id = #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
-      <if test="optId != null">
+      <if test="optId != null" >
         opt_id = #{optId,jdbcType=INTEGER},
       </if>
-      <if test="optDate != null">
+      <if test="optDate != null" >
         opt_date = #{optDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createId != null">
+      <if test="createId != null" >
         create_id = #{createId,jdbcType=INTEGER},
       </if>
-      <if test="createDate != null">
+      <if test="createDate != null" >
         create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytUser">
-    update myt_user
-    set partent_id = #{partentId,jdbcType=INTEGER},
-      user_nickname = #{userNickname,jdbcType=VARCHAR},
-      user_name = #{userName,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR},
-      user_class = #{userClass,jdbcType=CHAR},
-      use_type = #{useType,jdbcType=CHAR},
-      role_id = #{roleId,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR},
-      opt_id = #{optId,jdbcType=INTEGER},
-      opt_date = #{optDate,jdbcType=TIMESTAMP},
-      create_id = #{createId,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytUser">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="partent_id" jdbcType="INTEGER" property="partentId" />
-    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="user_class" jdbcType="CHAR" property="userClass" />
-    <result column="use_type" jdbcType="CHAR" property="useType" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="opt_id" jdbcType="INTEGER" property="optId" />
-    <result column="opt_date" jdbcType="TIMESTAMP" property="optDate" />
-    <result column="create_id" jdbcType="INTEGER" property="createId" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, partent_id, user_nickname, user_name, user_password, user_class, use_type, role_id, 
-    status, opt_id, opt_date, create_id, create_date
-  </sql>
-  <select id="selectByExample" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from myt_user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <if test="limitStart != null and limitStart&gt;=0">
-      limit #{limitStart} , #{limitEnd}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from myt_user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from myt_user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytUser">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into myt_user (partent_id, user_nickname, user_name, 
-      user_password, user_class, use_type, 
-      role_id, status, opt_id, 
-      opt_date, create_id, create_date
-      )
-    values (#{partentId,jdbcType=INTEGER}, #{userNickname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{userPassword,jdbcType=VARCHAR}, #{userClass,jdbcType=CHAR}, #{useType,jdbcType=CHAR}, 
-      #{roleId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{optId,jdbcType=INTEGER}, 
-      #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytUser">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into myt_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="partentId != null">
-        partent_id,
-      </if>
-      <if test="userNickname != null">
-        user_nickname,
-      </if>
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="userPassword != null">
-        user_password,
-      </if>
-      <if test="userClass != null">
-        user_class,
-      </if>
-      <if test="useType != null">
-        use_type,
-      </if>
-      <if test="roleId != null">
-        role_id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="optId != null">
-        opt_id,
-      </if>
-      <if test="optDate != null">
-        opt_date,
-      </if>
-      <if test="createId != null">
-        create_id,
-      </if>
-      <if test="createDate != null">
-        create_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="partentId != null">
-        #{partentId,jdbcType=INTEGER},
-      </if>
-      <if test="userNickname != null">
-        #{userNickname,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userClass != null">
-        #{userClass,jdbcType=CHAR},
-      </if>
-      <if test="useType != null">
-        #{useType,jdbcType=CHAR},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="optId != null">
-        #{optId,jdbcType=INTEGER},
-      </if>
-      <if test="optDate != null">
-        #{optDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createId != null">
-        #{createId,jdbcType=INTEGER},
-      </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytUserExample" resultType="java.lang.Integer">
-    select count(*) from myt_user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytUser">
-    update myt_user
-    <set>
-      <if test="partentId != null">
-        partent_id = #{partentId,jdbcType=INTEGER},
-      </if>
-      <if test="userNickname != null">
-        user_nickname = #{userNickname,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userClass != null">
-        user_class = #{userClass,jdbcType=CHAR},
-      </if>
-      <if test="useType != null">
-        use_type = #{useType,jdbcType=CHAR},
-      </if>
-      <if test="roleId != null">
-        role_id = #{roleId,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="optId != null">
-        opt_id = #{optId,jdbcType=INTEGER},
-      </if>
-      <if test="optDate != null">
-        opt_date = #{optDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createId != null">
-        create_id = #{createId,jdbcType=INTEGER},
-      </if>
-      <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytUser">
+  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytUser" >
     update myt_user
     set partent_id = #{partentId,jdbcType=INTEGER},
       user_nickname = #{userNickname,jdbcType=VARCHAR},

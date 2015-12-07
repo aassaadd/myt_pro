@@ -395,6 +395,76 @@ public class MytAppExample {
             return (Criteria) this;
         }
 
+        public Criteria andIcoIsNull() {
+            addCriterion("ico is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoIsNotNull() {
+            addCriterion("ico is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoEqualTo(String value) {
+            addCriterion("ico =", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoNotEqualTo(String value) {
+            addCriterion("ico <>", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoGreaterThan(String value) {
+            addCriterion("ico >", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoGreaterThanOrEqualTo(String value) {
+            addCriterion("ico >=", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoLessThan(String value) {
+            addCriterion("ico <", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoLessThanOrEqualTo(String value) {
+            addCriterion("ico <=", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoLike(String value) {
+            addCriterion("ico like", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoNotLike(String value) {
+            addCriterion("ico not like", value, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoIn(List<String> values) {
+            addCriterion("ico in", values, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoNotIn(List<String> values) {
+            addCriterion("ico not in", values, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoBetween(String value1, String value2) {
+            addCriterion("ico between", value1, value2, "ico");
+            return (Criteria) this;
+        }
+
+        public Criteria andIcoNotBetween(String value1, String value2) {
+            addCriterion("ico not between", value1, value2, "ico");
+            return (Criteria) this;
+        }
+
         public Criteria andSortIsNull() {
             addCriterion("sort is null");
             return (Criteria) this;

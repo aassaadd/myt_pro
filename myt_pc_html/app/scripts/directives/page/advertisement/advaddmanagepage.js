@@ -82,6 +82,7 @@ angular.module('mytPcHtmlApp')
                             scope.source[m.valName] = m.value;
                         }
                         if($location.search().id){
+                          scope.source.id=$location.search().id;
                             apiMain.adv.update.queryCallback(scope.source, function (data) {
                                 if (data && data.data) {
                                     alert('保存成功');

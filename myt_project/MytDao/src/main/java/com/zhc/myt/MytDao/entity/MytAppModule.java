@@ -15,6 +15,8 @@ public class MytAppModule {
 
     private String modAbout;
 
+    private String ico;
+
     private Integer sort;
 
     private String status;
@@ -73,6 +75,14 @@ public class MytAppModule {
 
     public void setModAbout(String modAbout) {
         this.modAbout = modAbout == null ? null : modAbout.trim();
+    }
+
+    public String getIco() {
+        return ico;
+    }
+
+    public void setIco(String ico) {
+        this.ico = ico == null ? null : ico.trim();
     }
 
     public Integer getSort() {

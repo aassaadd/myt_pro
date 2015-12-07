@@ -9,7 +9,7 @@
 angular.module('mytPcHtmlApp')
   .directive('orderManagePage', function (apiMain,$filter) {
     return {
-      templateUrl: 'views/page/product/ordermanagepageview.html',
+      templateUrl: 'views/page/order/ordermanagepageview.html',
       restrict: 'AE',
       scope:{},
       link: function postLink(scope, element, attrs) {

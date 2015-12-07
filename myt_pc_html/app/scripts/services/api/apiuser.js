@@ -22,6 +22,35 @@ angular.module('mytPcHtmlApp')
           params: params
         }
       }),
+      getAppByPage: apiUtils.getQuery(function (params) {
+        var id=params.id;
+        delete  params.id;
+        return {
+          method: 'GET',
+          url: global.baseUrl + '/api/manage/mytUser/'+id+'/mytApp',
+          params: params
+        }
+      }),
+      getAppModuleByPage: apiUtils.getQuery(function (params) {
+        var id=params.id;
+        delete  params.id;
+        return {
+          method: 'GET',
+          url: global.baseUrl + '/api/manage/mytUser/'+id+'/mytAppModule',
+          params: params
+        }
+      }),
+      getAppModuleOnAppIdByPage: apiUtils.getQuery(function (params) {
+        var id=params.id,
+          appId=params.appId;
+        delete  params.id;
+        delete params.appId;
+        return {
+          method: 'GET',
+          url: global.baseUrl + '/api/manage/mytUser/'+id+'/mytApp/'+appId+'/mytAppModule',
+          params: params
+        }
+      }),
       getById: apiUtils.getQuery(function (params) {
 
         return {
@@ -43,6 +72,14 @@ angular.module('mytPcHtmlApp')
         return {
           method: 'PUT',
           url: global.baseUrl + '/api/manage/mytUser/'+params.id,
+          data: params
+        }
+      }),
+      updatePassword: apiUtils.getQuery(function (params) {
+
+        return {
+          method: 'PUT',
+          url: global.baseUrl + '/api/manage/mytUser/'+params.id+'/password',
           data: params
         }
       }),

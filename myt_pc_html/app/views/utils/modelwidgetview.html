@@ -4,6 +4,7 @@
 
     <div class="col-lg-8" ng-if="conf.ope=='view'">
         <label ng-switch-when="select">{{conf.value|generalFilter:selectFilter:conf.selValue}}</label>
+        <label ng-switch-when="password">******</label>
         <label ng-switch-when="text">{{conf.value}}</label>
         <label ng-switch-when="number">{{conf.value}}</label>
         <label ng-switch-when="amount">{{conf.value}}</label>
@@ -29,6 +30,8 @@
         </select>
         <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="text"
                placeholder="{{conf.placeholder}}"/>
+        <input class="form-control" ng-model="conf.value" type="password" ng-switch-when="password"
+             placeholder="{{conf.placeholder}}"/>
         <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="number"
                placeholder="{{conf.placeholder}}"/>
         <input class="form-control" ng-model="conf.value" type="text" ng-switch-when="amount"

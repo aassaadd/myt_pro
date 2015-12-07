@@ -74,7 +74,13 @@ public class MytAppModuleServiceImpl implements MytAppModuleService {
 		ExampleUtils.Map2ExampleMethod(cr, params);
 		//模糊查询
 		if(params.containsKey("id@in")){
-			cr.andIdIn((List<Integer>)params.get("id@in"));
+			List<Integer> ints=(List<Integer>)params.get("id@in");
+			if(ints.size()>0){
+				cr.andIdIn(ints);
+			}else{
+				cr.andIdEqualTo(-1);
+			}
+			
 		}
 		Integer limtStart = (pageNumber - 1) * pageSize;
 		Integer limtEnd = pageSize;
@@ -96,7 +102,13 @@ public class MytAppModuleServiceImpl implements MytAppModuleService {
 		ExampleUtils.Map2ExampleMethod(cr, params);
 		//模糊查询
 		if(params.containsKey("id@in")){
-			cr.andIdIn((List<Integer>)params.get("id@in"));
+			List<Integer> ints=(List<Integer>)params.get("id@in");
+			if(ints.size()>0){
+				cr.andIdIn(ints);
+			}else{
+				cr.andIdEqualTo(-1);
+			}
+			
 		}
 		example.setOrderByClause("sort ASC,create_date DESC");
 		List<MytAppModule> content = mapper.selectByExample(example);

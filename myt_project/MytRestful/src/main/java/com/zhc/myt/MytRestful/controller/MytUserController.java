@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zhc.myt.MytCommon.util.MD5Util;
 import com.zhc.myt.MytDao.entity.MytAppModule;
 import com.zhc.myt.MytDao.entity.MytUser;
 import com.zhc.myt.MytDao.entity.RRolePermission;
@@ -61,7 +62,8 @@ public class MytUserController extends BaseController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
+	public Map<String, Object> update(
+			@PathVariable(value = "id") Integer id,
 			@RequestBody MytUser mytUser) {
 		mytUser.setId(id);
 		try {
@@ -74,7 +76,44 @@ public class MytUserController extends BaseController {
 		return getReturnMapSuccess(mytUser);
 
 	}
+	@RequestMapping(value = "/{id}/password", method = RequestMethod.PUT)
+	public Map<String, Object> updatePassword(
+			@PathVariable(value = "id") Integer id,
+			@RequestBody Map<String,String> map) {
+		//  		userPassword: '',//确认密码
+		//        newUserPassword:'',新密码
+		//        oldUserPassword:'',就密码
+		MytUser user=new MytUser();
+		if (id == 0) {
+			// 如果为0表示获取当前用户
+			user.setId(MytSystem.getCurrentUserId());
+		} else {
+			user.setId(id);
+		}
+		MytUser u=mytUserService.getById(user.getId());
+		if(!map.containsKey("oldUserPassword") || map.get("oldUserPassword").trim().equals("")){
+			return getReturnMapFailure("旧密码不能为空");
+		}
+		if(!MD5Util.getMD5Lower(map.get("oldUserPassword").trim()).equals(u.getUserPassword())){
+			return getReturnMapFailure("旧密码不正确");
+		}
+		if(!map.containsKey("newUserPassword") || map.get("newUserPassword").trim().equals("")){
+			return getReturnMapFailure("新密码不能为空");
+		}
+		if(!map.containsKey("userPassword") || !map.get("userPassword").trim().equals(map.get("newUserPassword").trim())){
+			return getReturnMapFailure("两次密码输入不一致");
+		}
+		user.setUserPassword(map.get("newUserPassword").trim());
+		try {
+			mytUserService.update(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return getReturnMapFailure();
+		}
+		return getReturnMapSuccess(user);
 
+	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
 		MytUser mytUser = new MytUser();
@@ -128,20 +167,29 @@ public class MytUserController extends BaseController {
 		MytUser user;
 		if (id == 0) {
 			// 如果为0表示获取当前用户
-			user=mytUserService.getById(MytSystem.getCurrentUserId());
+			user = mytUserService.getById(MytSystem.getCurrentUserId());
 		} else {
-			user=mytUserService.getById(id);
+			user = mytUserService.getById(id);
 		}
-		Rparams.put("roleId", user.getRoleId());
-		Rparams.put("entityName", "myt_app");
-		List<RRolePermission> Rlist = rRolePermissionService.getByList(Rparams);
 
-		//通过关系查询
-		List<Integer> intList=new ArrayList<Integer>();
-		for(RRolePermission r:Rlist){
-			intList.add(r.getEntId());
+		// 如果为超级管理员
+		if (user.getUserClass().equals("0") && user.getUseType().equals("0")) {
+			
+		} else {
+			
+			Rparams.put("roleId", user.getRoleId());
+			Rparams.put("entityName", "myt_app");
+			List<RRolePermission> Rlist = rRolePermissionService
+					.getByList(Rparams);
+
+			// 通过关系查询
+			List<Integer> intList = new ArrayList<Integer>();
+			for (RRolePermission r : Rlist) {
+				intList.add(r.getEntId());
+			}
+			params.put("id@in", intList);
 		}
-		params.put("id@in", intList);
+		params.put("status", "1");
 		if (!params.containsKey("page")) {
 			return getReturnMapSuccess(mytAppService.getByList(params));
 		}
@@ -151,31 +199,39 @@ public class MytUserController extends BaseController {
 				pageSize, params));
 
 	}
+
 	@RequestMapping(value = "/{id}/mytApp/{appId}/mytAppModule", method = RequestMethod.GET)
 	public Map<String, Object> getMytAppModuleOnAppByPage(
-			@PathVariable(value = "id") Integer id, 
-			@PathVariable(value = "appId") Integer appId, 
+			@PathVariable(value = "id") Integer id,
+			@PathVariable(value = "appId") Integer appId,
 			HttpServletRequest request) {
 		Map<String, Object> params = getParameterMap(request);
 		Map<String, Object> Rparams = new HashMap<String, Object>();
 		MytUser user;
 		if (id == 0) {
 			// 如果为0表示获取当前用户
-			user=mytUserService.getById(MytSystem.getCurrentUserId());
+			user = mytUserService.getById(MytSystem.getCurrentUserId());
 		} else {
-			user=mytUserService.getById(id);
+			user = mytUserService.getById(id);
 		}
-		Rparams.put("roleId", user.getRoleId());
-		Rparams.put("entityName", "myt_app_module");
-		List<RRolePermission> Rlist = rRolePermissionService.getByList(Rparams);
+		// 如果为超级管理员
+		if (user.getUserClass().equals("0") && user.getUseType().equals("0")) {
 
-		//通过关系查询
-		List<Integer> intList=new ArrayList<Integer>();
-		for(RRolePermission r:Rlist){
-			intList.add(r.getEntId());
+		} else {
+			Rparams.put("roleId", user.getRoleId());
+			Rparams.put("entityName", "myt_app_module");
+			List<RRolePermission> Rlist = rRolePermissionService.getByList(Rparams);
+
+			// 通过关系查询
+			List<Integer> intList = new ArrayList<Integer>();
+			for (RRolePermission r : Rlist) {
+				intList.add(r.getEntId());
+			}
+			params.put("id@in", intList);
 		}
+		params.put("status", "1");
 		params.put("appId", appId);
-		params.put("id@in", intList);
+	
 		if (!params.containsKey("page")) {
 			return getReturnMapSuccess(mytAppModuleService.getByList(params));
 		}
@@ -185,6 +241,7 @@ public class MytUserController extends BaseController {
 				pageSize, params));
 
 	}
+
 	@RequestMapping(value = "/{id}/mytAppModule", method = RequestMethod.GET)
 	public Map<String, Object> getMytAppModuleByPage(
 			@PathVariable(value = "id") Integer id, HttpServletRequest request) {
@@ -193,17 +250,17 @@ public class MytUserController extends BaseController {
 		MytUser user;
 		if (id == 0) {
 			// 如果为0表示获取当前用户
-			user=mytUserService.getById(MytSystem.getCurrentUserId());
+			user = mytUserService.getById(MytSystem.getCurrentUserId());
 		} else {
-			user=mytUserService.getById(id);
+			user = mytUserService.getById(id);
 		}
 		Rparams.put("roleId", user.getRoleId());
 		Rparams.put("entityName", "myt_app_module");
 		List<RRolePermission> Rlist = rRolePermissionService.getByList(Rparams);
 
-		//通过关系查询
-		List<Integer> intList=new ArrayList<Integer>();
-		for(RRolePermission r:Rlist){
+		// 通过关系查询
+		List<Integer> intList = new ArrayList<Integer>();
+		for (RRolePermission r : Rlist) {
 			intList.add(r.getEntId());
 		}
 		params.put("id@in", intList);

@@ -120,6 +120,11 @@ angular
               controller: 'RoleaddmanageCtrl',
               controllerAs: 'roleAddManage'
             })
+            .when('/myPasswordUpdate', {
+              templateUrl: 'views/mypasswordupdate.html',
+              controller: 'MypasswordupdateCtrl',
+              controllerAs: 'myPasswordUpdate'
+            })
             .otherwise({
                 redirectTo: '/'
             });

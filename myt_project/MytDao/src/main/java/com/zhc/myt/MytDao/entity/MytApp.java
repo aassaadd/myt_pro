@@ -11,6 +11,8 @@ public class MytApp {
 
     private String appClass;
 
+    private String ico;
+
     private Integer sort;
 
     private String status;
@@ -53,6 +55,14 @@ public class MytApp {
 
     public void setAppClass(String appClass) {
         this.appClass = appClass == null ? null : appClass.trim();
+    }
+
+    public String getIco() {
+        return ico;
+    }
+
+    public void setIco(String ico) {
+        this.ico = ico == null ? null : ico.trim();
     }
 
     public Integer getSort() {

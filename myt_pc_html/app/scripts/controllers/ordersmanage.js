@@ -10,9 +10,9 @@
 angular.module('mytPcHtmlApp')
   .controller('OrdersmanageCtrl', function (global) {
       global.currentMenu={
-        no:'ordersMessage',
+        no:'ordersManage',
         name:'订单管理',
         ico:'',
-        path:'ordersMessage'
+        path:'ordersManage'
       }
   });
