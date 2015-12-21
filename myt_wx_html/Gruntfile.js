@@ -1,97 +1,156 @@
-/*global module:false*/
-module.exports = function(grunt) {
+/**
+ * Created by bm_zhc on 2015/10/29.
+ */
 
-  // Project configuration.
-  grunt.initConfig({
-    // Metadata.
-    pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
-    //bower: {
-    //  install: {
-    //    options: {
-    //      targetDir: './js/lib',
-    //      layout: 'byComponent',
-    //      install: true,
-    //      verbose: false,
-    //      cleanTargetDir: false,
-    //      cleanBowerDir: false,
-    //      bowerOptions: {}
-    //    }
-    //  }
-    //},
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-    },
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
-      }
-    },
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        globals: {
-          jQuery: true
+//module.exports = function (grunt) {
+//    // 项目配置
+//    grunt.initConfig({
+//        pkg: grunt.file.readJSON('package.json'),
+//        concat: {
+//            options: {
+//                separator: ';'
+//            },
+//            dist: {
+//                src: ['js/lib/*.js'],
+//                dest: 'dest/libs.js'
+//            }
+//        },
+//        uglify: {
+//            build: {
+//                src: 'dest/libs.js',
+//                dest: 'dest/libs.min.js'
+//            }
+//        }
+//    });
+//    grunt.loadNpmTasks('grunt-contrib-uglify');
+//    grunt.loadNpmTasks('grunt-contrib-concat');
+//    // 默认任务
+//    grunt.registerTask('default', ['concat', 'uglify']);
+//}
+
+//module.exports = function(grunt) {
+//
+//    // Project configuration.
+//    grunt.initConfig({
+//        pkg: grunt.file.readJSON('package.json'),
+//        uglify: {
+//            build: {
+//                src: 'js/app/api.js',
+//                dest: 'dest/app/api.min.js'
+//            }
+//        }
+//    });
+//
+//    // 加载包含 "uglify" 任务的插件。
+//    grunt.loadNpmTasks('grunt-contrib-uglify');
+//
+//    // 默认被执行的任务列表。
+//    grunt.registerTask('default', ['uglify']);
+//
+//};
+
+/*
+ * 独立压缩
+ * */
+module.exports = function (grunt) {
+    // 构建任务配置
+    grunt.initConfig({
+        //读取package.json的内容，形成个json数据
+        pkg: grunt.file.readJSON('package.json'),
+        //压缩js
+        uglify: {
+            //文件头部输出信息
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            my_target: {
+                files: [
+                    {
+                        expand: true,
+                        //相对路径
+                        cwd: 'js/',
+                        src: '**/*.js',
+                        dest: 'dest/js'
+                    }
+                ]
+            }
+        },
+        //压缩css
+        cssmin: {
+            //文件头部输出信息
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                //美化代码
+                beautify: {
+                    //中文ascii化，非常有用！防止中文乱码的神配置
+                    ascii_only: true
+                }
+            },
+            my_target: {
+                files: [
+                    {
+                        expand: true,
+                        //相对路径
+                        cwd: 'css/',
+                        src: '*.css',
+                        dest: 'dest/css'
+                    }
+                ]
+            }
+        },
+        //压缩图片
+        imagemin: {
+            prod: {
+                options: {
+                    optimizationLevel: 7,
+                    pngquant: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'images/',
+                        src: ['*.{png,jpg,jpeg,gif,webp,svg}', '**/*.{png,jpg,jpeg,gif,webp,svg}'],
+                        dest: 'dest/images'
+                    }
+                ]
+            }
+        },
+        //压缩HTML
+        htmlmin: {
+            options: {
+                removeComments: true,
+                removeCommentsFromCDATA: true,
+                collapseWhitespace: true,
+                collapseBooleanAttributes: true,
+                removeAttributeQuotes: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true
+            },
+            html: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'html/',
+                        src: ['*.html'],
+                        dest: 'dest/html'
+                    }
+                ]
+            }
         }
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
-      }
-    },
-    qunit: {
-      files: ['test/**/*.html']
-    },
-    watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
-      }
-    }
-  });
+    });
 
-  // These plugins provide necessary tasks.
-  //grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+    // 加载指定插件任务
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    // 默认执行的任务
+    grunt.registerTask('default', ['uglify', 'cssmin', 'imagemin','htmlmin']);
 
 };
