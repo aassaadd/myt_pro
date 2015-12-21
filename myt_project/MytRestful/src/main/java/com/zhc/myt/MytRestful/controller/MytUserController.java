@@ -19,10 +19,10 @@ import com.zhc.myt.MytDao.entity.MytAppModule;
 import com.zhc.myt.MytDao.entity.MytUser;
 import com.zhc.myt.MytDao.entity.RRolePermission;
 import com.zhc.myt.MytRestful.common.MytSystem;
-import com.zhc.myt.MytRestful.service.MytAppModuleService;
-import com.zhc.myt.MytRestful.service.MytAppService;
-import com.zhc.myt.MytRestful.service.MytUserService;
-import com.zhc.myt.MytRestful.service.RRolePermissionService;
+import com.zhc.myt.MytService.MytAppModuleService;
+import com.zhc.myt.MytService.MytAppService;
+import com.zhc.myt.MytService.MytUserService;
+import com.zhc.myt.MytService.RRolePermissionService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytUser")
@@ -40,6 +40,9 @@ public class MytUserController extends BaseController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(@RequestBody MytUser mytUser) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytUser.setCreateId(currentUserId);
+		mytUser.setOptId(currentUserId);
 		try {
 			if (mytUser.getUserName() == null) {
 				return getReturnMapFailure("用户名不能为空");
@@ -65,6 +68,8 @@ public class MytUserController extends BaseController {
 	public Map<String, Object> update(
 			@PathVariable(value = "id") Integer id,
 			@RequestBody MytUser mytUser) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytUser.setOptId(currentUserId);
 		mytUser.setId(id);
 		try {
 			mytUserService.update(mytUser);
@@ -84,6 +89,8 @@ public class MytUserController extends BaseController {
 		//        newUserPassword:'',新密码
 		//        oldUserPassword:'',就密码
 		MytUser user=new MytUser();
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		user.setOptId(currentUserId);
 		if (id == 0) {
 			// 如果为0表示获取当前用户
 			user.setId(MytSystem.getCurrentUserId());
@@ -173,10 +180,10 @@ public class MytUserController extends BaseController {
 		}
 
 		// 如果为超级管理员
-		if (user.getUserClass().equals("0") && user.getUseType().equals("0")) {
-			
-		} else {
-			
+		if (user.getUserClass().equals("0") && user.getUserType().equals("0")) {
+			params.put("appClass", "0");
+		} else if(user.getUserClass().equals("0") && user.getUserType().equals("1")){
+			//如果为管理员但是是子账户 即有权限的管理员
 			Rparams.put("roleId", user.getRoleId());
 			Rparams.put("entityName", "myt_app");
 			List<RRolePermission> Rlist = rRolePermissionService
@@ -187,7 +194,11 @@ public class MytUserController extends BaseController {
 			for (RRolePermission r : Rlist) {
 				intList.add(r.getEntId());
 			}
+			params.put("appClass", "0");
 			params.put("id@in", intList);
+		}else{
+			//其他商户帐号
+			params.put("appClass", "1");
 		}
 		params.put("status", "1");
 		if (!params.containsKey("page")) {
@@ -215,9 +226,9 @@ public class MytUserController extends BaseController {
 			user = mytUserService.getById(id);
 		}
 		// 如果为超级管理员
-		if (user.getUserClass().equals("0") && user.getUseType().equals("0")) {
+		if (user.getUserClass().equals("0") && user.getUserType().equals("0")) {
 
-		} else {
+		} else if(user.getUserClass().equals("0") && user.getUserType().equals("1")){
 			Rparams.put("roleId", user.getRoleId());
 			Rparams.put("entityName", "myt_app_module");
 			List<RRolePermission> Rlist = rRolePermissionService.getByList(Rparams);
@@ -228,6 +239,9 @@ public class MytUserController extends BaseController {
 				intList.add(r.getEntId());
 			}
 			params.put("id@in", intList);
+		}else{
+			//其他商户帐号
+			params.put("appClass", "1");
 		}
 		params.put("status", "1");
 		params.put("appId", appId);

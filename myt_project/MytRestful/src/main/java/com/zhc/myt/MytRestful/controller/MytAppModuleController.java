@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zhc.myt.MytDao.entity.MytApp;
 import com.zhc.myt.MytDao.entity.MytAppModule;
-import com.zhc.myt.MytRestful.service.MytAppModuleService;
-import com.zhc.myt.MytRestful.service.MytAppService;
+import com.zhc.myt.MytRestful.common.MytSystem;
+import com.zhc.myt.MytService.MytAppModuleService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytAppModule")
@@ -29,6 +29,9 @@ public class MytAppModuleController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(
 			@RequestBody MytAppModule mytAppModule) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytAppModule.setCreateId(currentUserId);
+		mytAppModule.setOptId(currentUserId);
 		try {
 			service.add(mytAppModule);
 		} catch (Exception e) {
@@ -43,6 +46,8 @@ public class MytAppModuleController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytAppModule mytAppModule) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytAppModule.setOptId(currentUserId);
 		mytAppModule.setId(id);
 		try {
 			service.update(mytAppModule);
@@ -57,8 +62,10 @@ public class MytAppModuleController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytAppModule mytAppModule = new MytAppModule();
 		mytAppModule.setId(id);
+		mytAppModule.setOptId(currentUserId);
 		try {
 			service.delete(mytAppModule);
 		} catch (Exception e) {

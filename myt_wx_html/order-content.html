@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="email=no" name="format-detection" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>默认标题</title>
+        <link rel="stylesheet" type="text/css" href="css/uitool-reset.css" media="all">
+        <link rel="stylesheet" type="text/css" href="css/uitool-modular.css" media="all">
+        <script type="text/javascript" src="js/zepto.js"></script>
+        <script type="text/javascript" src="js/swipe.js"></script>
+        <script type="text/javascript">
+            var resize = function() {
+                var html = document.documentElement,
+                    w = html.clientWidth/320,w=16*w;
+                html.setAttribute('style','font-size:' + w + 'px');
+            }
+            window.addEventListener('resize' , function () {
+                resize();
+            });
+            resize();
+        </script>
+    </head>
+    
+    <body>
+        <div class="m-order-content">
+            <ul>
+                <li class="moc-state-1">
+                    <div class="mocs1-hd">
+                        <i class="iconfont-state"></i>
+                    </div>
+                    <div class="mocs1-bd bd">
+                        <div>
+                            <span>您于<em>2015/11/11 10:16:22</em>下的单</span>
+                        </div>
+                        <div>
+                            <span>请在<em>1小时45分钟16秒内付款</em>,超时订单</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="moc-state-1">
+                    <div class="mocs1-hd">
+                        <i class="iconfont-state"></i>
+                    </div>
+                    <div class="mocs1-bd bd">
+                        <div>
+                            <span>订单状态:<em>已完成</em>下的单</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="moc-state-1">
+                    <div class="mocs1-hd">
+                        <i class="iconfont-state"></i>
+                    </div>
+                    <div class="mocs1-bd bd">
+                        <div>
+                            <span>订单状态:<a>退回中</a></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="moc-state-2">
+                    <div class="mocs2-hd">
+                        <i class="iconfont-add"></i>
+                    </div>
+                    <div class="mocs2-bd bd">
+                            <span>收货人:<em>刘青云</em><em>13777777777</em></span>
+                            <span>收货地址:<em>上海市徐汇区乐山路33号...</em></span>
+                    </div>
+                </li>
+                <li class="moc-state-2">
+                    <div class="mocs2-hd">
+                        <i class="iconfont-add"></i>
+                    </div>
+                    <div class="mocs2-bd bd">
+                        <h4><a href="javascript:;">请选择收获地址</a></h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="m-order-content">
+            <ul>
+                <li class="moc-state-3">
+                    <div class="mocs3-hd">
+                        <i class="iconfont-img"><img src="images/shop-2.fw.png" /></i>
+                    </div>
+                    <div class="mocs3-bd bd">
+                        <h4><a href="javascript:;">文明产品是什么?</a></h4>
+                        <em class="s-price">￥106.33</em>
+                        <em class="s-no">x3</em>
+                    </div>
+                </li>
+                <li class="moc-state-4">
+                    <div class="mocs4-bd bd">
+                        <h4><a href="javascript:;">运费</a></h4>
+                        <p>由品牌商 逻辑思维 独家配送</p>
+                        <em class="s-price">￥0.00</em>
+                    </div>
+                </li>
+                <li class="moc-state-5">
+                    <div class="mocs5-bd bd">
+                        <h4><a href="javascript:;">合计</a></h4>
+                        <em class="s-price">￥106.22</em>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="m-order-agreement">
+            <label class="uitool-cell uitool-check-label">
+                <div class="uitool-cell-hd">
+                    <input type="checkbox" class="uitool-check" checked="checked">
+                    <i class="uitool-iconfont-checked"></i>
+                </div>
+                <div class="uitool-cell-bd">
+                    <p>勾选即表示同意<a href="javascript:;">《一元购用户服务协议》</a></p>
+                </div>
+            </label>
+        </div>
+        <div class="m-order-info">
+            <ul>
+                <li class="moc-state-6">
+                    <div class="mocs6-bd bd">
+                        <h4><span><em>￥106.20</em>+<em>￥0.00</em>运费</span></h4>
+                        <div class="m6bd-price">需付：<span>￥0.00</span></div>
+                        <div class="m6bd-price red">需付：<span>￥0.00</span></div>
+                        <div class="m6bd-price c666">需付：<span>￥0.00</span></div>
+                    </div>
+                </li>
+                <li class="moc-state-7">
+                    <div class="mocs7-bd bd">
+                        <h4><span>订单编号：<em>E20151101092712958</em></span></h4>
+                        <div class="m7bd-price">
+                            <span>2015.11.11 21:00</span>
+                            <span>完成付款</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="m-order-pay">
+            <ul>
+                <li class="mop-wechat">
+                    <a href="javascript:;"><em>微信安全支付</em></a>
+                </li>
+                <li class="mop-other">
+                    <a href="javascript:;">其他安全支付</a>
+                </li>
+            </ul>
+        </div>
+        <div class="m-order-btn">
+            <ul>
+                <li><a href="javascript:;" class="u-btn u-btn-success">确认收货</a></li>
+                <li><a href="javascript:;" class="u-btn u-btn-disable">退货申请</a></li>
+            </ul>
+        </div>
+    </body>
+</html>

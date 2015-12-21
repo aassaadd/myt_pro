@@ -7,60 +7,33 @@
  * # classManagePage
  */
 angular.module('mytPcHtmlApp')
-  .directive('classManagePage', function (apiMain,$filter) {
+  .directive('classManagePage', function (apiMain,$filter,$location) {
     return {
       templateUrl: 'views/page/class/classmanagepageview.html',
       restrict: 'AE',
+      scope: {},
       link: function postLink(scope, element, attrs) {
         scope.conf = {
           columnConf: [
             {
-              labelName: '用户昵称',
-              valName: 'wxUserName',
+              labelName: '分类',
+              valName: 'procName',
               width: '25%'
             }, {
-              labelName: '手机好吗',
-              valName: 'wxUserCall',
-              width: '25%'
-            }, {
-              labelName: '反馈内容',
-              valName: 'fbkContent',
+              labelName: '状态',
+              valName: 'status',
               width: '25%',
-              filter:function(val, otherVal){
-                var r='';
-                angular.copy(val,r);
-                if(val){
-                  if(val.length>15){
-                    r=val.substr(0,15)+'...';
-                  }
+              filter: function (val, otherVal) {
+                var r = '';
+                if (val == 1) {
+                  r = '有效';
+                } else {
+                  r = '无效';
                 }
-                return r
-              }
-            }, {
-              labelName: '问题严重程度',
-              valName: 'cslUserName',
-              width: '25%',
-              filter:function(val, otherVal){
-                //1一般，2较小问题，3严重，4非常严重
-                var r='';
-                switch (val){
-                  case '1':
-                    r='一般'
-                    break;
-                  case '2':
-                    r='较小问题';
-                    break;
-                  case '3':
-                    r='严重';
-                    break;
-                  case '4':
-                    r='非常严重';
-                    break;
-                };
                 return r;
               }
             }, {
-              labelName: '上传时间',
+              labelName: '创建事件',
               valName: 'createDate',
               width: '25%',
               filter:function(val, otherVal){
@@ -71,18 +44,12 @@ angular.module('mytPcHtmlApp')
 
           ],
           operationConf: [
-            {
-              labelName: '查看',//操作名称
-              doFunc: function (val) {
-                alert(JSON.stringify(val));
-              }//操作方法
-            }
           ],
           globalOperationConf:[
             {
                 labelName: '添加分类',//操作名称
                 doFunc: function (val) {
-                    alert(JSON.stringify(val));
+                  $location.path('classAddManage');
                 }//操作方法
             }
           ],

@@ -7,6 +7,12 @@ public class WxUserAddress {
 
     private Integer wxUserId;
 
+    private String name;
+
+    private String zcode;
+
+    private String call;
+
     private String province;
 
     private String city;
@@ -33,6 +39,30 @@ public class WxUserAddress {
 
     public void setWxUserId(Integer wxUserId) {
         this.wxUserId = wxUserId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getZcode() {
+        return zcode;
+    }
+
+    public void setZcode(String zcode) {
+        this.zcode = zcode == null ? null : zcode.trim();
+    }
+
+    public String getCall() {
+        return call;
+    }
+
+    public void setCall(String call) {
+        this.call = call == null ? null : call.trim();
     }
 
     public String getProvince() {

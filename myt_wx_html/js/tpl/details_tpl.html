@@ -1,0 +1,91 @@
+<div class="page">
+    <div class="m-product-details-introduction ">
+        <div class="m-focus-swipe">
+            <div id="mfs-id" class="mfs-wrap" zhc-scope="topList">
+                <ul>
+                    {{each list}}
+                    <li ><a href="javascript:;"><img
+                            src="{{ $value | file2img}}"/></a></li>
+
+                    {{/each}}
+                </ul>
+                <ol>
+                    {{each list}}
+                    {{if $index==0}}
+                    <li class="on"></li>
+                    {{/if}}
+
+                    {{if $index!=0}}
+                    <li></li>
+                    {{/if}}
+                    {{/each}}
+                </ol>
+                <a class="mfs-like">{{proSoldCount}}</a>
+            </div>
+        </div>
+        <div class="m-header-menu">
+            <ul>
+                <li id="clickIntroduces" class="current"><a href="javasctipt:;" zhc-click="clickIntroduces()"><em>试用介绍</em></a></li>
+                <li id="clickUsers"><a href="javasctipt:;" zhc-click="clickUsers()"><em>试用名单</em></a></li>
+            </ul>
+        </div>
+        <div class="m-content-body">
+            <div class="mcb-video" zhc-scope="data">
+                <iframe height=260 width=100% src="{{videoUrl}}" frameborder=0 allowfullscreen></iframe>
+            </div>
+            <span zhc-scope="content">
+                {{proDescription}}
+            </span>
+        </div>
+        <div class="m-module-1">
+            <h4>试用流程：</h4>
+            <ul>
+                <li>
+                    <h5>①申请</h5>
+
+                    <div class="mm1-info">
+                        <span>点击【申请试用】，提交申请信息。</span>
+                    </div>
+                </li>
+                <li>
+                    <h5>②审核</h5>
+
+                    <div class="mm1-info">
+                        <span>进入我的订单查看申请状态。</span>
+                    </div>
+                </li>
+                <li>
+                    <h5>③收货</h5>
+
+                    <div class="mm1-info">
+                        <span>筛选通过后等待发货。</span>
+                    </div>
+                </li>
+                <li>
+                    <h5>④提交</h5>
+
+                    <div class="mm1-info">
+                        <span>收货后规定期限之内提交试用报告。</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="m-avatar-list" style="display: none">
+            <ul zhc-scope="applyList">
+                {{each list}}
+                <li>
+                    <a href="javascript:;"  class="mal-pic"><img src="images/avatar.jpg"/></a>
+                    <div class="mal-name"><a href="javascript:;">田小苒</a></div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="m-footer-btn" zhc-scope="button">
+            <div class="mfb-wrap">
+                <a href="javascript:;" class="u-btn {{proOpenState | proOpenStateCss}}" zhc-click="submit({{id}})">{{proOpenState |
+                    proOpenStateButton}}</a>
+            </div>
+        </div>
+    </div>
+</div>

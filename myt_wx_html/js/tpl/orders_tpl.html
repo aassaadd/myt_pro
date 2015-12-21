@@ -1,0 +1,77 @@
+<div class="page">
+    <div class="m-product-details-introduction ">
+        <div class="m-focus-swipe">
+            <div id="mfs-id" class="mfs-wrap" zhc-scope="topList">
+                <ul>
+                    {{each list}}
+                    <li zhc-click="top({{$value | obj2json}})"><a href="javascript:;"><img
+                            src="{{ $value.advImgId | file2img}}"/></a></li>
+
+                    {{/each}}
+                </ul>
+                <ol>
+                    {{each list}}
+                    {{if $index==0}}
+                    <li class="on"></li>
+                    {{/if}}
+
+                    {{if $index!=0}}
+                    <li></li>
+                    {{/if}}
+                    {{/each}}
+                </ol>
+                <a class="mfs-like">{{proSoldCount}}</a>
+            </div>
+        </div>
+        <div class="m-header-menu">
+            <ul>
+                <li id="clickStatus" class="current"><a href="javasctipt:;" zhc-click="clickStatus()"><em>未完成</em></a></li>
+                <li id="clickStatusE"><a href="javasctipt:;" zhc-click="clickStatus(E)"><em>已完成</em></a></li>
+            </ul>
+        </div>
+        <div class="m-order-list" zhc-scope="list">
+            {{each list}}
+            <div class="mol-group">
+                <div class="molg-no">
+                    <span>订单号：<label><a href="javascript:;">{{$value.orderNo}}</a></label></span>
+                </div>
+                <ul class="molg-list">
+                    <li>
+                        <a href="javascript:;">
+                            <div class="molgl-fixed">
+                                <img src="{{$value.proImgId | file2img}}" />
+                            </div>
+                            <div class="molgl-adaptive">
+                                <div class="molgla-tit">
+                                    <h4>{{$value.orderBody}}</h4>
+                                </div>
+                                <div class="molgla-price">
+                                    <span>¥ {{$value.proOneFee/100}}</span>
+                                    <span>x {{$value.orderGoodsNum}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="molg-footer clearfix">
+                        <span class="molgb-price">
+                            <label>
+                                <a><em>总价：¥</em>{{$value.orderRealityFee/100}}</a>
+                            </label>
+                        </span>
+                        <span class="molgb-btn">
+                            <label>
+                                {{if $value.orderStatus=='E'}}
+                                <a href="javascript:;"  class="u-btn u-btn-disable" >已完成</a>
+                                {{/if}}
+                                {{if $value.orderStatus!='E'}}
+                                <a href="javascript:;"  class="u-btn u-btn-success" zhc-click="goPay({{$value.id}})">去付款</a>
+                                {{/if}}
+                            </label>
+                        </span>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

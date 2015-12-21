@@ -5,6 +5,8 @@ import java.util.Date;
 public class MytCustomerServiceLog {
     private Integer id;
 
+    private Integer mchId;
+
     private String cslNo;
 
     private String cslName;
@@ -39,6 +41,14 @@ public class MytCustomerServiceLog {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getMchId() {
+        return mchId;
+    }
+
+    public void setMchId(Integer mchId) {
+        this.mchId = mchId;
     }
 
     public String getCslNo() {

@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zhc.myt.MytDao.entity.MytFeedback;
 import com.zhc.myt.MytDao.entity.MytProduct;
 import com.zhc.myt.MytDao.entity.MytProductClass;
-import com.zhc.myt.MytRestful.service.MytProductClassService;
+import com.zhc.myt.MytRestful.common.MytSystem;
+import com.zhc.myt.MytService.MytProductClassService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytProductClass")
@@ -29,6 +30,9 @@ public class MytProductClassController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(
 			@RequestBody MytProductClass mytProductClass) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytProductClass.setCreateId(currentUserId);
+		mytProductClass.setOptId(currentUserId);
 		try {
 			service.add(mytProductClass);
 		} catch (Exception e) {
@@ -43,6 +47,8 @@ public class MytProductClassController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytProductClass mytProductClass) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytProductClass.setOptId(currentUserId);
 		mytProductClass.setId(id);
 		try {
 			service.update(mytProductClass);
@@ -57,8 +63,10 @@ public class MytProductClassController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytProductClass mytProductClass = new MytProductClass();
 		mytProductClass.setId(id);
+		mytProductClass.setOptId(currentUserId);
 		try {
 			service.delete(mytProductClass);
 		} catch (Exception e) {

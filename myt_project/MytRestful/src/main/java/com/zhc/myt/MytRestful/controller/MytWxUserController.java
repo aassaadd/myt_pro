@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.zhc.myt.MytDao.entity.MytWxUser;
-import com.zhc.myt.MytRestful.service.MytWxUserService;
+import com.zhc.myt.MytRestful.common.MytSystem;
+import com.zhc.myt.MytService.MytWxUserService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytWxUser")
@@ -25,6 +27,9 @@ public class MytWxUserController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(
 			@RequestBody MytWxUser mytWxUser) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytWxUser.setCreateId(currentUserId);
+		mytWxUser.setOptId(currentUserId);
 		try {
 			service.add(mytWxUser);
 		} catch (Exception e) {
@@ -39,6 +44,8 @@ public class MytWxUserController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytWxUser mytWxUser) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytWxUser.setOptId(currentUserId);
 		mytWxUser.setId(id);
 		try {
 			service.update(mytWxUser);
@@ -53,8 +60,10 @@ public class MytWxUserController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytWxUser mytWxUser = new MytWxUser();
 		mytWxUser.setId(id);
+		mytWxUser.setOptId(currentUserId);
 		try {
 			service.delete(mytWxUser);
 		} catch (Exception e) {

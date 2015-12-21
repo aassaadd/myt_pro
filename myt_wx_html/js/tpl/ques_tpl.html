@@ -1,0 +1,55 @@
+<div class="page">
+    <div class="m-product-details-introduction ">
+        <div class="m-module-1" zhc-scope="qus">
+            <ul >
+                {{each list}}
+                <li>
+                    <h5>{{$value.labelName}}</h5>
+                    {{if $value.type=='text'}}
+                    <input type="text" name="{{$value.valName}}" style="width: 95%"/>
+                    {{/if}}
+                    {{if $value.type=='textarea'}}
+                    <textarea name="{{$value.proNo}}" style="width: 95%"/>
+                    {{/if}}
+                    {{if $value.type=='radio'}}
+                    {{each $value.selValue as $v $i}}
+                    <input type="radio" name="{{$value.valName}}" value="{{$v.value}}" />{{$v.value}}<br/>
+
+                    {{/each}}
+
+                    {{/if}}
+                    {{if $value.type=='checkbox'}}
+                    {{each $value.selValue as $v $i}}
+                    <input type="checkbox" name="{{$value.valName}}" value="{{$v.value}}"/>{{$v.value}}<br/>
+
+                    {{/each}}
+                    {{/if}}
+                    {{if $value.type=='date'}}
+                    <input type="date" name="{{$value.valName}}" style="width: 95%"/>
+                    {{/if}}
+                    {{if $value.type=='select'}}
+                    <select  name="{{$value.valName}}">
+                        {{each $value.selValue as $v $i}}
+                        <option value="{{$v.value}}">{{$v.value}}</option>
+                        {{/each}}
+                    </select>
+                    {{/if}}
+                </li>
+
+                {{/each}}
+                <li>
+                    <h5>其他要说的</h5>
+                    <textarea name="qufDescription" style="width: 95%"/>
+                </li>
+            </ul>
+
+        </div>
+        <div class="m-footer-btn" zhc-scope="button">
+            <div class="mfb-wrap">
+                <a href="javascript:;" class="u-btn u-btn-success" zhc-click="submit({{da | obj2json}})">提交</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>

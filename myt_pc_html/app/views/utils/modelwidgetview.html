@@ -10,16 +10,17 @@
         <label ng-switch-when="amount">{{conf.value}}</label>
         <label ng-switch-when="date">{{conf.value|date:'yyyy/MM/dd'}}</label>
         <label ng-switch-when="textarea">{{conf.value}}</label>
-        <iframe ng-switch-when="textarea">
-            {{conf.value}}
+        <iframe ng-switch-when="kindeditor">
+
         </iframe>
-        <img ng-src="{{conf.value}}" ng-switch-when="checkbox">
-        <label ng-switch-when="select">
+        <img class="img-thumbnail user-img" style="width: 100px;" ng-src="{{url}}"  ng-switch-when="imgUp">
+        <label ng-switch-when="checkbox">
             <span ng-repeat="v in conf.value">
                 {{v|generalFilter:selectFilter:conf.selValue}}
             </span>
 
         </label>
+        <!--<label ng-switch-when="checkbox">{{conf.value}}</label>-->
         <label ng-switch-when="radio">{{conf.value|generalFilter:selectFilter:conf.selValue}}</label>
     <div class="typeOther" ng-switch-when="other"></div>
     </div>

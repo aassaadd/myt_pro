@@ -17,8 +17,21 @@
 		<ehcache.version>2.9.0</ehcache.version>
 		<!-- jackson -->
 		<jaskson.version>2.5.2</jaskson.version>
+		<!-- common.httpclient -->
+		<dom4j.version>1.6.1</dom4j.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.1</version>
+		</dependency>
 		<!-- jaskson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -51,6 +64,17 @@
 			<groupId>nl.bitwalker</groupId>
 			<artifactId>UserAgentUtils</artifactId>
 			<version>1.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

@@ -20,11 +20,11 @@ import com.zhc.myt.MytDao.entity.MytRole;
 import com.zhc.myt.MytDao.entity.MytUser;
 import com.zhc.myt.MytDao.entity.RRolePermission;
 import com.zhc.myt.MytRestful.common.MytSystem;
-import com.zhc.myt.MytRestful.service.MytAppModuleService;
-import com.zhc.myt.MytRestful.service.MytAppService;
-import com.zhc.myt.MytRestful.service.MytRoleService;
-import com.zhc.myt.MytRestful.service.MytUserService;
-import com.zhc.myt.MytRestful.service.RRolePermissionService;
+import com.zhc.myt.MytService.MytAppModuleService;
+import com.zhc.myt.MytService.MytAppService;
+import com.zhc.myt.MytService.MytRoleService;
+import com.zhc.myt.MytService.MytUserService;
+import com.zhc.myt.MytService.RRolePermissionService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytRole")
@@ -47,6 +47,9 @@ public class MytRoleController extends BaseController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(@RequestBody MytRole mytRole) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytRole.setCreateId(currentUserId);
+		mytRole.setOptId(currentUserId);
 		try {
 			mytRoleService.add(mytRole);
 		} catch (Exception e) {
@@ -61,6 +64,8 @@ public class MytRoleController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytRole mytRole) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytRole.setOptId(currentUserId);
 		mytRole.setId(id);
 		try {
 			mytRoleService.update(mytRole);
@@ -75,8 +80,10 @@ public class MytRoleController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytRole mytRole = new MytRole();
 		mytRole.setId(id);
+		mytRole.setOptId(currentUserId);
 		try {
 			mytRoleService.delete(mytRole);
 		} catch (Exception e) {

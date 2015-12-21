@@ -7,7 +7,7 @@
  * # merchantManagePage
  */
 angular.module('mytPcHtmlApp')
-    .directive('merchantManagePage', function (apiMain, $filter) {
+    .directive('merchantManagePage', function (apiMain, $filter,$location) {
         return {
             templateUrl: 'views/page/merchant/merchantmanagepageview.html',
             restrict: 'AE',
@@ -51,36 +51,127 @@ angular.module('mytPcHtmlApp')
                         }, {
                             labelName: '主要负责人',
                             valName: 'mchPersonInCharge',
-                            width: '12%',
-                            filter: function (val) {
-                                return $filter('date')(new Date(val), 'yyyy-MM-dd HH:mm:ss');
-                            }
+                            width: '12%'
                         }, {
                             labelName: '主要负责人电话',
                             valName: 'mchPersonInChargeCall',
-                            width: '12%',
-                            filter: function (val) {
-                                return $filter('date')(new Date(val), 'yyyy-MM-dd HH:mm:ss');
-                            }
+                            width: '12%'
                         }
 
 
                     ],
                     operationConf: [
                         {
-                            labelName: '查看',//操作名称
+                            labelName: '修改',//操作名称
                             doFunc: function (val) {
-                                alert(JSON.stringify(val));
+                              $location.path('merchantAddManage').search({id:val.id});
                             }//操作方法
-                        }
+                        },
+                      {
+                        labelName: '冻结/解冻',//操作名称
+                        doFunc: function (val,conf,cf) {
+                          if(val.status=='1'){
+                            if(confirm('确定要冻结吗?')){
+                              apiMain.mch.delete.queryCallback({
+                                id:val.id
+                              },function(data){
+                                if (data && data.data) {
+                                  alert('冻结成功');
+                                  conf.doSelect();
+                                }
+                              });
+                            }
+                          }else{
+                            if(confirm('确定要解冻吗?')){
+                              apiMain.mch.update.queryCallback({
+                                id:val.id,
+                                status:'1'
+                              },function(data){
+                                if (data && data.data) {
+                                  alert('解冻成功');
+                                  conf.doSelect();
+                                }
+                              });
+                            }
+                          }
+
+                        }//操作方法
+                      }
                     ],
                     globalOperationConf: [
-                        //{
-                        //    labelName: '测试',//操作名称
-                        //    doFunc: function (val) {
-                        //        alert(JSON.stringify(val));
-                        //    }//操作方法
-                        //}
+                      {
+                        labelName: '添加',//操作名称
+                        doFunc: function (val,conf) {
+                          $location.path('merchantAddManage');
+                        }//操作方法
+                      },
+                      {
+                        labelName: '批量解冻',//操作名称
+                        doFunc: function (val,conf) {
+                          if(confirm('确定要解冻吗?')){
+                            var func=[];
+                            for(var i in val){
+                              func.push((function(v){
+                                return function(call){
+                                  apiMain.mch.update.queryCallback({
+                                    id:v.id,
+                                    status:'1'
+                                  },function(data){
+                                    if (data && data.data) {
+                                      call(null,data.data);
+                                    }else{
+                                      call(data,null);
+                                    }
+                                  });
+                                }
+
+                              })(val[i]))
+                            }
+                            async.parallel(func,function(err,rest){
+                              if(!err){
+                                alert('解冻成功');
+                                conf.doSelect();
+                              }
+
+                            });
+
+
+                          }
+                        }//操作方法
+                      },
+                      {
+                        labelName: '批量冻结',//操作名称
+                        doFunc: function (val,conf) {
+                          if(confirm('确定要冻结吗?')){
+                            var func=[];
+                            for(var i in val){
+                              func.push((function(v){
+                                return function(call){
+                                  apiMain.mch.delete.queryCallback({
+                                    id:v.id
+                                  },function(data){
+                                    if (data && data.data) {
+                                      call(null,data.data);
+                                    }else{
+                                      call(data,null);
+                                    }
+                                  });
+                                }
+
+                              })(val[i]))
+                            }
+                            async.parallel(func,function(err,rest){
+                              if(!err){
+                                alert('冻结成功');
+                                conf.doSelect();
+                              }
+
+                            });
+
+
+                          }
+                        }//操作方法
+                      }
                     ],
                     querys: [
                         {
@@ -93,7 +184,7 @@ angular.module('mytPcHtmlApp')
                         }
                     ],
                     defaultButton: true,
-                    //multiSelect:true,
+                    multiSelect:true,
                     doSelect: function () {
                         var self = this,
                             querys = self.super();

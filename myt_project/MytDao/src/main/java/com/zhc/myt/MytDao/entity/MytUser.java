@@ -15,7 +15,7 @@ public class MytUser {
 
     private String userClass;
 
-    private String useType;
+    private String userType;
 
     private Integer roleId;
 
@@ -77,12 +77,12 @@ public class MytUser {
         this.userClass = userClass == null ? null : userClass.trim();
     }
 
-    public String getUseType() {
-        return useType;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setUseType(String useType) {
-        this.useType = useType == null ? null : useType.trim();
+    public void setUserType(String userType) {
+        this.userType = userType == null ? null : userType.trim();
     }
 
     public Integer getRoleId() {

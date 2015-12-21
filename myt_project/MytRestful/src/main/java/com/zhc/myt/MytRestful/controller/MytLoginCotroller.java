@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zhc.myt.MytRestful.common.MytSystem;
-import com.zhc.myt.MytRestful.service.MytLoginLogService;
-import com.zhc.myt.MytRestful.service.MytUserService;
+import com.zhc.myt.MytRestful.service.MytLoginService;
+import com.zhc.myt.MytService.MytLoginLogService;
+import com.zhc.myt.MytService.MytUserService;
 import com.zhc.myt.MytCommon.enums.ReturnEnum;
 import com.zhc.myt.MytCommon.util.ClientInfo;
 import com.zhc.myt.MytDao.entity.MytLoginLog;
@@ -28,7 +29,7 @@ public class MytLoginCotroller extends BaseController {
 			.getLogger(MytLoginCotroller.class);
 
 	@Autowired
-	private MytUserService mytUserService;
+	private MytLoginService mytLoginService;
 
 	@Autowired
 	private MytLoginLogService mytLoginLogService;
@@ -50,7 +51,7 @@ public class MytLoginCotroller extends BaseController {
 		mytLoginLog.setClientName(request.getRemoteHost());
 		mytLoginLog.setUserName(mytUser.getUserName());
 		// -------------------------------------------------------------
-		Map<String, Object> user = mytUserService.login(mytUser.getUserName(),
+		Map<String, Object> user = mytLoginService.login(mytUser.getUserName(),
 				mytUser.getUserPassword());
 		if (user != null) {
 			mytLoginLog.setType("1");//成功

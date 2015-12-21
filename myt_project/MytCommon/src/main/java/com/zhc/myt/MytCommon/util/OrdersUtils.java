@@ -11,8 +11,9 @@ import java.util.Random;
  *
  */
 public class OrdersUtils {
-	
+
 	public static String ORDER_NO = "00001000";
+	public static String ORDER_REFUND_NO = "00002000";
 
 	/**
 	 * 生成订单号
@@ -22,9 +23,21 @@ public class OrdersUtils {
 	public static String getOrderNo() {
 		String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		String seconds = new SimpleDateFormat("HHmmss").format(new Date());
+
+		return date + ORDER_NO + getTwo() + "00" + seconds + getTwo();
+	}
+
+	/**
+	 * 生成退款订单号
+	 * 
+	 * @return
+	 */
+	public static String getRefundOrderNo() {
+		String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		String seconds = new SimpleDateFormat("HHmmss").format(new Date());
 		for (int i = 0; i < 10000; i++) {
-			System.out.println(date + ORDER_NO + getTwo() + "00" + seconds
-					+ getTwo());
+			System.out.println(date + ORDER_REFUND_NO + getTwo() + "00"
+					+ seconds + getTwo());
 		}
 		return "";
 	}

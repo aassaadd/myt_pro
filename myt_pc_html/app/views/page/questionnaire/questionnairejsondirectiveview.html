@@ -1,0 +1,50 @@
+<div>
+  <div ng-repeat="v in conf.value" class="page-header">
+
+    <div>
+      <label>标题</label>
+      <input class="form-control" type="text" ng-model="v.labelName"/>
+    </div>
+    <div>
+      <label>编号</label>
+      <input class="form-control" type="text" ng-model="v.valName"/>
+    </div>
+    <div>
+      <label>类型</label>
+      <select class="form-control" ng-model="v.type">
+        <option value="text">单行文字</option>
+        <option value="textarea">多行文字</option>
+        <option value="radio">单选</option>
+        <option value="checkbox">多选</option>
+        <option value="date">日期</option>
+        <option value="select">下拉框</option>
+      </select>
+    </div>
+    <div>
+      <label>默认值</label>
+      <input class="form-control" type="text" ng-model="v.default"/>
+    </div>
+    <div>
+      <label>可选值</label>
+
+      <div ng-repeat="s in v.selValue">
+        <input class="form-control" type="text" ng-model="s.value"/>
+
+      </div>
+      <div><a href="" ng-click="chilAdd(v)"> 添加</a>
+        <a href="" ng-click="chilDelete(v)"> 删除</a>
+
+      </div>
+    </div>
+    <div>
+      <label>是否校验</label>
+      <input type="checkbox" ng-model="v.isCheck"/>
+    </div>
+    <div>
+      <a href="" ng-click="delete(v)">删除</a>
+    </div>
+
+  </div>
+
+  <div><a href="" ng-click="add()"> 添加</a></div>
+</div>

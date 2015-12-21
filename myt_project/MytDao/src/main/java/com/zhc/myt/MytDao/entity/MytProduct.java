@@ -27,6 +27,10 @@ public class MytProduct {
 
     private String proState;
 
+    private String proAuditAbout;
+
+    private String proOpenState;
+
     private Date proOpenDate;
 
     private Date proEndDate;
@@ -34,6 +38,18 @@ public class MytProduct {
     private String proType;
 
     private String proExamineType;
+
+    private Integer imgId;
+
+    private Integer img1Id;
+
+    private Integer img2Id;
+
+    private Integer img3Id;
+
+    private Integer img4Id;
+
+    private String videoUrl;
 
     private String status;
 
@@ -141,6 +157,22 @@ public class MytProduct {
         this.proState = proState == null ? null : proState.trim();
     }
 
+    public String getProAuditAbout() {
+        return proAuditAbout;
+    }
+
+    public void setProAuditAbout(String proAuditAbout) {
+        this.proAuditAbout = proAuditAbout == null ? null : proAuditAbout.trim();
+    }
+
+    public String getProOpenState() {
+        return proOpenState;
+    }
+
+    public void setProOpenState(String proOpenState) {
+        this.proOpenState = proOpenState == null ? null : proOpenState.trim();
+    }
+
     public Date getProOpenDate() {
         return proOpenDate;
     }
@@ -171,6 +203,54 @@ public class MytProduct {
 
     public void setProExamineType(String proExamineType) {
         this.proExamineType = proExamineType == null ? null : proExamineType.trim();
+    }
+
+    public Integer getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(Integer imgId) {
+        this.imgId = imgId;
+    }
+
+    public Integer getImg1Id() {
+        return img1Id;
+    }
+
+    public void setImg1Id(Integer img1Id) {
+        this.img1Id = img1Id;
+    }
+
+    public Integer getImg2Id() {
+        return img2Id;
+    }
+
+    public void setImg2Id(Integer img2Id) {
+        this.img2Id = img2Id;
+    }
+
+    public Integer getImg3Id() {
+        return img3Id;
+    }
+
+    public void setImg3Id(Integer img3Id) {
+        this.img3Id = img3Id;
+    }
+
+    public Integer getImg4Id() {
+        return img4Id;
+    }
+
+    public void setImg4Id(Integer img4Id) {
+        this.img4Id = img4Id;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
     }
 
     public String getStatus() {

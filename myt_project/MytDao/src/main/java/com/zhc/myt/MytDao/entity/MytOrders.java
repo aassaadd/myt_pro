@@ -5,19 +5,29 @@ import java.util.Date;
 public class MytOrders {
     private Integer id;
 
+    private Integer wxUserId;
+
+    private Integer proId;
+
+    private String proName;
+
+    private Long proOneFee;
+
+    private Integer proImgId;
+
     private String orderNo;
 
     private String orderBankType;
 
     private String orderBody;
 
-    private Byte orderGoodsNum;
+    private Integer orderGoodsNum;
 
     private String orderStatus;
 
-    private Float orderTotalFee;
+    private Long orderTotalFee;
 
-    private Float orderRealityFee;
+    private Long orderRealityFee;
 
     private Date orderCreateTime;
 
@@ -25,23 +35,21 @@ public class MytOrders {
 
     private String orderSequenceNo;
 
-    private String wxAppid;
-
-    private String wxMchId;
-
-    private String wxSubAppid;
-
-    private String wxSubMchId;
-
     private String wxOpenid;
-
-    private String wxSubOpenid;
 
     private String wxAuthCode;
 
     private Integer mchId;
 
     private String errMessage;
+
+    private Integer transportFre;
+
+    private String transportNo;
+
+    private Integer reTransportFre;
+
+    private String reTransportNo;
 
     private String status;
 
@@ -59,6 +67,46 @@ public class MytOrders {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getWxUserId() {
+        return wxUserId;
+    }
+
+    public void setWxUserId(Integer wxUserId) {
+        this.wxUserId = wxUserId;
+    }
+
+    public Integer getProId() {
+        return proId;
+    }
+
+    public void setProId(Integer proId) {
+        this.proId = proId;
+    }
+
+    public String getProName() {
+        return proName;
+    }
+
+    public void setProName(String proName) {
+        this.proName = proName == null ? null : proName.trim();
+    }
+
+    public Long getProOneFee() {
+        return proOneFee;
+    }
+
+    public void setProOneFee(Long proOneFee) {
+        this.proOneFee = proOneFee;
+    }
+
+    public Integer getProImgId() {
+        return proImgId;
+    }
+
+    public void setProImgId(Integer proImgId) {
+        this.proImgId = proImgId;
     }
 
     public String getOrderNo() {
@@ -85,11 +133,11 @@ public class MytOrders {
         this.orderBody = orderBody == null ? null : orderBody.trim();
     }
 
-    public Byte getOrderGoodsNum() {
+    public Integer getOrderGoodsNum() {
         return orderGoodsNum;
     }
 
-    public void setOrderGoodsNum(Byte orderGoodsNum) {
+    public void setOrderGoodsNum(Integer orderGoodsNum) {
         this.orderGoodsNum = orderGoodsNum;
     }
 
@@ -101,19 +149,19 @@ public class MytOrders {
         this.orderStatus = orderStatus == null ? null : orderStatus.trim();
     }
 
-    public Float getOrderTotalFee() {
+    public Long getOrderTotalFee() {
         return orderTotalFee;
     }
 
-    public void setOrderTotalFee(Float orderTotalFee) {
+    public void setOrderTotalFee(Long orderTotalFee) {
         this.orderTotalFee = orderTotalFee;
     }
 
-    public Float getOrderRealityFee() {
+    public Long getOrderRealityFee() {
         return orderRealityFee;
     }
 
-    public void setOrderRealityFee(Float orderRealityFee) {
+    public void setOrderRealityFee(Long orderRealityFee) {
         this.orderRealityFee = orderRealityFee;
     }
 
@@ -141,52 +189,12 @@ public class MytOrders {
         this.orderSequenceNo = orderSequenceNo == null ? null : orderSequenceNo.trim();
     }
 
-    public String getWxAppid() {
-        return wxAppid;
-    }
-
-    public void setWxAppid(String wxAppid) {
-        this.wxAppid = wxAppid == null ? null : wxAppid.trim();
-    }
-
-    public String getWxMchId() {
-        return wxMchId;
-    }
-
-    public void setWxMchId(String wxMchId) {
-        this.wxMchId = wxMchId == null ? null : wxMchId.trim();
-    }
-
-    public String getWxSubAppid() {
-        return wxSubAppid;
-    }
-
-    public void setWxSubAppid(String wxSubAppid) {
-        this.wxSubAppid = wxSubAppid == null ? null : wxSubAppid.trim();
-    }
-
-    public String getWxSubMchId() {
-        return wxSubMchId;
-    }
-
-    public void setWxSubMchId(String wxSubMchId) {
-        this.wxSubMchId = wxSubMchId == null ? null : wxSubMchId.trim();
-    }
-
     public String getWxOpenid() {
         return wxOpenid;
     }
 
     public void setWxOpenid(String wxOpenid) {
         this.wxOpenid = wxOpenid == null ? null : wxOpenid.trim();
-    }
-
-    public String getWxSubOpenid() {
-        return wxSubOpenid;
-    }
-
-    public void setWxSubOpenid(String wxSubOpenid) {
-        this.wxSubOpenid = wxSubOpenid == null ? null : wxSubOpenid.trim();
     }
 
     public String getWxAuthCode() {
@@ -211,6 +219,38 @@ public class MytOrders {
 
     public void setErrMessage(String errMessage) {
         this.errMessage = errMessage == null ? null : errMessage.trim();
+    }
+
+    public Integer getTransportFre() {
+        return transportFre;
+    }
+
+    public void setTransportFre(Integer transportFre) {
+        this.transportFre = transportFre;
+    }
+
+    public String getTransportNo() {
+        return transportNo;
+    }
+
+    public void setTransportNo(String transportNo) {
+        this.transportNo = transportNo == null ? null : transportNo.trim();
+    }
+
+    public Integer getReTransportFre() {
+        return reTransportFre;
+    }
+
+    public void setReTransportFre(Integer reTransportFre) {
+        this.reTransportFre = reTransportFre;
+    }
+
+    public String getReTransportNo() {
+        return reTransportNo;
+    }
+
+    public void setReTransportNo(String reTransportNo) {
+        this.reTransportNo = reTransportNo == null ? null : reTransportNo.trim();
     }
 
     public String getStatus() {

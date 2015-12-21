@@ -11,7 +11,9 @@ angular.module('mytPcHtmlApp')
     return {
       templateUrl: 'views/page/callLogs/calllogsmanagepageview.html',
       restrict: 'AE',
-      scope: {},
+      scope: {
+        type:'='
+      },
       link: function postLink(scope, element, attrs) {
         scope.conf = {
           columnConf: [

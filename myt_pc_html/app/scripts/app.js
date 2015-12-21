@@ -125,6 +125,76 @@ angular
               controller: 'MypasswordupdateCtrl',
               controllerAs: 'myPasswordUpdate'
             })
+            .when('/merchantAddManage', {
+              templateUrl: 'views/merchantaddmanage.html',
+              controller: 'MerchantaddmanageCtrl',
+              controllerAs: 'merchantAddManage'
+            })
+            .when('/classAddManage', {
+              templateUrl: 'views/classaddmanage.html',
+              controller: 'ClassaddmanageCtrl',
+              controllerAs: 'classAddManage'
+            })
+            .when('/questionnaireAddManage', {
+              templateUrl: 'views/questionnaireaddmanage.html',
+              controller: 'QuestionnaireaddmanageCtrl',
+              controllerAs: 'questionnaireAddManage'
+            })
+            .when('/upProductaManage', {
+              templateUrl: 'views/upproductamanage.html',
+              controller: 'UpproductamanageCtrl',
+              controllerAs: 'upProductaManage'
+            })
+            .when('/productDoAuditManage', {
+              templateUrl: 'views/productdoauditmanage.html',
+              controller: 'ProductdoauditmanageCtrl',
+              controllerAs: 'productDoAuditManage'
+            })
+            .when('/productApplyManage', {
+              templateUrl: 'views/productapplymanage.html',
+              controller: 'ProductapplymanageCtrl',
+              controllerAs: 'productApplyManage'
+            })
+            .when('/productViewManage', {
+              templateUrl: 'views/productviewmanage.html',
+              controller: 'ProductviewmanageCtrl',
+              controllerAs: 'productViewManage'
+            })
+            .when('/questionnaireFillViewManage', {
+              templateUrl: 'views/questionnairefillviewmanage.html',
+              controller: 'QuestionnairefillviewmanageCtrl',
+              controllerAs: 'questionnaireFillViewManage'
+            })
+            .when('/orderEditManage', {
+              templateUrl: 'views/ordereditmanage.html',
+              controller: 'OrdereditmanageCtrl',
+              controllerAs: 'orderEditManage'
+            })
+            .when('/mchProductAuditManage', {
+              templateUrl: 'views/mchproductauditmanage.html',
+              controller: 'MchproductauditmanageCtrl',
+              controllerAs: 'mchProductAuditManage'
+            })
+            .when('/mchProductManage', {
+              templateUrl: 'views/mchproductmanage.html',
+              controller: 'MchproductmanageCtrl',
+              controllerAs: 'mchProductManage'
+            })
+            .when('/mchOrdersManage', {
+              templateUrl: 'views/mchordersmanage.html',
+              controller: 'MchordersmanageCtrl',
+              controllerAs: 'mchOrdersManage'
+            })
+            .when('/mchCallLogsManage', {
+              templateUrl: 'views/mchcalllogsmanage.html',
+              controller: 'MchcalllogsmanageCtrl',
+              controllerAs: 'mchCallLogsManage'
+            })
+            .when('/mchLoginLogManage', {
+              templateUrl: 'views/mchloginlogmanage.html',
+              controller: 'MchloginlogmanageCtrl',
+              controllerAs: 'mchLoginLogManage'
+            })
             .otherwise({
                 redirectTo: '/'
             });

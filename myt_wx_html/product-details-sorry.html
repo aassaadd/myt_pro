@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="email=no" name="format-detection" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>默认标题</title>
+        <link rel="stylesheet" type="text/css" href="css/uitool-reset.css" media="all">
+        <link rel="stylesheet" type="text/css" href="css/uitool-modular.css" media="all">
+        <script type="text/javascript" src="js/zepto.js"></script>
+        <script type="text/javascript" src="js/swipe.js"></script>
+        <script type="text/javascript">
+            var resize = function() {
+                var html = document.documentElement,
+                    w = html.clientWidth/320,w=16*w;
+                html.setAttribute('style','font-size:' + w + 'px');
+            }
+            window.addEventListener('resize' , function () {
+                resize();
+            });
+            resize();
+        </script>
+    </head>
+    <body>
+        <div class="m-product-details-introduction">
+            <div class="m-focus-swipe">
+                <div id="mfs-id" class="mfs-wrap">
+                    <ul>
+                        <li><a href="javascript:;"><img src="images/focus-01.fw.png" /></a></li>
+                        <li><a href="javascript:;"><img src="images/focus-02.fw.png" /></a></li>
+                        <li><a href="javascript:;"><img src="images/focus-01.fw.png" /></a></li>
+                        <li><a href="javascript:;"><img src="images/focus-02.fw.png" /></a></li>
+                    </ul>
+                    <ol>
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ol>
+                    <a class="mfs-like">500</a>
+                </div>
+            </div>
+            <div class="m-header-menu">
+                <ul>
+                    <li class="current"><a href="javasctipt:;"><em>试用介绍</em></a></li>
+                    <li><a href="javasctipt:;"><em>试用名单</em></a></li>
+                </ul>
+            </div>
+            <div class="m-content-body">
+                <div class="mcb-sorry">
+                    <i></i>
+                    <p>申请截止后，审核人员将在此页面显示</p>
+                </div>
+            </div>
+            <div class="m-footer-btn">
+                <div class="mfb-wrap">
+                    <a href="javascript:;" class="u-btn u-btn-success">免费申请</a>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    new Swipe(document.getElementById('mfs-id'), {
+                        speed: 500,
+                        auto: 3000,
+                        callback: function () {
+                            var lis = $(this.element).next("ol").children();
+                            lis.removeClass("on").eq(this.index).addClass("on");
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

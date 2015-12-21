@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zhc.myt.MytDao.entity.MytMerchant;
 import com.zhc.myt.MytDao.entity.MytUser;
 import com.zhc.myt.MytRestful.common.MytSystem;
-import com.zhc.myt.MytRestful.service.MytMerchantService;
+import com.zhc.myt.MytService.MytMerchantService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytMerchant")
@@ -28,6 +28,9 @@ public class MytMerchantController extends BaseController {
 	}
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(@RequestBody MytMerchant mytMerchant) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytMerchant.setCreateId(currentUserId);
+		mytMerchant.setOptId(currentUserId);
 		try {
 			mytMerchantService.add(mytMerchant);
 		} catch (Exception e) {
@@ -43,6 +46,8 @@ public class MytMerchantController extends BaseController {
 	public Map<String, Object> update(
 			@PathVariable(value = "id") Integer id,
 			@RequestBody MytMerchant mytMerchant) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytMerchant.setOptId(currentUserId);
 		mytMerchant.setId(id);
 		try {
 			mytMerchantService.update(mytMerchant);
@@ -58,8 +63,10 @@ public class MytMerchantController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(
 			@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytMerchant mytMerchant = new MytMerchant();
 		mytMerchant.setId(id);
+		mytMerchant.setOptId(currentUserId);
 		try {
 			mytMerchantService.delete(mytMerchant);
 		} catch (Exception e) {

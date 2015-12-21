@@ -59,5 +59,7 @@
     <module>MytDao</module>
     <module>MytCommon</module>
     <module>MytRestful</module>
+    <module>MytWxRestful</module>
+    <module>MytService</module>
   </modules>
 </project>

@@ -20,7 +20,7 @@ angular.module('mytPcHtmlApp')
               valName: 'wxUserName',
               width: '25%'
             }, {
-              labelName: '手机好吗',
+              labelName: '手机号',
               valName: 'wxUserCall',
               width: '25%'
             }, {
@@ -28,8 +28,7 @@ angular.module('mytPcHtmlApp')
               valName: 'fbkContent',
               width: '25%',
               filter:function(val, otherVal){
-                var r='';
-                angular.copy(val,r);
+                var r=val;
                 if(val){
                   if(val.length>15){
                     r=val.substr(0,15)+'...';
@@ -103,7 +102,7 @@ angular.module('mytPcHtmlApp')
                         function (data) {
                           if (data && data.data ) {
 
-                            val.wxUserName = data.data.userName;
+                            val.wxUserName = data.data.userNickname;
                             val.wxUserCall = data.data.userCall;
                           } else {
                             val.wxUserName = '无';

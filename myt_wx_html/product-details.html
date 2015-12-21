@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="email=no" name="format-detection" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>默认标题</title>
+        <link rel="stylesheet" type="text/css" href="css/uitool-reset.css" media="all">
+        <link rel="stylesheet" type="text/css" href="css/uitool-modular.css" media="all">
+        <script type="text/javascript" src="js/zepto.js"></script>
+        <script type="text/javascript" src="js/swipe.js"></script>
+        <script type="text/javascript">
+            var resize = function() {
+                var html = document.documentElement,
+                    w = html.clientWidth/320,w=16*w;
+                html.setAttribute('style','font-size:' + w + 'px');
+            }
+            window.addEventListener('resize' , function () {
+                resize();
+            });
+            resize();
+        </script>
+    </head>
+    <body>
+        <div class="m-product-details-introduction">
+            <div class="m-focus-swipe">
+                <div id="mfs-id" class="mfs-wrap">
+                    <ul>
+                        <li><a href="javascript:;"><img src="images/focus-01.fw.png" /></a></li>
+                        <li><a href="javascript:;"><img src="images/focus-02.fw.png" /></a></li>
+                        <li><a href="javascript:;"><img src="images/focus-01.fw.png" /></a></li>
+                        <li><a href="javascript:;"><img src="images/focus-02.fw.png" /></a></li>
+                    </ul>
+                    <ol>
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ol>
+                    <a class="mfs-like">500</a>
+                </div>
+            </div>
+            <div class="m-header-menu">
+                <ul>
+                    <li class="current"><a href="javasctipt:;"><em>试用介绍</em></a></li>
+                    <li><a href="javasctipt:;"><em>试用名单</em></a></li>
+                </ul>
+            </div>
+            <div class="m-content-body">
+                <div class="mcb-video">
+                    <iframe height=260 width=100% src="http://player.youku.com/embed/XOTEzNzgyNzg4" frameborder=0 allowfullscreen></iframe>
+                </div>
+                <p>人民网11月7日讯 据美国媒体报道，随着美国海军进入南中国海巡航，有分析者认为这一行动加剧了地区的紧张局势。更有人在讨论中美两军之间在南中国海擦枪走火的可能。不过，据美国海军“拉森号”（USS Lassen）的指挥官罗伯特·弗朗西斯中校透露，两军相遇时，并没有外界想象的那么剑拔弩张，双方甚至还聊起了家常。</p>
+                <p>弗朗西斯中校说，当他们在南中国海遇到中国军舰时，对方问他们：“嘿，你们进入中国的水域了，意图何在？”美舰回答说他们在根据国际法执行航行任务。当时，“拉森号”正要经过中国建的人工岛。这一行动也是为了落实美国官方所说的海上航行自由并挑战中国对南中国海战略性水道的声索。弗朗西斯中校说，在美军回复中国海军之后，对方又是“相同的询问，问来问去”。</p>
+                <img src="images/body-1.fw.png" />
+                <p>最终，这艘一路跟随他们的中国驱逐舰离开了“拉森号”。“当他们离开时他们说，‘嘿，我们不再陪你们了，航行愉快，再会’，”弗朗西斯说。</p>
+            </div>
+            <div class="m-module-1">
+                <h4>试用流程：</h4>
+                <ul>
+                    <li>
+                        <h5>①申请</h5>
+                        <div class="mm1-info">
+                            <span>点击【申请试用】，提交申请信息。</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h5>②审核</h5>
+                        <div class="mm1-info">
+                            <span>进入我的订单查看申请状态。</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h5>③收货</h5>
+                        <div class="mm1-info">
+                            <span>筛选通过后等待发货。</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h5>④提交</h5>
+                        <div class="mm1-info">
+                            <span>收货后规定期限之内提交试用报告。</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="m-module-1">
+                <h4>申请条件：</h4>
+                <ul>
+                    <li>
+                        <div class="mm1-info">
+                            <label>宝宝性别：</label>
+                            <span>男</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mm1-info">
+                            <label>宝宝年龄：</label>
+                            <span>0-1岁</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mm1-info">
+                            <label>宝宝体重：</label>
+                            <span>10KG</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="m-footer-btn">
+                <div class="mfb-wrap">
+                    <a href="javascript:;" class="u-btn u-btn-disable">报告回收中</a>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    new Swipe(document.getElementById('mfs-id'), {
+                        speed: 500,
+                        auto: 3000,
+                        callback: function () {
+                            var lis = $(this.element).next("ol").children();
+                            lis.removeClass("on").eq(this.index).addClass("on");
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

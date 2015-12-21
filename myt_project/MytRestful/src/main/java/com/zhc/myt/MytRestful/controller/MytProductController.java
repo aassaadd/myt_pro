@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zhc.myt.MytDao.entity.MytProduct;
 import com.zhc.myt.MytDao.entity.MytProductClass;
-import com.zhc.myt.MytRestful.service.MytProductService;
+import com.zhc.myt.MytRestful.common.MytSystem;
+import com.zhc.myt.MytService.MytProductService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytProduct")
@@ -27,6 +28,9 @@ public class MytProductController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(
 			@RequestBody MytProduct mytProduct) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytProduct.setCreateId(currentUserId);
+		mytProduct.setOptId(currentUserId);
 		try {
 			service.add(mytProduct);
 		} catch (Exception e) {
@@ -41,6 +45,8 @@ public class MytProductController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytProduct mytProduct) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytProduct.setOptId(currentUserId);
 		mytProduct.setId(id);
 		try {
 			service.update(mytProduct);
@@ -55,8 +61,10 @@ public class MytProductController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytProduct mytProduct = new MytProduct();
 		mytProduct.setId(id);
+		mytProduct.setOptId(currentUserId);
 		try {
 			service.delete(mytProduct);
 		} catch (Exception e) {

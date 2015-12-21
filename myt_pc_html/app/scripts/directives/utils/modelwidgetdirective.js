@@ -7,7 +7,7 @@
  * # modelWidgetDirective
  */
 angular.module('mytPcHtmlApp')
-  .directive('modelWidgetDirective', function ($timeout,$compile) {
+  .directive('modelWidgetDirective', function ($timeout,$compile,global) {
     return {
       templateUrl: 'views/utils/modelwidgetview.html',
       restrict: 'AE',
@@ -47,6 +47,9 @@ angular.module('mytPcHtmlApp')
           for(var i in otherVal){
             if(val==otherVal[i].value){
               r=otherVal[i].text;
+              if(r==''){
+                r=otherVal[i].value;
+              }
               break;
             }
           }
@@ -70,27 +73,57 @@ angular.module('mytPcHtmlApp')
                   rr=/[0-9]*/,
                   val=element.find('input').val();
               if(!r.test(val)){
-                element.find('input').val(val.match(rr)[0]);
+                scope.conf.value='';
+                element.find('input').val('');
+                //element.find('input').val(val.match(rr)[0]);
               }
             });
           });
 
         };
         if(scope.conf.type=='amount'){
+
           //延时绑定
           $timeout(function() {
+            scope.conf.value=scope.conf.value/100;
             element.find('input').on('keyup',function(){
               //
               var r=/^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/,
                   rr=/(([1-9]\d{0,9})|0)(\.\d{1,2})?/,
                   val=element.find('input').val();
-              if(!r.test(val)){
-                element.find('input').val(val.match(rr)[0]);
+              if(!rr.test(val)){
+                //element.find('input').val(val.match(rr)[0]);
+                scope.conf.value='';
+                element.find('input').val('');
               }
             });
           });
 
         };
+        if(scope.conf.ope=='view' && scope.conf.type=='imgUp'){
+          scope.url=''
+            scope.$watch(function () {
+              return scope.conf.value;
+
+            }, function () {
+              if (scope.conf.value && scope.conf.value != '') {
+                scope.url = global.baseUrl + '/api/manage/mytFile/' + scope.conf.value + '?postMethod=image&token=' + global.getToken();
+              } else {
+                scope.url = global.baseUrl + '/api/manage/mytFile/0?postMethod=image&token=' + global.getToken();
+              }
+
+            });
+        }
+        if(scope.conf.ope=='view' && scope.conf.type=='kindeditor'){
+
+          scope.$watch(function () {
+            return scope.conf.value;
+
+          }, function () {
+            element.find('iframe'). contents().find('body').html(scope.conf.value);
+          });
+        }
+
         if(scope.conf.type=='other'){
           $timeout(function() {
             var d = scope.conf.directive.replace(/([A-Z])/g, "-$1").toLowerCase(),

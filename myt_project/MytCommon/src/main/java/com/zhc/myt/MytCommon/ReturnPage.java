@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class ReturnPage<T> implements Serializable{
+public  class   ReturnPage<T> implements Serializable{
 
 	/**
 	 * 
@@ -124,7 +124,11 @@ public class ReturnPage<T> implements Serializable{
 		if (this.number.equals(this.totalPages - 1)) {
 			last = true;
 		}
+
 		this.content = content;
+		if(this.content.size()==0){
+			last = true;
+		}
 	}
 
 }

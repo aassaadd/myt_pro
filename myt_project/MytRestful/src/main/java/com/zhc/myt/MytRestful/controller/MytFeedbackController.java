@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.zhc.myt.MytDao.entity.MytFeedback;
-import com.zhc.myt.MytRestful.service.MytFeedbackService;
+import com.zhc.myt.MytRestful.common.MytSystem;
+import com.zhc.myt.MytService.MytFeedbackService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytFeedback")
@@ -28,6 +30,9 @@ public class MytFeedbackController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(
 			@RequestBody MytFeedback mytFeedback) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytFeedback.setCreateId(currentUserId);
+		mytFeedback.setOptId(currentUserId);
 		try {
 			service.add(mytFeedback);
 		} catch (Exception e) {
@@ -42,6 +47,8 @@ public class MytFeedbackController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytFeedback mytFeedback) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytFeedback.setOptId(currentUserId);
 		mytFeedback.setId(id);
 		try {
 			service.update(mytFeedback);
@@ -56,8 +63,10 @@ public class MytFeedbackController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytFeedback mytFeedback = new MytFeedback();
 		mytFeedback.setId(id);
+		mytFeedback.setOptId(currentUserId);
 		try {
 			service.delete(mytFeedback);
 		} catch (Exception e) {

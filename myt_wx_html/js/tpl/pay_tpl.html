@@ -1,0 +1,130 @@
+<div class="page">
+    <div style="float: left;">
+        <div class="m-order-content" zhc-scope="payTime">
+            <ul>
+                <li class="moc-state-1">
+                    <div class="mocs1-hd">
+                        <i class="iconfont-state"></i>
+                    </div>
+                    <div class="mocs1-bd bd">
+                        <div>
+                            <span>您于<em>{{createDate | dateFormat:'yyyy/MM/dd hh:mm:ss'}}</em>下的单</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="moc-state-1">
+                    <div class="mocs1-hd">
+                        <i class="iconfont-state"></i>
+                    </div>
+                    <div class="mocs1-bd bd" zhc-scope="payState">
+                        <div>
+                            <span>订单状态:{{orderStatus | payStateString}}</span>
+                        </div>
+                    </div>
+                </li>
+                <!--<li class="moc-state-1">-->
+                <!--<div class="mocs1-hd">-->
+                <!--<i class="iconfont-state"></i>-->
+                <!--</div>-->
+                <!--<div class="mocs1-bd bd">-->
+                <!--<div>-->
+                <!--<span>订单状态:<a>退回中</a></span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+                <li class="moc-state-2" zhc-scope="payAddress">
+                    <div class="mocs2-hd">
+                        <i class="iconfont-add"></i>
+                    </div>
+                    <div class="mocs2-bd bd">
+                        <span>收货人:<em>刘青云</em><em>13777777777</em></span>
+                        <span>收货地址:<em>上海市徐汇区乐山路33号...</em></span>
+                    </div>
+                </li>
+                <!--<li class="moc-state-2">-->
+                <!--<div class="mocs2-hd">-->
+                <!--<i class="iconfont-add"></i>-->
+                <!--</div>-->
+                <!--<div class="mocs2-bd bd">-->
+                <!--<h4><a href="javascript:;">请选择收获地址</a></h4>-->
+                <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <div class="m-order-content">
+            <ul >
+                <li class="moc-state-3">
+                    <div class="mocs3-hd" zhc-scope="proImg">
+                        <i class="iconfont-img"><img src="{{imgId | file2img}}" /></i>
+                    </div>
+                    <div class="mocs3-bd bd" >
+                        <h4 zhc-scope="proName"><a href="javascript:;">{{proName}}</a></h4>
+                        <em class="s-price"zhc-scope="orderFee"><span>￥{{orderRealityFee/100}}</span></em>
+                        <em class="s-no" zhc-scope="orderCount"><span>x {{orderGoodsNum}}</span></em>
+                    </div>
+                </li>
+                <li class="moc-state-4">
+                    <div class="mocs4-bd bd" >
+                        <h4><a href="javascript:;">运费</a></h4>
+                        <!--<p>由品牌商 逻辑思维 独家配送</p>-->
+                        <em class="s-price">￥0.00</em>
+                    </div>
+                </li>
+                <li class="moc-state-5">
+                    <div class="mocs5-bd bd" zhc-scope="orderFeeCount">
+                        <h4><a href="javascript:;">合计</a></h4>
+                        <em class="s-price">￥{{orderRealityFee/100}}</em>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="m-order-agreement">
+            <label class="uitool-cell uitool-check-label">
+                <div class="uitool-cell-hd">
+                    <input type="checkbox" class="uitool-check" checked="checked">
+                    <i class="uitool-iconfont-checked"></i>
+                </div>
+                <div class="uitool-cell-bd">
+                    <p>勾选即表示同意<a href="javascript:;">《一元购用户服务协议》</a></p>
+                </div>
+            </label>
+        </div>
+        <div class="m-order-info">
+            <ul>
+                <li class="moc-state-6" zhc-scope="orderFeeAll">
+                    <div class="mocs6-bd bd">
+                        <h4><span><em>￥{{orderRealityFee/100}}</em>+<em>￥0.00</em>运费</span></h4>
+                        <!--<div class="m6bd-price">需付：<span>￥0.00</span></div>-->
+                        <div class="m6bd-price red">需付：<span>￥{{orderRealityFee/100}}</span></div>
+                        <!--<div class="m6bd-price c666">需付：<span>￥0.00</span></div>-->
+                    </div>
+                </li>
+                <li class="moc-state-7" zhc-scope="order">
+                    <div class="mocs7-bd bd">
+                        <h4><span>订单编号：<em>{{orderNo}}</em></span></h4>
+                        <div class="m7bd-price">
+                            <span>{{orderPayTime | dateFormat:'yyyy/MM/dd hh:mm:ss'}}</span>
+                            <span>{{orderStatus | payStateString}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="m-order-pay">-->
+            <!--<ul>-->
+                <!--<li class="mop-wechat">-->
+                    <!--<a href="javascript:;"><em>微信安全支付</em></a>-->
+                <!--</li>-->
+                <!--<li class="mop-other">-->
+                    <!--<a href="javascript:;">其他安全支付</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div class="m-order-btn" zhc-scope="orderButton">
+            <ul>
+                <li><a href="javascript:;" class="u-btn {{orderStatus | orderStateButtonCss}}" zhc-click="submit()">{{orderStatus | orderStateButtonString}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>

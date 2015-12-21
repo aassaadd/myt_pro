@@ -7,11 +7,11 @@
  * # productManagePage
  */
 angular.module('mytPcHtmlApp')
-  .directive('productManagePage', function (apiMain,$filter,$location) {
+  .directive('productManagePage', function (apiMain, $filter, $location) {
     return {
       templateUrl: 'views/page/product/productmanagepageview.html',
       restrict: 'AE',
-      scope:{},
+      scope: {},
       link: function postLink(scope, element, attrs) {
         scope.conf = {
           columnConf: [
@@ -99,7 +99,7 @@ angular.module('mytPcHtmlApp')
                 var r='';
                 switch (val){
                   case '0':
-                      r='提交';
+                    r='提交';
                     break;
                   case '1':
                     r='上架';
@@ -119,63 +119,73 @@ angular.module('mytPcHtmlApp')
           ],
           operationConf: [
             {
-              labelName: '查看',//操作名称
+              labelName: '修改',//操作名称
               doFunc: function (val) {
-                alert(JSON.stringify(val));
+                $location.path('productAddManage').search({id: val.id});
               }//操作方法
             }
           ],
-          globalOperationConf:[
+          globalOperationConf: [
             {
-                labelName: '添加',//操作名称
-                doFunc: function (val) {
-                  $location.path('productAddManage');
-                }//操作方法
+              labelName: '添加',//操作名称
+              doFunc: function (val) {
+                $location.path('productAddManage');
+              }//操作方法
+            },
+            {
+              labelName: '用户申请列表',//操作名称
+              doFunc: function (val) {
+                if(val && val.length==1){
+                  $location.path('productApplyManage');
+                }else{
+                  alert('请选择一个商品');
+                }
+
+
+              }//操作方法
             }
           ],
-          querys:[
-
-          ],
-          defaultButton:false,
-          //multiSelect:true,
+          querys: [],
+          defaultButton: false,
+          multiSelect: true,
           doSelect: function () {
             var self = this,
-                querys = self.super();
-            apiMain.fdk.getByPage.queryCallback(querys, function (data) {
+              querys = self.super();
+            apiMain.product.getByPage.queryCallback(querys, function (data) {
               if (data && data.data) {
                 for (var i in data.data.content) {
                   data.data.content[i].procName = '加载中...';
                   data.data.content[i].mchName = '加载中...';
                   (function (val) {
                     apiMain.class.getById.queryCallback(
-                        {
-                          id: val.procId
-                        },
-                        function (data) {
-                          if (data && data.data ) {
+                      {
+                        id: val.procId
+                      },
+                      function (data) {
+                        if (data && data.data) {
 
-                            val.procName = data.data.procName;
+                          val.procName = data.data.procName;
 
-                          } else {
-                            val.procName = '无';
+                        } else {
+                          val.procName = '无';
 
-                          }
+                        }
 
 
-                        });
+                      });
                     apiMain.mch.getById.queryCallback(
-                        {
-                          id: val.mchId
-                        },
-                        function (data) {
-                          if (data && data.data ) {
+                      {
+                        id: val.mchId
+                      },
+                      function (data) {
+                        if (data && data.data) {
 
-                            val.mchName = data.data.mchName;
-                          } else {
-                            val.mchName = '无';
-                          }
+                          val.mchName = data.data.mchName;
+                        } else {
+                          val.mchName = '无';
+                        }
 
-                        });
+                      });
                   })(data.data.content[i]);
                 }
                 self.pageSource = data.data;

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.zhc.myt.MytDao.entity.MytOrders;
-import com.zhc.myt.MytRestful.service.MytOrdersService;
+import com.zhc.myt.MytRestful.common.MytSystem;
+import com.zhc.myt.MytService.MytOrdersService;
 
 @RestController
 @RequestMapping(value = "/api/manage/mytOrders")
@@ -26,6 +28,9 @@ public class MytOrdersController extends BaseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Map<String, Object> add(
 			@RequestBody MytOrders mytOrders) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytOrders.setCreateId(currentUserId);
+		mytOrders.setOptId(currentUserId);
 		try {
 			service.add(mytOrders);
 		} catch (Exception e) {
@@ -40,6 +45,8 @@ public class MytOrdersController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Map<String, Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody MytOrders mytOrders) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
+		mytOrders.setOptId(currentUserId);
 		mytOrders.setId(id);
 		try {
 			service.update(mytOrders);
@@ -54,8 +61,10 @@ public class MytOrdersController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable(value = "id") Integer id) {
+		Integer currentUserId = (Integer) MytSystem.getCurrentUserId();
 		MytOrders mytOrders = new MytOrders();
 		mytOrders.setId(id);
+		mytOrders.setOptId(currentUserId);
 		try {
 			service.delete(mytOrders);
 		} catch (Exception e) {

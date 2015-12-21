@@ -17,7 +17,8 @@ angular.module('mytPcHtmlApp')
       link: function postLink(scope, element, attrs) {
         scope.apps = []
         apiMain.app.getByPage.queryCallback({
-          status: '1'
+          status: '1',
+          appClass:'0'
         }, function (data) {
           if (data && data.data) {
             scope.apps = data.data;

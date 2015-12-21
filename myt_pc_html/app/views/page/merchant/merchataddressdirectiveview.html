@@ -1,0 +1,15 @@
+<div>
+    <select class="form-control" name="province" ng-model="conf.value.province" ng-change="selProvince()">
+      <option value="">省</option>
+      <option ng-repeat="p in province" value="{{p.value}}">{{p.text}}</option>
+    </select>
+    <select class="form-control" name="city" ng-model="conf.value.city" ng-if="scope.conf.value.province!=''" ng-change="selCity()">
+      <option value="">市</option>
+      <option ng-repeat="c in city" value="{{c.value}}">{{c.text}}</option>
+    </select>
+    <select class="form-control" name="county" ng-model="conf.value.area" ng-if="scope.conf.value.city!=''">
+      <option value="">区</option>
+      <option ng-repeat="a in area" value="{{a.value}}">{{a.text}}</option>
+    </select>
+  <input class="form-control" type="text" ng-model="conf.value.address" placeholder="详细地址"/>
+</div>

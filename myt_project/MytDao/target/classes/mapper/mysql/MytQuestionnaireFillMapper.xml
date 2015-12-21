@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhc.myt.MytDao.mapper.MytQuestionnaireFillMapper" >
+  <resultMap id="BaseResultMap" type="com.zhc.myt.MytDao.entity.MytQuestionnaireFill" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="qu_id" property="quId" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="quf_description" property="qufDescription" jdbcType="VARCHAR" />
+    <result column="quf_description_bak" property="qufDescriptionBak" jdbcType="VARCHAR" />
+    <result column="quf_json" property="qufJson" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="opt_id" property="optId" jdbcType="INTEGER" />
+    <result column="opt_date" property="optDate" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="pro_no" property="proNo" jdbcType="VARCHAR" />
+    <result column="img_id" property="imgId" jdbcType="INTEGER" />
+    <result column="img2_id" property="img2Id" jdbcType="INTEGER" />
+    <result column="img1_id" property="img1Id" jdbcType="INTEGER" />
+    <result column="img3_id" property="img3Id" jdbcType="INTEGER" />
+    <result column="img4_id" property="img4Id" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, qu_id, pro_id, quf_description, quf_description_bak, quf_json, status, opt_id, 
+    opt_date, create_id, create_date, pro_no, img_id, img2_id, img1_id, img3_id, img4_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhc.myt.MytDao.entity.MytQuestionnaireFillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from myt_questionnaire_fill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from myt_questionnaire_fill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from myt_questionnaire_fill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhc.myt.MytDao.entity.MytQuestionnaireFill" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into myt_questionnaire_fill (qu_id, pro_id, quf_description, 
+      quf_description_bak, quf_json, status, 
+      opt_id, opt_date, create_id, 
+      create_date, pro_no, img_id, 
+      img2_id, img1_id, img3_id, 
+      img4_id)
+    values (#{quId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, #{qufDescription,jdbcType=VARCHAR}, 
+      #{qufDescriptionBak,jdbcType=VARCHAR}, #{qufJson,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{optId,jdbcType=INTEGER}, #{optDate,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{proNo,jdbcType=VARCHAR}, #{imgId,jdbcType=INTEGER}, 
+      #{img2Id,jdbcType=INTEGER}, #{img1Id,jdbcType=INTEGER}, #{img3Id,jdbcType=INTEGER}, 
+      #{img4Id,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhc.myt.MytDao.entity.MytQuestionnaireFill" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into myt_questionnaire_fill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="quId != null" >
+        qu_id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="qufDescription != null" >
+        quf_description,
+      </if>
+      <if test="qufDescriptionBak != null" >
+        quf_description_bak,
+      </if>
+      <if test="qufJson != null" >
+        quf_json,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="optId != null" >
+        opt_id,
+      </if>
+      <if test="optDate != null" >
+        opt_date,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="proNo != null" >
+        pro_no,
+      </if>
+      <if test="imgId != null" >
+        img_id,
+      </if>
+      <if test="img2Id != null" >
+        img2_id,
+      </if>
+      <if test="img1Id != null" >
+        img1_id,
+      </if>
+      <if test="img3Id != null" >
+        img3_id,
+      </if>
+      <if test="img4Id != null" >
+        img4_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="quId != null" >
+        #{quId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="qufDescription != null" >
+        #{qufDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="qufDescriptionBak != null" >
+        #{qufDescriptionBak,jdbcType=VARCHAR},
+      </if>
+      <if test="qufJson != null" >
+        #{qufJson,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="optId != null" >
+        #{optId,jdbcType=INTEGER},
+      </if>
+      <if test="optDate != null" >
+        #{optDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proNo != null" >
+        #{proNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null" >
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="img2Id != null" >
+        #{img2Id,jdbcType=INTEGER},
+      </if>
+      <if test="img1Id != null" >
+        #{img1Id,jdbcType=INTEGER},
+      </if>
+      <if test="img3Id != null" >
+        #{img3Id,jdbcType=INTEGER},
+      </if>
+      <if test="img4Id != null" >
+        #{img4Id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhc.myt.MytDao.entity.MytQuestionnaireFillExample" resultType="java.lang.Integer" >
+    select count(*) from myt_questionnaire_fill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhc.myt.MytDao.entity.MytQuestionnaireFill" >
+    update myt_questionnaire_fill
+    <set >
+      <if test="quId != null" >
+        qu_id = #{quId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="qufDescription != null" >
+        quf_description = #{qufDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="qufDescriptionBak != null" >
+        quf_description_bak = #{qufDescriptionBak,jdbcType=VARCHAR},
+      </if>
+      <if test="qufJson != null" >
+        quf_json = #{qufJson,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="optId != null" >
+        opt_id = #{optId,jdbcType=INTEGER},
+      </if>
+      <if test="optDate != null" >
+        opt_date = #{optDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proNo != null" >
+        pro_no = #{proNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null" >
+        img_id = #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="img2Id != null" >
+        img2_id = #{img2Id,jdbcType=INTEGER},
+      </if>
+      <if test="img1Id != null" >
+        img1_id = #{img1Id,jdbcType=INTEGER},
+      </if>
+      <if test="img3Id != null" >
+        img3_id = #{img3Id,jdbcType=INTEGER},
+      </if>
+      <if test="img4Id != null" >
+        img4_id = #{img4Id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhc.myt.MytDao.entity.MytQuestionnaireFill" >
+    update myt_questionnaire_fill
+    set qu_id = #{quId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      quf_description = #{qufDescription,jdbcType=VARCHAR},
+      quf_description_bak = #{qufDescriptionBak,jdbcType=VARCHAR},
+      quf_json = #{qufJson,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      opt_id = #{optId,jdbcType=INTEGER},
+      opt_date = #{optDate,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      pro_no = #{proNo,jdbcType=VARCHAR},
+      img_id = #{imgId,jdbcType=INTEGER},
+      img2_id = #{img2Id,jdbcType=INTEGER},
+      img1_id = #{img1Id,jdbcType=INTEGER},
+      img3_id = #{img3Id,jdbcType=INTEGER},
+      img4_id = #{img4Id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

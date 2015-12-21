@@ -21,6 +21,16 @@ public class MytWxUser {
 
     private Date userBirth;
 
+    private String openid;
+
+    private String city;
+
+    private String province;
+
+    private String country;
+
+    private String headimgurl;
+
     private String status;
 
     private Integer optId;
@@ -101,6 +111,46 @@ public class MytWxUser {
 
     public void setUserBirth(Date userBirth) {
         this.userBirth = userBirth;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country == null ? null : country.trim();
+    }
+
+    public String getHeadimgurl() {
+        return headimgurl;
+    }
+
+    public void setHeadimgurl(String headimgurl) {
+        this.headimgurl = headimgurl == null ? null : headimgurl.trim();
     }
 
     public String getStatus() {
